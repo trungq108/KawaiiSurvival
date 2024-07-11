@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
         playerRb = GetComponent<Rigidbody2D>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         playerRb.velocity = MobileJoystick.Instance.GetMoveVector() * moveSpeed * Time.deltaTime;
     }
