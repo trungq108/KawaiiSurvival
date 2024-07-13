@@ -94,6 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1524099952700436620}
   - component: {fileID: 1524099952700436623}
+  - component: {fileID: 1718482191695865264}
   - component: {fileID: 1524099952700436622}
   m_Layer: 0
   m_Name: Enemy
@@ -135,6 +136,23 @@ CircleCollider2D:
   m_Offset: {x: -0.03, y: 0.42}
   serializedVersion: 2
   m_Radius: 0.39
+--- !u!114 &1718482191695865264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1524099952700436621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c08b899f5cab8e44b7d0e3109aaa5dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyRenderer: {fileID: 1524099952568135203}
+  spawnCircle: {fileID: 2492462781972235616}
+  detectRange: 0.5
+  attackDuration: 1
+  bloodVFXPrefab: {fileID: 3548588485384254792, guid: 2f9e7dc163581394da1e00b561eed65d, type: 3}
 --- !u!114 &1524099952700436622
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,11 +165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14bcf3503001c5249b6730ef79ddbfb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyRenderer: {fileID: 1524099952568135203}
-  spawnCircle: {fileID: 2492462781972235616}
   moveSpeed: 3
-  detechRange: 0.5
-  bloodVFXPrefab: {fileID: 3548588485384254792, guid: 2f9e7dc163581394da1e00b561eed65d, type: 3}
 --- !u!1 &5443222778562937983
 GameObject:
   m_ObjectHideFlags: 0
