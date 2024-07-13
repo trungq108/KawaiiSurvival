@@ -2,28 +2,55 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Net.Http.Headers;
 using UnityEngine;
+using Lean.Pool;
+using DG.Tweening;
 
 public class EnemyMovement : MonoBehaviour
 {
     [Header(" Element ")]
     private Player player;
+    [SerializeField] SpriteRenderer enemyRenderer;
+    [SerializeField] SpriteRenderer spawnCircle;
 
     [Header(" Setting ")]
-    [SerializeField] private float moveSpeed;
-    [SerializeField] private float detechRange;
+    [SerializeField] float moveSpeed;
+    [SerializeField] float detechRange;
+    private bool isSpawned;
 
-    [Header(" Setting ")]
-    [SerializeField] bool isGizmos;
+    [Header(" Visual ")]
+    [SerializeField] GameObject bloodVFXPrefab;
 
 
     private void Awake()
     {
+        OnInit();
+    }
+
+    private void OnInit()
+    {
         player = FindObjectOfType<Player>();
         if (player == null) Destroy(this.gameObject);
+
+        isSpawned = false;
+        enemyRenderer.enabled = false;
+        spawnCircle.enabled = true;
+
+        spawnCircle.transform.DOScale(spawnCircle.transform.localScale * 1.2f, 1f)
+            .SetEase(Ease.InOutSine)
+            .SetLoops(3)
+            .OnComplete(EnemyActivace);
+    }
+
+    private void EnemyActivace()
+    {
+        isSpawned = true;
+        enemyRenderer.enabled = true;
+        spawnCircle.enabled = false;
     }
 
     void Update()
     {
+        if(!isSpawned) return;
         EnemyFollow(player.transform.position);
         TryAttack(player.transform.position);
     }
@@ -38,13 +65,15 @@ public class EnemyMovement : MonoBehaviour
         float distance = Vector2.Distance(transform.position, pos);
         if (distance < detechRange)
         {
-            Destroy(this.gameObject);
+            Dead();
         }
     }
 
-    private void OnDrawGizmosSelected()
+    private void Dead()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, detechRange);
+        GameObject bloodVFX = LeanPool.Spawn(bloodVFXPrefab, this.transform.position, Quaternion.identity);
+        LeanPool.Despawn(bloodVFX, 2f);
+        Destroy(this.gameObject);
     }
+
 }

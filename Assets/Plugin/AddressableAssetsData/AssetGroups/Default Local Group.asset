@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: 
+  m_GroupName: Default Local Group
+  m_Data:
+    m_SerializedData: []
+  m_GUID: e98dac4352310314fa761378c990a05f
+  m_SerializeEntries:
+  - m_GUID: 2f9e7dc163581394da1e00b561eed65d
+    m_Address: Assets/Plugin/Simple FX Kit/Prefabs/Blood Splash.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 7800b8f6b712bfe49bd663eeb3ebe1e4
+    m_Address: Assets/Plugin/Simple FX Kit/Prefabs/Explosion Fire.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4d7e19c9fcb52be4bb9a8ba855ffe12d
+    m_Address: Assets/Plugin/Simple FX Kit/Prefabs/Fire.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: eafb5fe28c005164a92ca42f3f7532a7
+    m_Address: Assets/Plugin/Simple FX Kit/Prefabs/FlameThrower.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 8a334e7c388e77347a1dddd727ef3446
+    m_Address: Assets/Plugin/Simple FX Kit/Prefabs/Smoke.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 61753401622c2a947a30e2147430e97d
+    m_Address: Assets/Plugin/Simple FX Kit/Prefabs/Spheres Explode.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 9790383d97594f049aecba8cf470e3b7
+    m_Address: Assets/Plugin/Simple FX Kit/Prefabs/Squares Explode.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 924e772d99fea934f8c7dff7c622e78a
+    m_Address: Assets/Plugin/Simple FX Kit/Prefabs/Triangles Explode.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 2e187e22a11f364409b0a3f4d03c36a8
+    m_Address: Assets/Plugin/Simple FX Kit/Prefabs/Water Splash Continous.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 7377f38a94f13bd43924090d4a77f29e
+    m_Address: Assets/Plugin/Simple FX Kit/Prefabs/Water Splash.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 10907596560a0f14f9b70f1fefd8bb44, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: c4432a5d3fa67f04fb6be1b2e3642750, type: 2}
+    - {fileID: 11400000, guid: 6bfc2cbef5ae27b489578b5fe560759a, type: 2}
