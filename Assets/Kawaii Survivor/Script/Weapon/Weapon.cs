@@ -25,7 +25,6 @@ public class Weapon : MonoBehaviour
         AimTarget();
     }
 
-
     private void FindNearestTarget()
     {
         float min = float.MaxValue;
@@ -58,6 +57,7 @@ public class Weapon : MonoBehaviour
         }
         transform.up = Vector3.Lerp(targetDirection, targetDirection, Time.deltaTime * aimSpeed);
     }
+
 
     private void OnDrawGizmos()
     {
