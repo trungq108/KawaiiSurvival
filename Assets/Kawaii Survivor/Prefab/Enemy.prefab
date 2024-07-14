@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 1524099952700436623}
   - component: {fileID: 1718482191695865264}
   - component: {fileID: 1524099952700436622}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -150,7 +150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyRenderer: {fileID: 1524099952568135203}
   spawnCircle: {fileID: 2492462781972235616}
-  detectRange: 0.5
+  detectRange: 1
   attackDuration: 1
   attackDamage: 1
   bloodVFXPrefab: {fileID: 3548588485384254792, guid: 2f9e7dc163581394da1e00b561eed65d, type: 3}
