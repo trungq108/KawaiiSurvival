@@ -152,6 +152,7 @@ MonoBehaviour:
   spawnCircle: {fileID: 2492462781972235616}
   detectRange: 0.5
   attackDuration: 1
+  attackDamage: 1
   bloodVFXPrefab: {fileID: 3548588485384254792, guid: 2f9e7dc163581394da1e00b561eed65d, type: 3}
 --- !u!114 &1524099952700436622
 MonoBehaviour:
