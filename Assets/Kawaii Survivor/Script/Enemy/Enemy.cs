@@ -8,28 +8,34 @@ public class Enemy : MonoBehaviour
 {
     private Player player;
     private EnemyMovement enemyMovement;
+    private EnemyHealth enemyHealth;
+
+    [Header("Spawn")]
     [SerializeField] SpriteRenderer enemyRenderer;
     [SerializeField] SpriteRenderer spawnCircle;
 
+    [Header("AttackSetting")]
     [SerializeField] float detectRange;
     [SerializeField] float attackDuration;
     [SerializeField] int attackDamage;
     private float attackTimer;
     private bool isSpawned;
 
+    [Header("VFX")]
     [SerializeField] GameObject bloodVFXPrefab;
 
 
-    private void Awake()
+    private void Start()
     {
         OnInit();
     }
 
     private void OnInit()
     {
-        player = FindObjectOfType<Player>();
+        player = GameManager.Instance.Player;
         if (player == null) Destroy(this.gameObject);
         enemyMovement = GetComponent<EnemyMovement>();
+        enemyHealth = GetComponent<EnemyHealth>();
 
         isSpawned = false;
         enemyRenderer.enabled = false;
@@ -75,6 +81,11 @@ public class Enemy : MonoBehaviour
     {
         player.TakeDamage(attackDamage);
         attackTimer = 0f;
+    }
+
+    public void TakeDamage(int damage)
+    {
+        enemyHealth.TakeDame(damage);
     }
 
     private void DestroyEnemy()

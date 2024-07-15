@@ -6,10 +6,14 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class Health : MonoBehaviour
+public class PlayerHealth : MonoBehaviour
 {
+    [Header("Setting")]
     private int currentHealth;
     [SerializeField] int maxHealth;
+    
+
+    [Header("Element")]
     [SerializeField] Slider healthBar;
     [SerializeField] TextMeshProUGUI healthText;
 
@@ -24,16 +28,16 @@ public class Health : MonoBehaviour
         int realDamageTaken = Mathf.Min(currentHealth, damage);
         currentHealth -= realDamageTaken;
         HealthBarUpdate();
+        if (currentHealth <= 0)
+        {
+            Death();
+        }
     }
 
     public void HealthBarUpdate()
     {
         healthBar.value = (float) currentHealth / maxHealth;
         healthText.text = currentHealth + "/" + maxHealth;
-        if(currentHealth <= 0)
-        {
-            Death();
-        }
     }
 
     private void Death()

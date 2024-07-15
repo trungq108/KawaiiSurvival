@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 { 
-    void Start()
+    private Player player; public Player Player => player; 
+    void Awake()
     {
         Application.targetFrameRate = 60;
+        player = FindObjectOfType<Player>();
     }
 
     void Update()
