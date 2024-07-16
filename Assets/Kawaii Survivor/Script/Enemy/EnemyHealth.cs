@@ -7,13 +7,8 @@ using Lean.Pool;
 
 public class EnemyHealth : MonoBehaviour
 {
-    [Header("Setting")]
     private int currentHealth;
     [SerializeField] int maxHealth;
-
-
-    //[Header("Element")]
-
 
     private void Awake()
     {

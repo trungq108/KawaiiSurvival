@@ -17,26 +17,23 @@ public class Weapon : MonoBehaviour
     [SerializeField] float aimSpeed;
     [SerializeField] float detectRadius;
     [SerializeField] LayerMask enemyLayerMask;
+    private float timer;
+    [SerializeField] float attackDelay;
 
     [SerializeField] Button test1;
     [SerializeField] Button test2;
 
-    private void Awake()
-    {
-        test1.onClick.AddListener(() => Attack());
-        test2.onClick.AddListener(() => StopAttack());
-
-    }
-
     private void Start()
     {
         InvokeRepeating(nameof(FindNearestTarget), 0f, 0.5f);
-        InvokeRepeating(nameof(Attack), 0f, 1f);
     }
 
     void Update()
     {
         AimTarget();
+
+        timer += Time.deltaTime;
+        if (timer > attackDelay && nearestTarget != null) Attack();
     }
 
     private void FindNearestTarget()
@@ -75,6 +72,7 @@ public class Weapon : MonoBehaviour
     private void Attack()
     {
         ChangAnim("attack");
+        timer = 0f;
     }
 
     private void StopAttack()

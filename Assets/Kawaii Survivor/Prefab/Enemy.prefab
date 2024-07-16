@@ -155,6 +155,7 @@ MonoBehaviour:
   attackDuration: 1
   attackDamage: 1
   bloodVFXPrefab: {fileID: 3548588485384254792, guid: 2f9e7dc163581394da1e00b561eed65d, type: 3}
+  damageText: {fileID: 805705050, guid: 5d26bfa57d64f7347bc744cd31752be8, type: 3}
 --- !u!114 &1524099952700436622
 MonoBehaviour:
   m_ObjectHideFlags: 0

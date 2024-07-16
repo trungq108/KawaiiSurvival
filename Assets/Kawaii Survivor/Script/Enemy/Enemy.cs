@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     private Player player;
     private EnemyMovement enemyMovement;
     private EnemyHealth enemyHealth;
+    private Collider2D collider;
 
     [Header("Spawn")]
     [SerializeField] SpriteRenderer enemyRenderer;
@@ -23,7 +24,7 @@ public class Enemy : MonoBehaviour
 
     [Header("VFX")]
     [SerializeField] GameObject bloodVFXPrefab;
-
+    [SerializeField] DamageText damageText;
 
     private void Start()
     {
@@ -36,6 +37,9 @@ public class Enemy : MonoBehaviour
         if (player == null) Destroy(this.gameObject);
         enemyMovement = GetComponent<EnemyMovement>();
         enemyHealth = GetComponent<EnemyHealth>();
+        collider = GetComponent<Collider2D>();
+        collider.enabled = false;
+
 
         isSpawned = false;
         enemyRenderer.enabled = false;
@@ -52,6 +56,7 @@ public class Enemy : MonoBehaviour
         isSpawned = true;
         enemyRenderer.enabled = true;
         spawnCircle.enabled = false;
+        collider.enabled = true;
         enemyMovement.SetPlayer(player);
     }
 
@@ -86,13 +91,13 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(int damage)
     {
         enemyHealth.TakeDame(damage);
-    }
 
-    private void DestroyEnemy()
-    {
-        GameObject bloodVFX = LeanPool.Spawn(bloodVFXPrefab, this.transform.position, Quaternion.identity);
+        DamageText textDamage = LeanPool.Spawn(damageText, this.transform.position, Quaternion.identity); 
+        textDamage.Trigger(damage);
+        LeanPool.Despawn(textDamage, 1f);
+
+        GameObject bloodVFX = LeanPool.Spawn(bloodVFXPrefab, this.transform.position, Quaternion.identity); 
         LeanPool.Despawn(bloodVFX, 2f);
-        LeanPool.Despawn(this.gameObject);
-    }
 
+    }
 }
