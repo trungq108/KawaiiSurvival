@@ -10,6 +10,10 @@ public class EnemyHealth : MonoBehaviour
     private int currentHealth;
     [SerializeField] int maxHealth;
 
+    [Header("VFX")]
+    [SerializeField] GameObject bloodVFXPrefab;
+    [SerializeField] DamageText damageText;
+
     private void Awake()
     {
         currentHealth = maxHealth;
@@ -19,10 +23,15 @@ public class EnemyHealth : MonoBehaviour
     {
         int realDamageTaken = Mathf.Min(currentHealth, damage);
         currentHealth -= realDamageTaken;
-        if (currentHealth <= 0)
-        {
-            Death();
-        }
+
+        DamageText textDamage = LeanPool.Spawn(damageText, this.transform.position, Quaternion.identity);
+        textDamage.Trigger(damage);
+        LeanPool.Despawn(textDamage, 1f);
+
+        GameObject bloodVFX = LeanPool.Spawn(bloodVFXPrefab, this.transform.position, Quaternion.identity);
+        LeanPool.Despawn(bloodVFX, 2f);
+
+        if (currentHealth <= 0) Death();
     }
 
     private void Death()

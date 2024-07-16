@@ -8,22 +8,20 @@ using DG.Tweening;
 public class EnemyMovement : MonoBehaviour
 {
     private Player player;
+    private float distanceRange;
+
     [SerializeField] float moveSpeed;
 
-    private void Update()
+    public void FollowPlayer()
     {
-        if(player != null)
-        {
-            EnemyFollow(player.transform.position);
-        }
-    }
-    public void EnemyFollow(Vector2 pos)
-    {
-        transform.position = Vector2.MoveTowards(transform.position, pos, Time.deltaTime * moveSpeed);
+        if (player == null) return;
+        if (Vector2.Distance(transform.position, player.transform.position) <= distanceRange) return;
+        transform.position = Vector2.MoveTowards(transform.position, player.transform.position, Time.deltaTime * moveSpeed);
     }
 
-    public void SetPlayer(Player player)
+    public void OnInit(Player player, float distanceRange)
     {
         this.player = player;
+        this.distanceRange = distanceRange;
     }
 }

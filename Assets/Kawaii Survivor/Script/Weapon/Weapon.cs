@@ -9,6 +9,7 @@ public class Weapon : MonoBehaviour
     [Header("Element")]
     [SerializeField] GameObject parent;
     [SerializeField] Animator animator;
+    [SerializeField] Collider2D collider;
     private string currentAnim = "idle";
     private Enemy nearestTarget;
 
@@ -17,11 +18,8 @@ public class Weapon : MonoBehaviour
     [SerializeField] float aimSpeed;
     [SerializeField] float detectRadius;
     [SerializeField] LayerMask enemyLayerMask;
-    private float timer;
     [SerializeField] float attackDelay;
-
-    [SerializeField] Button test1;
-    [SerializeField] Button test2;
+    private float timer;
 
     private void Start()
     {
@@ -72,12 +70,14 @@ public class Weapon : MonoBehaviour
     private void Attack()
     {
         ChangAnim("attack");
+        collider.enabled = true;
         timer = 0f;
     }
 
     private void StopAttack()
     {
         ChangAnim("idle");
+        collider.enabled = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

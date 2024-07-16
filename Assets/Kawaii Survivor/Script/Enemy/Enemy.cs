@@ -6,32 +6,28 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    private Player player;
-    private EnemyMovement enemyMovement;
-    private EnemyHealth enemyHealth;
-    private Collider2D collider;
+    protected Player player;
+    protected EnemyMovement enemyMovement;
+    protected EnemyHealth enemyHealth;
+    protected Collider2D collider;
 
     [Header("Spawn")]
     [SerializeField] SpriteRenderer enemyRenderer;
     [SerializeField] SpriteRenderer spawnCircle;
 
     [Header("AttackSetting")]
-    [SerializeField] float detectRange;
-    [SerializeField] float attackDuration;
-    [SerializeField] int attackDamage;
-    private float attackTimer;
-    private bool isSpawned;
+    [SerializeField] protected float detectRange;
+    [SerializeField] protected float attackDuration;
+    [SerializeField] protected int attackDamage;
+    protected float attackTimer;
+    protected bool isSpawned;
 
-    [Header("VFX")]
-    [SerializeField] GameObject bloodVFXPrefab;
-    [SerializeField] DamageText damageText;
-
-    private void Start()
+    protected virtual void Start()
     {
         OnInit();
     }
 
-    private void OnInit()
+    protected virtual void OnInit()
     {
         player = GameManager.Instance.Player;
         if (player == null) Destroy(this.gameObject);
@@ -51,16 +47,16 @@ public class Enemy : MonoBehaviour
             .OnComplete(EnemyActivace);
     }
 
-    private void EnemyActivace()
+    protected virtual void EnemyActivace()
     {
         isSpawned = true;
         enemyRenderer.enabled = true;
         spawnCircle.enabled = false;
         collider.enabled = true;
-        enemyMovement.SetPlayer(player);
+        enemyMovement.OnInit(player, detectRange);
     }
 
-    void Update()
+    protected virtual void Update()
     {
         if (!isSpawned) return;
         if (attackTimer >= attackDuration)
@@ -71,33 +67,31 @@ public class Enemy : MonoBehaviour
         {
             attackTimer += Time.deltaTime;
         }
+        enemyMovement.FollowPlayer();
     }
 
-    private void TryAttack(Vector2 pos)
+    protected virtual void TryAttack(Vector2 pos)
     {
         float distance = Vector2.Distance(transform.position, pos);
-        if (distance < detectRange)
+        if (distance <= detectRange)
         {
             Attack();
         }
     }
 
-    private void Attack()
+    protected virtual void Attack()
     {
         player.TakeDamage(attackDamage);
         attackTimer = 0f;
     }
 
-    public void TakeDamage(int damage)
+    public virtual void TakeDamage(int damage)
     {
         enemyHealth.TakeDame(damage);
-
-        DamageText textDamage = LeanPool.Spawn(damageText, this.transform.position, Quaternion.identity); 
-        textDamage.Trigger(damage);
-        LeanPool.Despawn(textDamage, 1f);
-
-        GameObject bloodVFX = LeanPool.Spawn(bloodVFXPrefab, this.transform.position, Quaternion.identity); 
-        LeanPool.Despawn(bloodVFX, 2f);
-
+    }
+    protected virtual void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, detectRange);
     }
 }
