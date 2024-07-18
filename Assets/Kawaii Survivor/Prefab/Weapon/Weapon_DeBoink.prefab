@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1917864146218742005}
   - component: {fileID: 1917864146218742006}
   - component: {fileID: 1917864146218742004}
-  - component: {fileID: 1917864146218742007}
+  - component: {fileID: 3086795590117146195}
   m_Layer: 0
   m_Name: Weapon_Renderer
   m_TagString: Untagged
@@ -82,7 +82,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1917864146218742007
+--- !u!114 &3086795590117146195
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -91,21 +91,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 1917864146218742010}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93eb3a71348cff24ea23c0526e8b40ad, type: 3}
+  m_Script: {fileID: 11500000, guid: 42d3cdd980e684e479beada6cf9d022d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   parent: {fileID: 1917864146699214328}
   animator: {fileID: 1917864146218742004}
-  collider: {fileID: 1917864146218742006}
   weaponDamage: 5
   aimSpeed: 10
   detectRadius: 3
   enemyLayerMask:
     serializedVersion: 2
     m_Bits: 64
-  attackDelay: 0.3
-  test1: {fileID: 0}
-  test2: {fileID: 0}
+  attackDelay: 0.5
+  detectDelay: 0.5
+  collider: {fileID: 1917864146218742006}
 --- !u!1 &1917864146699214328
 GameObject:
   m_ObjectHideFlags: 0
@@ -130,7 +129,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1917864146699214328}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.01, y: 0.88, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

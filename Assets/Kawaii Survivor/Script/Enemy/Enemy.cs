@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public abstract class Enemy : MonoBehaviour
 {
     protected Player player;
     protected EnemyMovement enemyMovement;
@@ -22,7 +22,7 @@ public class Enemy : MonoBehaviour
     protected float attackTimer;
     protected bool isSpawned;
 
-    protected virtual void Start()
+    protected void Start()
     {
         OnInit();
     }
@@ -30,7 +30,11 @@ public class Enemy : MonoBehaviour
     protected virtual void OnInit()
     {
         player = GameManager.Instance.Player;
-        if (player == null) Destroy(this.gameObject);
+        if (player == null)
+        {
+            Destroy(this.gameObject);
+            Debug.Log("Don't Find Player");
+        }
         enemyMovement = GetComponent<EnemyMovement>();
         enemyHealth = GetComponent<EnemyHealth>();
         collider = GetComponent<Collider2D>();
@@ -44,10 +48,10 @@ public class Enemy : MonoBehaviour
         spawnCircle.transform.DOScale(spawnCircle.transform.localScale * 1.4f, 1f)
             .SetEase(Ease.InOutSine)
             .SetLoops(3)
-            .OnComplete(EnemyActivace);
+            .OnComplete(OnInitCompleted);
     }
 
-    protected virtual void EnemyActivace()
+    protected virtual void OnInitCompleted()
     {
         isSpawned = true;
         enemyRenderer.enabled = true;
@@ -81,7 +85,6 @@ public class Enemy : MonoBehaviour
 
     protected virtual void Attack()
     {
-        player.TakeDamage(attackDamage);
         attackTimer = 0f;
     }
 
@@ -89,6 +92,7 @@ public class Enemy : MonoBehaviour
     {
         enemyHealth.TakeDame(damage);
     }
+
     protected virtual void OnDrawGizmos()
     {
         Gizmos.color = Color.red;

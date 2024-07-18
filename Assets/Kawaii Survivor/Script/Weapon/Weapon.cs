@@ -4,29 +4,29 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Weapon : MonoBehaviour
+public abstract class Weapon : MonoBehaviour
 {
     [Header("Element")]
-    [SerializeField] GameObject parent;
-    [SerializeField] Animator animator;
-    [SerializeField] Collider2D collider;
-    private string currentAnim = "idle";
-    private Enemy nearestTarget;
+    [SerializeField] protected GameObject parent;
+    [SerializeField] protected Animator animator;
+    protected string currentAnim = "idle";
+    protected Enemy nearestTarget;
 
     [Header("Setting")]
-    [SerializeField] int weaponDamage;
-    [SerializeField] float aimSpeed;
-    [SerializeField] float detectRadius;
-    [SerializeField] LayerMask enemyLayerMask;
-    [SerializeField] float attackDelay;
-    private float timer;
+    [SerializeField] protected int weaponDamage;
+    [SerializeField] protected float aimSpeed;
+    [SerializeField] protected float detectRadius;
+    [SerializeField] protected LayerMask enemyLayerMask;
+    [SerializeField] protected float attackDelay;
+    [SerializeField] protected float detectDelay;
+    protected float timer;
 
-    private void Start()
+    protected void OnEnable()
     {
-        InvokeRepeating(nameof(FindNearestTarget), 0f, 0.5f);
+        InvokeRepeating(nameof(FindNearestTarget), 0f, detectDelay);
     }
 
-    void Update()
+    protected virtual void Update()
     {
         AimTarget();
 
@@ -34,7 +34,7 @@ public class Weapon : MonoBehaviour
         if (timer > attackDelay && nearestTarget != null) Attack();
     }
 
-    private void FindNearestTarget()
+    protected void FindNearestTarget()
     {
         float min = float.MaxValue;
         Enemy nearestEnemy = null;
@@ -52,7 +52,7 @@ public class Weapon : MonoBehaviour
         nearestTarget = nearestEnemy;
     }
 
-    private void AimTarget()
+    protected void AimTarget()
     {
         Vector3 targetDirection;
 
@@ -67,17 +67,15 @@ public class Weapon : MonoBehaviour
         parent.transform.up = Vector3.Lerp(parent.transform.up, targetDirection, Time.deltaTime * aimSpeed);
     }
 
-    private void Attack()
+    protected virtual void Attack()
     {
         ChangAnim("attack");
-        collider.enabled = true;
         timer = 0f;
     }
 
-    private void StopAttack()
+    protected virtual void StopAttack()
     {
         ChangAnim("idle");
-        collider.enabled = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

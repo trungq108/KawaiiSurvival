@@ -94,11 +94,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1524099952700436620}
   - component: {fileID: 1524099952700436623}
-  - component: {fileID: 1718482191695865264}
+  - component: {fileID: 8960100059017326624}
   - component: {fileID: 1524099952700436622}
   - component: {fileID: 8086901333054153051}
   m_Layer: 6
-  m_Name: Enemy
+  m_Name: MeleeEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -137,7 +137,7 @@ CircleCollider2D:
   m_Offset: {x: -0.03, y: 0.42}
   serializedVersion: 2
   m_Radius: 0.39
---- !u!114 &1718482191695865264
+--- !u!114 &8960100059017326624
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -146,7 +146,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1524099952700436621}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c08b899f5cab8e44b7d0e3109aaa5dc, type: 3}
+  m_Script: {fileID: 11500000, guid: 0ce16db1d2d91f045aee386d53f41fc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enemyRenderer: {fileID: 1524099952568135203}

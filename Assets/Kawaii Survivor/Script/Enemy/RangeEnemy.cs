@@ -10,15 +10,15 @@ public class RangeEnemy : Enemy
 
     protected override void Attack()
     {
-        ShotCommand(player.transform.position);
-        attackTimer = 0f;
+        base.Attack();
+        OnShooting(player.transform.position);
     }
 
-    private void ShotCommand(Vector3 pos)
+    private void OnShooting(Vector3 pos)
     {
         Vector2 direction = (pos - shotPoint.transform.position).normalized;
         Bullet bullet = LeanPool.Spawn(bulletPrefab, shotPoint.transform.position, Quaternion.identity);
-        bullet.GetDirection(direction, attackDamage);
+        bullet.Shoot(direction, attackDamage);
         LeanPool.Despawn(bullet, 3f);
     }
 }
