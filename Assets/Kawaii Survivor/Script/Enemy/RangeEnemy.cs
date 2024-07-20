@@ -18,7 +18,7 @@ public class RangeEnemy : Enemy
     {
         Vector2 direction = (pos - shotPoint.transform.position).normalized;
         Bullet bullet = LeanPool.Spawn(bulletPrefab, shotPoint.transform.position, Quaternion.identity);
-        bullet.Shoot(direction, attackDamage);
+        bullet.Shoot(direction, attackDamage, false);
         LeanPool.Despawn(bullet, 3f);
     }
 }

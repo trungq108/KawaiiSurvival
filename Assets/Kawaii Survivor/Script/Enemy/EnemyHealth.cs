@@ -19,13 +19,13 @@ public class EnemyHealth : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    public void TakeDame(int damage)
+    public void TakeDame(int damage, bool isCritical)
     {
         int realDamageTaken = Mathf.Min(currentHealth, damage);
         currentHealth -= realDamageTaken;
 
         DamageText textDamage = LeanPool.Spawn(damageText, this.transform.position, Quaternion.identity);
-        textDamage.Trigger(damage);
+        textDamage.Trigger(damage, isCritical);
         LeanPool.Despawn(textDamage, 1f);
 
         GameObject bloodVFX = LeanPool.Spawn(bloodVFXPrefab, this.transform.position, Quaternion.identity);

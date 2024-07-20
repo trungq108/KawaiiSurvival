@@ -78,12 +78,18 @@ public abstract class Weapon : MonoBehaviour
         ChangAnim("idle");
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public int GetDamage(out bool isCritical)
     {
-        if (collision.gameObject.layer == 6)
+        isCritical = false;
+        int damage = this.weaponDamage;
+        if (Random.Range(0, 101) < 20)
         {
-            collision.GetComponent<Enemy>().TakeDamage(weaponDamage);
+            isCritical = true;
+            damage = this.weaponDamage * 2;
+            return damage;
         }
+
+        return damage;
     }
 
     private void ChangAnim(string nextAnim)

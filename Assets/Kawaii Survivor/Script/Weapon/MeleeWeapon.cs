@@ -17,5 +17,13 @@ public class MeleeWeapon : Weapon
         base.StopAttack();
         collider.enabled = false;
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == 6)
+        {
+            int damage = GetDamage(out bool isCritical);
+            collision.GetComponent<Enemy>().TakeDamage(damage, isCritical);
+        }
+    }
 
 }

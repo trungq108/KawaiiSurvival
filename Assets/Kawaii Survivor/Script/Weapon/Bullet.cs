@@ -9,25 +9,23 @@ public class Bullet : MonoBehaviour
     [SerializeField] Rigidbody2D rigidbody;
     private int bulletDamage;
     private Vector3 direction;
+    private bool isCritical;
 
-    public void Shoot(Vector2 direction, int bulletDamage)
+    public void Shoot(Vector2 direction, int bulletDamage, bool isCritical)
     {
         this.bulletDamage = bulletDamage;
         this.transform.up = direction;
         this.direction = direction;
+        this.isCritical = isCritical;
         rigidbody.velocity = this.direction * bulletSpeed;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("Player"))
-        {
-            collision.GetComponent<Player>().TakeDamage(bulletDamage);
-        }
         switch(collision.gameObject.layer)
         {
             case 6:   //Enemy
-                collision.GetComponent<Enemy>().TakeDamage(bulletDamage);
+                collision.GetComponent<Enemy>().TakeDamage(bulletDamage, isCritical);
                 LeanPool.Despawn(this);
                 break;
 
@@ -47,4 +45,6 @@ public class Bullet : MonoBehaviour
         this.direction = direction;
         this.bulletDamage = bulletDamage;
     }
+
+
 }

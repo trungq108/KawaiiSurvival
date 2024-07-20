@@ -88,9 +88,9 @@ public abstract class Enemy : MonoBehaviour
         attackTimer = 0f;
     }
 
-    public virtual void TakeDamage(int damage)
+    public virtual void TakeDamage(int damage, bool isCritical)
     {
-        enemyHealth.TakeDame(damage);
+        enemyHealth.TakeDame(damage, isCritical);
     }
 
     protected virtual void OnDrawGizmos()

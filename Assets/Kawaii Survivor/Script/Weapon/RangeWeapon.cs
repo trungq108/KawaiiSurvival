@@ -23,8 +23,10 @@ public class RangeWeapon : Weapon
     private void Shooting(Vector3 pos)
     {
         Vector2 direction = (pos - shootingPoint.transform.position).normalized;
+        int damage = GetDamage(out bool isCritical);
+
         Bullet bullet = LeanPool.Spawn(bulletPrefab, shootingPoint.transform.position, Quaternion.identity);
-        bullet.Shoot(direction, weaponDamage);
+        bullet.Shoot(direction, damage, isCritical);
         LeanPool.Despawn(bullet, 3f);
     }
 }
