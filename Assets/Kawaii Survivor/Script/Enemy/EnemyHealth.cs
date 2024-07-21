@@ -36,6 +36,7 @@ public class EnemyHealth : MonoBehaviour
 
     private void Death()
     {
+        DropItemManager.Instance.Drop(this.transform);
         LeanPool.Despawn(this.gameObject);
     }
 }

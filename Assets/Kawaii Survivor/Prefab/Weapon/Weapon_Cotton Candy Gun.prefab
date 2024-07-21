@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 547182064535137580}
-  - component: {fileID: 547182064535137581}
   - component: {fileID: 2092595442667199963}
+  - component: {fileID: 547182064535137581}
   m_Layer: 0
   m_Name: Weapon_Renderer
   m_TagString: Untagged
@@ -35,27 +35,6 @@ Transform:
   m_Father: {fileID: 547182065031921698}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &547182064535137581
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 547182064535137571}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f3d07da2f917c9f488bae96d9a9f5690, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &2092595442667199963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80,6 +59,27 @@ MonoBehaviour:
   detectDelay: 0.5
   shootingPoint: {fileID: 2092595442568599084}
   bulletPrefab: {fileID: 6333489501025327493, guid: 2034d26908f5047439ec95df963388e4, type: 3}
+--- !u!95 &547182064535137581
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 547182064535137571}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f3d07da2f917c9f488bae96d9a9f5690, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &547182065031921697
 GameObject:
   m_ObjectHideFlags: 0

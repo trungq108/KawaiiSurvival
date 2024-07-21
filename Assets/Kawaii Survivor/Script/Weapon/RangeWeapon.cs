@@ -26,7 +26,7 @@ public class RangeWeapon : Weapon
         int damage = GetDamage(out bool isCritical);
 
         Bullet bullet = LeanPool.Spawn(bulletPrefab, shootingPoint.transform.position, Quaternion.identity);
-        bullet.Shoot(direction, damage, isCritical);
+        bullet.Shoot(direction, damage, isCritical, false);
         LeanPool.Despawn(bullet, 3f);
     }
 }
