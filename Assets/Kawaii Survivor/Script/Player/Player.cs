@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(PlayerHealth)), RequireComponent(typeof(PlayerController)), RequireComponent(typeof(PlayerDetect))]
+[RequireComponent(typeof(PlayerHealth)), RequireComponent(typeof(PlayerController))]
 public class Player : MonoBehaviour
 {
     private PlayerHealth health;
@@ -19,5 +19,10 @@ public class Player : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health.TakeDame(damage);
+    }
+
+    public void IncreaseEXP(int amount)
+    {
+        Debug.Log(amount);
     }
 }

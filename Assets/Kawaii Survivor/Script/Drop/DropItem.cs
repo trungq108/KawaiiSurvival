@@ -5,8 +5,10 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
-public class DropItem : MonoBehaviour
+public abstract class DropItem : MonoBehaviour
 {
+    [SerializeField] protected int dropExp;
+
     public virtual void Pick(Player player)
     {
         StartCoroutine(Picked(player));
@@ -15,13 +17,14 @@ public class DropItem : MonoBehaviour
     IEnumerator Picked(Player player)
     {
         float timer = 0f;
-        while (timer < 1)
+        while (timer < 0.5)
         {
             timer += Time.deltaTime;
             transform.position = Vector2.Lerp(transform.position, player.transform.position, timer);
             yield return null;
         }
 
+        player.IncreaseEXP(dropExp);
         LeanPool.Despawn(this.gameObject);
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerDetect : MonoBehaviour
 {
     [SerializeField] private Collider2D detectCollider;
-    private Player player;
+    private  Player player;
 
     private void Awake()
     {
@@ -14,10 +14,12 @@ public class PlayerDetect : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (TryGetComponent(out DropItem dropItem))
+        if (collision.IsTouching(detectCollider))
         {
-            Debug.Log("Picking");
-            dropItem.Pick(player);
+            if (collision.TryGetComponent(out DropItem dropItem))
+            {
+                dropItem.Pick(player);
+            }
         }
     }
 }
