@@ -5,8 +5,5 @@ using UnityEngine;
 
 public class Chest : DropItem
 {
-    public override void Pick(Player player)
-    {
-        LeanPool.Despawn(this);
-    }
+    
 }

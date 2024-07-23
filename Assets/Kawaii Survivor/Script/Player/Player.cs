@@ -20,9 +20,4 @@ public class Player : MonoBehaviour
     {
         health.TakeDame(damage);
     }
-
-    public void IncreaseEXP(int amount)
-    {
-        Debug.Log(amount);
-    }
 }

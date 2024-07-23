@@ -1,11 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Candy : DropItem
 {
-    public override void Pick(Player player)
+    public static Action onCollected;
+
+    protected override void OnCollectec(Player player)
     {
-        base.Pick(player);
+        base.OnCollectec(player);
+        onCollected?.Invoke();
     }
 }
