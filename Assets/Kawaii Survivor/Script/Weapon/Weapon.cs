@@ -82,13 +82,11 @@ public abstract class Weapon : MonoBehaviour
     {
         isCritical = false;
         int damage = this.weaponDamage;
-        if (Random.Range(0, 101) < 20)
+        if (Random.Range(0, 100) < 20)
         {
             isCritical = true;
             damage = this.weaponDamage * 2;
-            return damage;
         }
-
         return damage;
     }
 

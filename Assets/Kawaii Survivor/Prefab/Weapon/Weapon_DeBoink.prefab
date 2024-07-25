@@ -102,7 +102,7 @@ MonoBehaviour:
   enemyLayerMask:
     serializedVersion: 2
     m_Bits: 64
-  attackDelay: 0.5
+  attackDelay: 0.2
   detectDelay: 0.5
   collider: {fileID: 1917864146218742006}
 --- !u!1 &1917864146699214328

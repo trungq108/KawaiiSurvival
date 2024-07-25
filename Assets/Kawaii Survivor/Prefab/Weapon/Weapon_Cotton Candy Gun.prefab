@@ -55,7 +55,7 @@ MonoBehaviour:
   enemyLayerMask:
     serializedVersion: 2
     m_Bits: 64
-  attackDelay: 0.5
+  attackDelay: 0.2
   detectDelay: 0.5
   shootingPoint: {fileID: 2092595442568599084}
   bulletPrefab: {fileID: 6333489501025327493, guid: 2034d26908f5047439ec95df963388e4, type: 3}
