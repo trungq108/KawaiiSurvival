@@ -9,14 +9,21 @@ public class WaveManager : MonoBehaviour
     [SerializeField] Wave[] waves;
 
     private float timer = 0f;
+    private int currentWaveIndex = 0;
     private List<float> localCount = new List<float>();
     private Player player;
 
-    private void Start()
+    private WaveManagerUI ui;
+
+    private void Awake()
     {
         player = GameManager.Instance.Player;
-        localCount.Add(1);
-        localCount.Add(1);
+        ui = GetComponent<WaveManagerUI>();        
+    }
+
+    private void Start()
+    {
+        StartWave(currentWaveIndex);
     }
 
     private void Update()
@@ -24,12 +31,29 @@ public class WaveManager : MonoBehaviour
         if (timer < waveDuration)
         {
             ManageCurrentWave();
+            string timerString = ((int)(waveDuration - timer)).ToString();
+            ui.UpdateWaveTimerText(timerString);
         }
+        else
+        {
+            WaveTransition();
+        }
+    }
+
+    private void StartWave(int waveIndex)
+    {
+        localCount.Clear();
+        foreach (WaveSegment segment in waves[currentWaveIndex].segments)
+        {
+            localCount.Add(1);
+        }
+        timer = 0f;
+        ui.UpdateWaveText("Wave " + currentWaveIndex + " / " + waves.Length);
     }
 
     public void ManageCurrentWave()
     {
-        Wave currentWave = waves[0];
+        Wave currentWave = waves[currentWaveIndex];
         for (int i = 0; i < currentWave.segments.Count; i++)
         {
             WaveSegment segment = currentWave.segments[i];
@@ -41,19 +65,38 @@ public class WaveManager : MonoBehaviour
             float timerSinceSegmentStart = timer - timeStart;
             if (timerSinceSegmentStart * segment.spawnFrequency > localCount[i])
             {
-                LeanPool.Spawn(segment.enemyPrefab, GetSpawnPos(), Quaternion.identity);
+                LeanPool.Spawn(segment.enemyPrefab, GetSpawnPos(), Quaternion.identity, this.transform);
                 localCount[i]++;
             }
         }
         timer += Time.deltaTime;
     }
 
+    private void WaveTransition()
+    {
+        //ClearWave();
+        currentWaveIndex++;
+        if (currentWaveIndex < waves.Length)
+        {
+            StartWave(currentWaveIndex);
+        }
+        else
+        {
+            ui.UpdateWaveText("Wave End !");
+        }
+    }
+
+    private void ClearWave()
+    {
+        transform.Clear();
+    }
+
     private Vector2 GetSpawnPos()
     {
         Vector2 offset = Random.insideUnitSphere.normalized * 10;
         Vector2 pos = (Vector2)player.transform.position + offset;
-        offset.x = Mathf.Clamp(offset.x, -27, 27);
-        offset.y = Mathf.Clamp(offset.y, -15, 15);
+        pos.x = Mathf.Clamp(pos.x, -27, 27);  //Map right-left bound
+        pos.y = Mathf.Clamp(pos.y, -15, 15);  //Map up-down bound
         return pos;
     }
 }
@@ -64,7 +107,6 @@ public struct Wave
     public string name;
     public List<WaveSegment> segments;
 }
-
 
 [System.Serializable]
 public struct WaveSegment

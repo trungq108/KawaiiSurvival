@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ff19b2cdeaa2644caf1b10dbd494d31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 50
+  maxHealth: 500
   healthBar: {fileID: 0}
   healthText: {fileID: 0}
 --- !u!114 &1486822452
@@ -176,6 +176,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae323da53f27b95429c272627a276f13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelEXP: 0
+  EXPBar: {fileID: 0}
+  EXPText: {fileID: 0}
 --- !u!1 &7835597876428739975
 GameObject:
   m_ObjectHideFlags: 0
