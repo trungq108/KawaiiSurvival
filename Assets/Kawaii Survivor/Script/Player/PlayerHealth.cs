@@ -42,6 +42,6 @@ public class PlayerHealth : MonoBehaviour
 
     private void Death()
     {
-        SceneManager.LoadScene(0);
+        GameManager.Instance.SetGameState(GameState.GAMEOVER);
     }
 }

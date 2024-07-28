@@ -9,7 +9,7 @@ public abstract class DropItem : MonoBehaviour
 {
     [SerializeField] protected int dropExp;
 
-    public void Pick(Player player)
+    public void OnPick(Player player)
     {
         StartCoroutine(Picked(player));
     }
@@ -27,8 +27,5 @@ public abstract class DropItem : MonoBehaviour
         OnCollectec(player);
     }
 
-    protected virtual void OnCollectec(Player player)
-    {
-
-    }
+    protected virtual void OnCollectec(Player player) { }
 }

@@ -18,7 +18,7 @@ public class PlayerDetect : MonoBehaviour
         {
             if (collision.TryGetComponent(out DropItem dropItem))
             {
-                dropItem.Pick(player);
+                dropItem.OnPick(player);
             }
         }
     }

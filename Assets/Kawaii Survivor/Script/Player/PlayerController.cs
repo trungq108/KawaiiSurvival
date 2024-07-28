@@ -15,6 +15,13 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        playerRb.velocity = MobileJoystick.Instance.GetMoveVector() * moveSpeed * Time.deltaTime;
+        if (MobileJoystick.Instance != null)
+        {
+            playerRb.velocity = MobileJoystick.Instance.GetMoveVector() * moveSpeed * Time.deltaTime;
+        }
+        else
+        {
+            playerRb.velocity = Vector3.zero;
+        }
     }
 }

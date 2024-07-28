@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class MobileJoystick : Singleton<MobileJoystick>
+public class MobileJoystick : MonoBehaviour
 {
     [Header(" Elements ")]
     [SerializeField] private RectTransform joystickOutline;
@@ -16,9 +16,13 @@ public class MobileJoystick : Singleton<MobileJoystick>
     private bool canControl;
     private float canvasScale;
 
+    private static MobileJoystick instance; public static MobileJoystick Instance { get { return instance; } }
 
-    void Start()
+    void Awake()
     {
+        if(instance == null) instance = this;
+        else Destroy(this.gameObject);
+
         canvasScale = GetComponentInParent<Canvas>().GetComponent<RectTransform>().localScale.x;
         HideJoystick();
     }

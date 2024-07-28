@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -10,6 +11,8 @@ public class PlayerEXP : MonoBehaviour
     [SerializeField] private int levelEXP;
     private int currentEXP = 0;
     private int currentLevel = 1;
+
+    private int levelsEarnThisLevel;
 
     [SerializeField] Slider EXPBar;
     [SerializeField] TextMeshProUGUI EXPText;
@@ -39,6 +42,7 @@ public class PlayerEXP : MonoBehaviour
     private void IncreaseLevel()
     {
         currentLevel++;
+        levelsEarnThisLevel++;
         currentEXP = 0;
         levelEXP = (currentLevel + 1) * levelEXP;
 
@@ -49,5 +53,15 @@ public class PlayerEXP : MonoBehaviour
     {
         EXPBar.value = (float)currentEXP / levelEXP;
         EXPText.text = "LV " + currentLevel;
+    }
+
+    public bool HasLevelUp()
+    {
+        if (levelsEarnThisLevel > 0)
+        {
+            levelsEarnThisLevel--;
+            return true;
+        }
+        else return false;
     }
 }

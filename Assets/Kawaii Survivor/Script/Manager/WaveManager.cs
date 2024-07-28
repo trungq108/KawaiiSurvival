@@ -2,8 +2,9 @@ using Lean.Pool;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
-public class WaveManager : MonoBehaviour
+public class WaveManager : MonoBehaviour, IGameStateListener
 {
     [SerializeField] float waveDuration;
     [SerializeField] Wave[] waves;
@@ -11,23 +12,17 @@ public class WaveManager : MonoBehaviour
     private float timer = 0f;
     private int currentWaveIndex = 0;
     private List<float> localCount = new List<float>();
-    private Player player;
-
+    private bool IsTimeOn;
     private WaveManagerUI ui;
 
     private void Awake()
     {
-        player = GameManager.Instance.Player;
-        ui = GetComponent<WaveManagerUI>();        
-    }
-
-    private void Start()
-    {
-        StartWave(currentWaveIndex);
+        ui = GetComponent<WaveManagerUI>();
     }
 
     private void Update()
     {
+        if (!IsTimeOn) return;
         if (timer < waveDuration)
         {
             ManageCurrentWave();
@@ -42,13 +37,14 @@ public class WaveManager : MonoBehaviour
 
     private void StartWave(int waveIndex)
     {
+        ui.UpdateWaveText("Wave " + (currentWaveIndex + 1).ToString() + " / " + waves.Length);
         localCount.Clear();
         foreach (WaveSegment segment in waves[currentWaveIndex].segments)
         {
             localCount.Add(1);
         }
         timer = 0f;
-        ui.UpdateWaveText("Wave " + currentWaveIndex + " / " + waves.Length);
+        IsTimeOn = true;
     }
 
     public void ManageCurrentWave()
@@ -74,16 +70,18 @@ public class WaveManager : MonoBehaviour
 
     private void WaveTransition()
     {
-        //ClearWave();
+        ClearWave();
         currentWaveIndex++;
-        if (currentWaveIndex < waves.Length)
+        if (currentWaveIndex >= waves.Length)
         {
-            StartWave(currentWaveIndex);
+            ui.UpdateWaveText("Wave End !");
+            GameManager.Instance.SetGameState(GameState.STAGECOMPLETE);
         }
         else
         {
-            ui.UpdateWaveText("Wave End !");
+            GameManager.Instance.WaveCompleteCallback();
         }
+        IsTimeOn = false;
     }
 
     private void ClearWave()
@@ -94,10 +92,24 @@ public class WaveManager : MonoBehaviour
     private Vector2 GetSpawnPos()
     {
         Vector2 offset = Random.insideUnitSphere.normalized * 10;
-        Vector2 pos = (Vector2)player.transform.position + offset;
+        Vector2 playerPos = GameManager.Instance.Player.transform.position;
+        Vector2 pos = playerPos + offset;
         pos.x = Mathf.Clamp(pos.x, -27, 27);  //Map right-left bound
         pos.y = Mathf.Clamp(pos.y, -15, 15);  //Map up-down bound
         return pos;
+    }
+
+    public void GameStateChangeCallBack(GameState gameState)
+    {
+        switch (gameState)
+        {
+            case GameState.GAME:
+                StartWave(currentWaveIndex);
+                break;
+            case GameState.GAMEOVER:
+                ClearWave();
+                break;
+        }
     }
 }
 

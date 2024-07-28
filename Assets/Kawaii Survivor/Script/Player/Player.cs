@@ -8,16 +8,23 @@ public class Player : MonoBehaviour
     private PlayerHealth health;
     private PlayerController controller;
     private PlayerDetect detect;
+    private PlayerEXP level;
 
     private void Awake()
     {
         health = GetComponent<PlayerHealth>();
         controller = GetComponent<PlayerController>();
         detect = GetComponent<PlayerDetect>();
+        level = GetComponent<PlayerEXP>();
     }
 
     public void TakeDamage(int damage)
     {
         health.TakeDame(damage);
+    }
+
+    public bool HasLevelUp()
+    {
+        return level.HasLevelUp();
     }
 }
