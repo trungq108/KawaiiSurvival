@@ -57,6 +57,7 @@ public class PlayerEXP : MonoBehaviour
 
     public bool HasLevelUp()
     {
+        return true;
         if (levelsEarnThisLevel > 0)
         {
             levelsEarnThisLevel--;

@@ -12,7 +12,6 @@ public class PlayerHealth : MonoBehaviour
     private int currentHealth;
     [SerializeField] int maxHealth;
     
-
     [Header("Element")]
     [SerializeField] Slider healthBar;
     [SerializeField] TextMeshProUGUI healthText;
