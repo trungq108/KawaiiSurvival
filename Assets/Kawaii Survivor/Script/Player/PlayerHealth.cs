@@ -9,8 +9,8 @@ using UnityEngine.UI;
 public class PlayerHealth : MonoBehaviour, IStatDependency
 {
     [Header("Setting")]
-    public int maxHealth;
-    public int currentHealth;
+    private int maxHealth;
+    private int currentHealth;
     
     [Header("Element")]
     [SerializeField] Slider healthBar;

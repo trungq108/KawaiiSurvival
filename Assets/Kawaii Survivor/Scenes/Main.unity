@@ -1125,7 +1125,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &308734832
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1598,7 +1598,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89f4d6924e2c58e44a28b8bc620a6470, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waveDuration: 1
+  waveDuration: 10
   waves:
   - name: Wave00
     segments:
@@ -1628,7 +1628,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 896318e41b2802e458a984c8c2055e6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerStatManager: {fileID: 0}
   upgradeButtons:
   - {fileID: 1026125532}
   - {fileID: 2054143333}
@@ -2993,7 +2992,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4332110190714482424, guid: 88c2565f4263b8b45be70b33a1354344, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4332110190714482424, guid: 88c2565f4263b8b45be70b33a1354344, type: 3}
       propertyPath: m_AnchorMin.x
@@ -3001,7 +3000,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4332110190714482424, guid: 88c2565f4263b8b45be70b33a1354344, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4332110190714482424, guid: 88c2565f4263b8b45be70b33a1354344, type: 3}
       propertyPath: m_SizeDelta.x
@@ -3041,11 +3040,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4332110190714482424, guid: 88c2565f4263b8b45be70b33a1354344, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 470.16666
       objectReference: {fileID: 0}
     - target: {fileID: 4332110190714482424, guid: 88c2565f4263b8b45be70b33a1354344, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -443.715
       objectReference: {fileID: 0}
     - target: {fileID: 4332110190714482424, guid: 88c2565f4263b8b45be70b33a1354344, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3095,7 +3094,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4332110190714482424, guid: 88c2565f4263b8b45be70b33a1354344, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4332110190714482424, guid: 88c2565f4263b8b45be70b33a1354344, type: 3}
       propertyPath: m_AnchorMin.x
@@ -3103,7 +3102,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4332110190714482424, guid: 88c2565f4263b8b45be70b33a1354344, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4332110190714482424, guid: 88c2565f4263b8b45be70b33a1354344, type: 3}
       propertyPath: m_SizeDelta.x
@@ -3143,11 +3142,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4332110190714482424, guid: 88c2565f4263b8b45be70b33a1354344, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 960
       objectReference: {fileID: 0}
     - target: {fileID: 4332110190714482424, guid: 88c2565f4263b8b45be70b33a1354344, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -443.715
       objectReference: {fileID: 0}
     - target: {fileID: 4332110190714482424, guid: 88c2565f4263b8b45be70b33a1354344, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -15933,7 +15932,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89f4d6924e2c58e44a28b8bc620a6470, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waveDuration: 1
+  waveDuration: 10
   waves:
   - name: Wave00
     segments:
@@ -15943,7 +15942,7 @@ MonoBehaviour:
     - tStartEnd: {x: 30, y: 100}
       spawnFrequency: 2
       enemyPrefab: {fileID: 1666376298903889617, guid: e410d0f644084f0418cb9ea4b3a5d83b, type: 3}
-  - name: Wave00
+  - name: Wave01
     segments:
     - tStartEnd: {x: 0, y: 40}
       spawnFrequency: 2
@@ -15977,7 +15976,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 896318e41b2802e458a984c8c2055e6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerStatManager: {fileID: 218779185}
   upgradeButtons:
   - {fileID: 1026125532}
   - {fileID: 2054143333}
@@ -16617,7 +16615,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4332110190714482424, guid: 88c2565f4263b8b45be70b33a1354344, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4332110190714482424, guid: 88c2565f4263b8b45be70b33a1354344, type: 3}
       propertyPath: m_AnchorMin.x
@@ -16625,7 +16623,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4332110190714482424, guid: 88c2565f4263b8b45be70b33a1354344, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4332110190714482424, guid: 88c2565f4263b8b45be70b33a1354344, type: 3}
       propertyPath: m_SizeDelta.x
@@ -16665,11 +16663,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4332110190714482424, guid: 88c2565f4263b8b45be70b33a1354344, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 1449.8333
       objectReference: {fileID: 0}
     - target: {fileID: 4332110190714482424, guid: 88c2565f4263b8b45be70b33a1354344, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -443.715
       objectReference: {fileID: 0}
     - target: {fileID: 4332110190714482424, guid: 88c2565f4263b8b45be70b33a1354344, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -18081,7 +18079,7 @@ PrefabInstance:
       objectReference: {fileID: 1804628660}
     - target: {fileID: 8860236986099937399, guid: ab86ed37ea924d542b4831b74bb0e963, type: 3}
       propertyPath: maxHealth
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8860236986099937399, guid: ab86ed37ea924d542b4831b74bb0e963, type: 3}
       propertyPath: healthText

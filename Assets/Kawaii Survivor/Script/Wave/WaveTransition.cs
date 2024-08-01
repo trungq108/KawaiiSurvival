@@ -9,9 +9,17 @@ using Random = UnityEngine.Random;
 
 public class WaveTransition : MonoBehaviour, IGameStateListener
 {
-    [SerializeField] PlayerStatManager playerStatManager;
     [SerializeField] UpgradeButton[] upgradeButtons;
 
+    public void GameStateChangeCallBack(GameState gameState)
+    {
+        switch (gameState)
+        {
+            case GameState.WAVETRANSITION:
+                ConfigureUpgradeButtons();
+                break;
+        }
+    }
     public void ConfigureUpgradeButtons()
     {
         for (int i = 0; i < upgradeButtons.Length; i++) 
@@ -42,31 +50,40 @@ public class WaveTransition : MonoBehaviour, IGameStateListener
         switch (stat)
         {
             case Stat.Armor:
-                upgradeValueIndex = Random.Range(0, 10);
+                upgradeValueIndex = Random.Range(0, 1f);
+                upgradeValueString = "+ " + upgradeValueIndex.ToString("F1") + "%";
                 break;
             case Stat.AttackSpeed:
-                upgradeValueIndex = Random.Range(0, 10);
+                upgradeValueIndex = Random.Range(0, 1f);
+                upgradeValueString = "+ " + upgradeValueIndex.ToString("F1") + "%";
                 break;
             case Stat.Attack:
-                upgradeValueIndex = Random.Range(0, 10);
+                upgradeValueIndex = Random.Range(0, 1f);
+                upgradeValueString = "+ " + upgradeValueIndex.ToString("F1") + "%";
                 break;
             case Stat.CriticalChance:
-                upgradeValueIndex = Random.Range(0, 10);
+                upgradeValueIndex = Random.Range(0, 1f);
+                upgradeValueString = "+ " + upgradeValueIndex.ToString("F1") + "%";
                 break;
             case Stat.CriticalPercent:
-                upgradeValueIndex = Random.Range(0, 10);
+                upgradeValueIndex = Random.Range(0, 1f);
+                upgradeValueString = "+ " + upgradeValueIndex.ToString("F1") + "%";
                 break;
             case Stat.Dodce:
-                upgradeValueIndex = Random.Range(0, 10);
+                upgradeValueIndex = Random.Range(0, 1f);
+                upgradeValueString = "+ " + upgradeValueIndex.ToString("F1") + "%";
                 break;
             case Stat.HealthRegen:
-                upgradeValueIndex = Random.Range(0, 10);
+                upgradeValueIndex = Random.Range(0, 1f);
+                upgradeValueString = "+ " + upgradeValueIndex.ToString("F1") + "%";
                 break;
             case Stat.LifeSteal:
-                upgradeValueIndex = Random.Range(0, 10);
+                upgradeValueIndex = Random.Range(0, 1f);
+                upgradeValueString = "+ " + upgradeValueIndex.ToString("F1") + "%";
                 break;
             case Stat.Luck:
-                upgradeValueIndex = Random.Range(0, 10);
+                upgradeValueIndex = Random.Range(0, 1f);
+                upgradeValueString = "+ " + upgradeValueIndex.ToString("F1") + "%";
                 break;
 
             case Stat.MaxHealth:
@@ -75,22 +92,16 @@ public class WaveTransition : MonoBehaviour, IGameStateListener
                 break;
 
             case Stat.MoveSpeed:
-                upgradeValueIndex = Random.Range(0, 10);
+                upgradeValueIndex = Random.Range(0, 1f);
+                upgradeValueString = "+ " + upgradeValueIndex.ToString("F1");
                 break;
+
             case Stat.Range:
-                upgradeValueIndex = Random.Range(0, 10);
+                upgradeValueIndex = Random.Range(0, 1f);
+                upgradeValueString = "+ " + upgradeValueIndex.ToString("F1") + "%";
                 break;
         }
-        return () => playerStatManager.AddStatData(stat, upgradeValueIndex);
+        return () => PlayerStatManager.Instance.AddStatData(stat, upgradeValueIndex);
     }
 
-    public void GameStateChangeCallBack(GameState gameState)
-    {
-        switch (gameState)
-        {
-            case GameState.WAVETRANSITION:
-                ConfigureUpgradeButtons();
-                break;
-        }
-    }
 }

@@ -5,7 +5,7 @@ using System.Data;
 using System.Linq;
 using UnityEngine;
 
-public class PlayerStatManager : MonoBehaviour
+public class PlayerStatManager : Singleton<PlayerStatManager>
 {
     [SerializeField] PlayerStatSO PlayerStatSO;
     private Dictionary<Stat, float> playerStats = new Dictionary<Stat, float>();

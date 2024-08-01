@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 public class WaveManager : MonoBehaviour, IGameStateListener
 {
     [SerializeField] float waveDuration;
-    [SerializeField] Wave[] waves;
+    [SerializeField] private Wave[] waves;
 
     private float timer = 0f;
     private int currentWaveIndex = 0;
@@ -71,6 +71,7 @@ public class WaveManager : MonoBehaviour, IGameStateListener
     private void WaveTransition()
     {
         ClearWave();
+        IsTimeOn = false;
         currentWaveIndex++;
         if (currentWaveIndex >= waves.Length)
         {
@@ -81,7 +82,6 @@ public class WaveManager : MonoBehaviour, IGameStateListener
         {
             GameManager.Instance.WaveCompleteCallback();
         }
-        IsTimeOn = false;
     }
 
     private void ClearWave()

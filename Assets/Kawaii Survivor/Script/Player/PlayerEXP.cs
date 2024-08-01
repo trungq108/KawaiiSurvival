@@ -12,7 +12,7 @@ public class PlayerEXP : MonoBehaviour
     private int currentEXP = 0;
     private int currentLevel = 1;
 
-    private int levelsEarnThisLevel;
+    private int levelsEarnThisLevel = 1;
 
     [SerializeField] Slider EXPBar;
     [SerializeField] TextMeshProUGUI EXPText;
@@ -57,7 +57,6 @@ public class PlayerEXP : MonoBehaviour
 
     public bool HasLevelUp()
     {
-        return true;
         if (levelsEarnThisLevel > 0)
         {
             levelsEarnThisLevel--;

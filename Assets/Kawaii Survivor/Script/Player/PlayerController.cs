@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IStatDependency
 {
 
-    [SerializeField] private float moveSpeed;
+    public float moveSpeed;
     private Rigidbody2D playerRb;
 
     private void Awake()
@@ -24,4 +24,9 @@ public class PlayerController : MonoBehaviour
             playerRb.velocity = Vector3.zero;
         }
     }
+    public void UpdateStat(PlayerStatManager playerStatManager)
+    {
+        moveSpeed = playerStatManager.GetStatData(Stat.MoveSpeed);
+    }
+
 }
