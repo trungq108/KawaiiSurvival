@@ -6,21 +6,15 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class PlayerHealth : MonoBehaviour
+public class PlayerHealth : MonoBehaviour, IStatDependency
 {
     [Header("Setting")]
-    private int currentHealth;
-    [SerializeField] int maxHealth;
+    public int maxHealth;
+    public int currentHealth;
     
     [Header("Element")]
     [SerializeField] Slider healthBar;
     [SerializeField] TextMeshProUGUI healthText;
-
-    private void Awake()
-    {
-        currentHealth = maxHealth;
-        HealthBarUpdate();
-    }
 
     public void TakeDame(int damage)
     {
@@ -42,5 +36,13 @@ public class PlayerHealth : MonoBehaviour
     private void Death()
     {
         GameManager.Instance.SetGameState(GameState.GAMEOVER);
+    }
+
+    public void UpdateStat(PlayerStatManager playerStatManager)
+    {
+        int upgradeHealth = (int)playerStatManager.GetStatData(Stat.MaxHealth);
+        maxHealth = upgradeHealth;
+        currentHealth = maxHealth;
+        HealthBarUpdate();
     }
 }

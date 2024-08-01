@@ -9,17 +9,8 @@ using Random = UnityEngine.Random;
 
 public class WaveTransition : MonoBehaviour, IGameStateListener
 {
+    [SerializeField] PlayerStatManager playerStatManager;
     [SerializeField] UpgradeButton[] upgradeButtons;
-    private List<TextMeshProUGUI> upgradeTexts = new List<TextMeshProUGUI>();
-
-    private void Awake()
-    {
-        for (int i = 0; i < upgradeButtons.Length; i++)
-        {
-            TextMeshProUGUI upgradeText = upgradeButtons[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>();
-            upgradeTexts.Add(upgradeText);
-        }
-    }
 
     public void ConfigureUpgradeButtons()
     {
@@ -45,61 +36,52 @@ public class WaveTransition : MonoBehaviour, IGameStateListener
 
     public Action UpdateStat(Stat stat, out string upgradeValueString)
     {
-        int upgradeValueIndex = Random.Range(0, 10);
+        float upgradeValueIndex = Random.Range(0, 10);
         upgradeValueString = "+ " + upgradeValueIndex.ToString() + "%";
 
         switch (stat)
         {
             case Stat.Armor:
-                Debug.Log(upgradeValueString);
-
+                upgradeValueIndex = Random.Range(0, 10);
                 break;
             case Stat.AttackSpeed:
-                Debug.Log(upgradeValueString);
-
+                upgradeValueIndex = Random.Range(0, 10);
                 break;
             case Stat.Attack:
-                Debug.Log(upgradeValueString);
-
+                upgradeValueIndex = Random.Range(0, 10);
                 break;
             case Stat.CriticalChance:
-                Debug.Log(upgradeValueString);
-
+                upgradeValueIndex = Random.Range(0, 10);
                 break;
             case Stat.CriticalPercent:
-                Debug.Log(upgradeValueString);
-
+                upgradeValueIndex = Random.Range(0, 10);
                 break;
             case Stat.Dodce:
-                Debug.Log(upgradeValueString);
-
+                upgradeValueIndex = Random.Range(0, 10);
                 break;
             case Stat.HealthRegen:
-                Debug.Log(upgradeValueString);
-
+                upgradeValueIndex = Random.Range(0, 10);
                 break;
             case Stat.LifeSteal:
-                Debug.Log(upgradeValueString);
-
+                upgradeValueIndex = Random.Range(0, 10);
                 break;
             case Stat.Luck:
-                Debug.Log(upgradeValueString);
-
+                upgradeValueIndex = Random.Range(0, 10);
                 break;
+
             case Stat.MaxHealth:
-                Debug.Log(upgradeValueString);
-
+                upgradeValueIndex = Random.Range(0, 100);
+                upgradeValueString = "+ " + upgradeValueIndex.ToString();
                 break;
-            case Stat.MoveSpeed:
-                Debug.Log(upgradeValueString);
 
+            case Stat.MoveSpeed:
+                upgradeValueIndex = Random.Range(0, 10);
                 break;
             case Stat.Range:
-                Debug.Log(upgradeValueString);
-
+                upgradeValueIndex = Random.Range(0, 10);
                 break;
         }
-        return () => Debug.Log("Procesing");
+        return () => playerStatManager.AddStatData(stat, upgradeValueIndex);
     }
 
     public void GameStateChangeCallBack(GameState gameState)
