@@ -12,7 +12,7 @@ public class PlayerEXP : MonoBehaviour
     private int currentEXP = 0;
     private int currentLevel = 1;
 
-    private int levelsEarnThisLevel = 1;
+    private int levelsEarnThisLevel = 2;
 
     [SerializeField] Slider EXPBar;
     [SerializeField] TextMeshProUGUI EXPText;
@@ -27,8 +27,6 @@ public class PlayerEXP : MonoBehaviour
     {
         Candy.onCollected -= IncreaseEXP;
     }
-
-
     private void IncreaseEXP()
     {
         currentEXP++;

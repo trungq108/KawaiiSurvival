@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class PlayerStatManager : Singleton<PlayerStatManager>
 {
-    [SerializeField] PlayerStatSO PlayerStatSO;
+    [SerializeField] PlayerDataSO PlayerStatSO;
     private Dictionary<Stat, float> playerStats = new Dictionary<Stat, float>();
     private Dictionary<Stat, float> addStats = new Dictionary<Stat, float>();
 

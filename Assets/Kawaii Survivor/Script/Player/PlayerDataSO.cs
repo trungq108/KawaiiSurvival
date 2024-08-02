@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "PlayerStatSO", menuName = "ScriptableOject", order = 0)]
-public class PlayerStatSO : ScriptableObject
+public class PlayerDataSO : ScriptableObject
 {
     [field :SerializeField] public string PlayerName {  get; private set; }
     [field: SerializeField] public Sprite PlayerSprite { get; private set; }
@@ -33,7 +33,7 @@ public class PlayerStatSO : ScriptableObject
                {Stat.Attack, Attack},
                {Stat.CriticalChance, CriticalChance},
                {Stat.CriticalPercent, CriticalPercent},
-               {Stat.Dodce, Dodce},
+               {Stat.Dodge, Dodce},
                {Stat.HealthRegen, HealthRegen},
                {Stat.LifeSteal, LifeSteal},
                {Stat.Luck, Luck},

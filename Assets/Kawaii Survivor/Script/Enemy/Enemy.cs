@@ -91,6 +91,7 @@ public abstract class Enemy : MonoBehaviour
     public virtual void TakeDamage(int damage, bool isCritical)
     {
         enemyHealth.TakeDame(damage, isCritical);
+        GameEvent.HitEnemy?.Invoke(this, damage);
     }
 
     protected virtual void OnDrawGizmos()

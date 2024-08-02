@@ -18,9 +18,9 @@ public class Player : MonoBehaviour
         level = GetComponent<PlayerEXP>();
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int baseDamageTaken)
     {
-        health.TakeDame(damage);
+        health.TakeDame(baseDamageTaken);
     }
 
     public bool HasLevelUp()

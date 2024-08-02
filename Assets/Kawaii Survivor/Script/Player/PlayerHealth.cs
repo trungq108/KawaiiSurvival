@@ -1,3 +1,4 @@
+using Lean.Pool;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -5,32 +6,71 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class PlayerHealth : MonoBehaviour, IStatDependency
 {
     [Header("Setting")]
-    private int maxHealth;
-    private int currentHealth;
+    private float maxHealth;
+    private float currentHealth;
+    private float armor;
+    private float lifeSteal;
+    private float dodge;
+    private float healthRegen;
+
+    private float timer;
     
     [Header("Element")]
     [SerializeField] Slider healthBar;
     [SerializeField] TextMeshProUGUI healthText;
+    [SerializeField] DamageText damageText;
 
-    public void TakeDame(int damage)
+    private void OnEnable()
     {
-        int realDamageTaken = Mathf.Min(currentHealth, damage);
-        currentHealth -= realDamageTaken;
-        HealthBarUpdate();
-        if (currentHealth <= 0)
+        GameEvent.HitEnemy += OnLifeSteal;
+    }
+
+    private void OnDisable()
+    {
+        GameEvent.HitEnemy -= OnLifeSteal;
+    }
+
+    private void Update()
+    {
+        if(currentHealth < maxHealth) HealthRegen();
+    }
+
+    private void HealthRegen()
+    {
+        timer += Time.deltaTime;
+        if(timer > 1)
         {
-            Death();
+            timer = 0f;
+            currentHealth += healthRegen;
+            UpdateHealthBar();
         }
     }
 
-    public void HealthBarUpdate()
+    public void TakeDame(int baseDamageTaken)
     {
-        healthBar.value = (float) currentHealth / maxHealth;
-        healthText.text = currentHealth + "/" + maxHealth;
+        if (Dodge())
+        {
+            DamageText textDamage = LeanPool.Spawn(damageText, this.transform.position + Vector3.up, Quaternion.identity);
+            textDamage.Trigger("Dodge");
+            LeanPool.Despawn(textDamage, 0.5f);
+            return;
+        }
+
+        float realDamageTaken = baseDamageTaken * (1 - armor / 100);
+        realDamageTaken = Mathf.Min(currentHealth, realDamageTaken); 
+        currentHealth -= realDamageTaken;
+        UpdateHealthBar();
+        if (currentHealth <= 0) Death();
+    }
+
+    private bool Dodge()
+    {
+        return Random.Range(0f, 100f) < dodge;
     }
 
     private void Death()
@@ -38,11 +78,31 @@ public class PlayerHealth : MonoBehaviour, IStatDependency
         GameManager.Instance.SetGameState(GameState.GAMEOVER);
     }
 
+    public void OnLifeSteal(Enemy enemy, int lifeStealAmount)
+    {
+        if (currentHealth >= maxHealth) return;
+
+        float addHealth = lifeStealAmount * lifeSteal / 100; 
+        Debug.Log(addHealth);
+        currentHealth += addHealth;
+        UpdateHealthBar();
+    }
+    public void UpdateHealthBar()
+    {
+        healthBar.value = currentHealth / maxHealth;
+        healthText.text = (int)currentHealth + "/" + maxHealth;
+    }
+
     public void UpdateStat(PlayerStatManager playerStatManager)
     {
-        int upgradeHealth = (int)playerStatManager.GetStatData(Stat.MaxHealth);
+        float upgradeHealth = playerStatManager.GetStatData(Stat.MaxHealth);
         maxHealth = upgradeHealth;
         currentHealth = maxHealth;
-        HealthBarUpdate();
+        UpdateHealthBar();
+
+        armor = playerStatManager.GetStatData(Stat.Armor);
+        lifeSteal = playerStatManager.GetStatData(Stat.LifeSteal);
+        dodge = playerStatManager.GetStatData(Stat.Dodge);
+        healthRegen = playerStatManager.GetStatData(Stat.HealthRegen);
     }
 }

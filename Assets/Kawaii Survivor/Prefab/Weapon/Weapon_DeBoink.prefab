@@ -96,7 +96,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parent: {fileID: 1917864146699214328}
   animator: {fileID: 1917864146218742004}
-  weaponDamage: 5
+  weaponDamage: 10
   aimSpeed: 10
   detectRadius: 3
   enemyLayerMask:

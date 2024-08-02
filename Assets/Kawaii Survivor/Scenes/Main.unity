@@ -1598,7 +1598,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89f4d6924e2c58e44a28b8bc620a6470, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waveDuration: 10
   waves:
   - name: Wave00
     segments:
@@ -15932,7 +15931,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89f4d6924e2c58e44a28b8bc620a6470, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waveDuration: 10
   waves:
   - name: Wave00
     segments:
@@ -17993,6 +17991,10 @@ PrefabInstance:
       propertyPath: detectCollider
       value: 
       objectReference: {fileID: 267514030}
+    - target: {fileID: 3463713283591947394, guid: ab86ed37ea924d542b4831b74bb0e963, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4943501751115495343, guid: ab86ed37ea924d542b4831b74bb0e963, type: 3}
       propertyPath: EXPBar
       value: 
@@ -18004,6 +18006,10 @@ PrefabInstance:
     - target: {fileID: 4943501751115495343, guid: ab86ed37ea924d542b4831b74bb0e963, type: 3}
       propertyPath: levelEXP
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5074187874421925764, guid: ab86ed37ea924d542b4831b74bb0e963, type: 3}
+      propertyPath: weaponDamage
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5382839831750799545, guid: ab86ed37ea924d542b4831b74bb0e963, type: 3}
       propertyPath: m_Enabled

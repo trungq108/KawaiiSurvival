@@ -154,7 +154,7 @@ MonoBehaviour:
   spawnCircle: {fileID: 2346825170741334844}
   detectRange: 8
   attackDuration: 1
-  attackDamage: 2
+  attackDamage: 5
   shotPoint: {fileID: 5808349073551814366}
   bulletPrefab: {fileID: 6333489501025327493, guid: 79bdad0fbb4d3fc4f8b44358f4a6a4cf, type: 3}
 --- !u!114 &1666376298903889618

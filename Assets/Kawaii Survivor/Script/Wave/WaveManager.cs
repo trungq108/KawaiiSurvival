@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 
 public class WaveManager : MonoBehaviour, IGameStateListener
 {
-    [SerializeField] float waveDuration;
+    private float waveDuration = 20f;
     [SerializeField] private Wave[] waves;
 
     private float timer = 0f;

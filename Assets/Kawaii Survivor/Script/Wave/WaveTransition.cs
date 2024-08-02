@@ -50,7 +50,7 @@ public class WaveTransition : MonoBehaviour, IGameStateListener
         switch (stat)
         {
             case Stat.Armor:
-                upgradeValueIndex = Random.Range(0, 1f);
+                upgradeValueIndex = Random.Range(0, 10f);
                 upgradeValueString = "+ " + upgradeValueIndex.ToString("F1") + "%";
                 break;
             case Stat.AttackSpeed:
@@ -69,16 +69,16 @@ public class WaveTransition : MonoBehaviour, IGameStateListener
                 upgradeValueIndex = Random.Range(0, 1f);
                 upgradeValueString = "+ " + upgradeValueIndex.ToString("F1") + "%";
                 break;
-            case Stat.Dodce:
-                upgradeValueIndex = Random.Range(0, 1f);
+            case Stat.Dodge:
+                upgradeValueIndex = Random.Range(0, 10f);
                 upgradeValueString = "+ " + upgradeValueIndex.ToString("F1") + "%";
                 break;
             case Stat.HealthRegen:
-                upgradeValueIndex = Random.Range(0, 1f);
-                upgradeValueString = "+ " + upgradeValueIndex.ToString("F1") + "%";
+                upgradeValueIndex = Random.Range(0, 3f);
+                upgradeValueString = "+ " + upgradeValueIndex.ToString("F1");
                 break;
             case Stat.LifeSteal:
-                upgradeValueIndex = Random.Range(0, 1f);
+                upgradeValueIndex = Random.Range(0, 5f);
                 upgradeValueString = "+ " + upgradeValueIndex.ToString("F1") + "%";
                 break;
             case Stat.Luck:

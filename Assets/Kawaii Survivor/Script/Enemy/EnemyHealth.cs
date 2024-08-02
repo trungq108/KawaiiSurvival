@@ -26,7 +26,7 @@ public class EnemyHealth : MonoBehaviour
 
         DamageText textDamage = LeanPool.Spawn(damageText, this.transform.position, Quaternion.identity);
         textDamage.Trigger(damage, isCritical);
-        LeanPool.Despawn(textDamage, 1f);
+        LeanPool.Despawn(textDamage, 0.5f);
 
         GameObject bloodVFX = LeanPool.Spawn(bloodVFXPrefab, this.transform.position, Quaternion.identity);
         LeanPool.Despawn(bloodVFX, 2f);

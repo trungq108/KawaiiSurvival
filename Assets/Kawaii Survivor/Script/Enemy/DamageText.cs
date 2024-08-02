@@ -17,4 +17,10 @@ public class DamageText : MonoBehaviour
             damageText.color = Color.red;
         }
     }
+    
+    public void Trigger(string dodge)
+    {
+        animator.Play("Trigger");
+        damageText.text = dodge;
+    }
 }

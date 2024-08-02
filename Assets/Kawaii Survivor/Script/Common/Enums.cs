@@ -16,7 +16,7 @@ public enum Stat
     Attack,
     CriticalChance,
     CriticalPercent,
-    Dodce,
+    Dodge,
     HealthRegen,
     LifeSteal,
     Luck,
