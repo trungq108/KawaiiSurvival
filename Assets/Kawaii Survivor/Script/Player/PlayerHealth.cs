@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
-public class PlayerHealth : MonoBehaviour, IStatDependency
+public class PlayerHealth : MonoBehaviour, IPlayerStatDependency
 {
     [Header("Setting")]
     private float maxHealth;
@@ -37,7 +37,10 @@ public class PlayerHealth : MonoBehaviour, IStatDependency
 
     private void Update()
     {
-        if(currentHealth < maxHealth) HealthRegen();
+        if(currentHealth < maxHealth)
+        {
+            HealthRegen();
+        }
     }
 
     private void HealthRegen()
@@ -46,7 +49,7 @@ public class PlayerHealth : MonoBehaviour, IStatDependency
         if(timer > 1)
         {
             timer = 0f;
-            currentHealth += healthRegen;
+            currentHealth = Mathf.Min(currentHealth + healthRegen, maxHealth);
             UpdateHealthBar();
         }
     }
@@ -62,8 +65,7 @@ public class PlayerHealth : MonoBehaviour, IStatDependency
         }
 
         float realDamageTaken = baseDamageTaken * (1 - armor / 100);
-        realDamageTaken = Mathf.Min(currentHealth, realDamageTaken); 
-        currentHealth -= realDamageTaken;
+        currentHealth = Mathf.Clamp(currentHealth, 0, currentHealth - realDamageTaken);
         UpdateHealthBar();
         if (currentHealth <= 0) Death();
     }
@@ -76,15 +78,16 @@ public class PlayerHealth : MonoBehaviour, IStatDependency
     private void Death()
     {
         GameManager.Instance.SetGameState(GameState.GAMEOVER);
+        Destroy(this.gameObject);
     }
 
-    public void OnLifeSteal(Enemy enemy, int lifeStealAmount)
+    public void OnLifeSteal(Enemy enemy, int damage)
     {
         if (currentHealth >= maxHealth) return;
 
-        float addHealth = lifeStealAmount * lifeSteal / 100; 
+        float addHealth = damage * lifeSteal / 100;
         Debug.Log(addHealth);
-        currentHealth += addHealth;
+        currentHealth = Mathf.Min(currentHealth + addHealth, maxHealth);
         UpdateHealthBar();
     }
     public void UpdateHealthBar()
@@ -95,14 +98,14 @@ public class PlayerHealth : MonoBehaviour, IStatDependency
 
     public void UpdateStat(PlayerStatManager playerStatManager)
     {
-        float upgradeHealth = playerStatManager.GetStatData(Stat.MaxHealth);
+        float upgradeHealth = playerStatManager.GetStat(Stat.MaxHealth);
         maxHealth = upgradeHealth;
         currentHealth = maxHealth;
         UpdateHealthBar();
 
-        armor = playerStatManager.GetStatData(Stat.Armor);
-        lifeSteal = playerStatManager.GetStatData(Stat.LifeSteal);
-        dodge = playerStatManager.GetStatData(Stat.Dodge);
-        healthRegen = playerStatManager.GetStatData(Stat.HealthRegen);
+        armor = playerStatManager.GetStat(Stat.Armor);
+        lifeSteal = playerStatManager.GetStat(Stat.LifeSteal);
+        dodge = playerStatManager.GetStat(Stat.Dodge);
+        healthRegen = playerStatManager.GetStat(Stat.HealthRegen);
     }
 }

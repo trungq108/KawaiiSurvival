@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a1a3e48a29ebf14ea90006532ae4d00, type: 3}
+  m_Name: Cotton_CandyGun_SO
+  m_EditorClassIdentifier: 
+  <WeaponName>k__BackingField: Cotton_CandyGun
+  <WeaponSprite>k__BackingField: {fileID: 21300000, guid: 84f07b27a38eda042b5858622cbeaf52, type: 3}
+  <WeaponPrice>k__BackingField: 200
+  <PreFab>k__BackingField: {fileID: 547182065031921697, guid: 08594fb6ba9f41d45be579fb431668da, type: 3}
+  AttackSpeed: 5
+  Attack: 100
+  CriticalChance: 5
+  CriticalPercent: 50
+  Range: 10

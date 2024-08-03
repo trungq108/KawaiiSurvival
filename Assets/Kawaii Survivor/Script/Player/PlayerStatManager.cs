@@ -36,15 +36,15 @@ public class PlayerStatManager : Singleton<PlayerStatManager>
         UpgradeStats();
     }
 
-    public float GetStatData(Stat stat)
+    public float GetStat(Stat stat)
     {
         return playerStats[stat] + addStats[stat];
     }
 
     private void UpgradeStats()
     {
-        IEnumerable<IStatDependency> listeners =
-                    FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.None).OfType<IStatDependency>();
+        IEnumerable<IPlayerStatDependency> listeners =
+                    FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.None).OfType<IPlayerStatDependency>();
 
         foreach (var listener in listeners)
         {
@@ -53,7 +53,7 @@ public class PlayerStatManager : Singleton<PlayerStatManager>
     }
 }
 
-public interface IStatDependency
+public interface IPlayerStatDependency
 {
     void UpdateStat(PlayerStatManager playerStatManager);
 }

@@ -54,19 +54,19 @@ public class WaveTransition : MonoBehaviour, IGameStateListener
                 upgradeValueString = "+ " + upgradeValueIndex.ToString("F1") + "%";
                 break;
             case Stat.AttackSpeed:
-                upgradeValueIndex = Random.Range(0, 1f);
+                upgradeValueIndex = Random.Range(10f, 25f);
                 upgradeValueString = "+ " + upgradeValueIndex.ToString("F1") + "%";
                 break;
             case Stat.Attack:
-                upgradeValueIndex = Random.Range(0, 1f);
+                upgradeValueIndex = Random.Range(10f, 25f);
                 upgradeValueString = "+ " + upgradeValueIndex.ToString("F1") + "%";
                 break;
             case Stat.CriticalChance:
-                upgradeValueIndex = Random.Range(0, 1f);
+                upgradeValueIndex = Random.Range(10f, 25f);
                 upgradeValueString = "+ " + upgradeValueIndex.ToString("F1") + "%";
                 break;
             case Stat.CriticalPercent:
-                upgradeValueIndex = Random.Range(0, 1f);
+                upgradeValueIndex = Random.Range(10f, 25);
                 upgradeValueString = "+ " + upgradeValueIndex.ToString("F1") + "%";
                 break;
             case Stat.Dodge:
@@ -87,7 +87,7 @@ public class WaveTransition : MonoBehaviour, IGameStateListener
                 break;
 
             case Stat.MaxHealth:
-                upgradeValueIndex = Random.Range(0, 100);
+                upgradeValueIndex = Random.Range(0, 30);
                 upgradeValueString = "+ " + upgradeValueIndex.ToString();
                 break;
 
@@ -97,7 +97,7 @@ public class WaveTransition : MonoBehaviour, IGameStateListener
                 break;
 
             case Stat.Range:
-                upgradeValueIndex = Random.Range(0, 1f);
+                upgradeValueIndex = Random.Range(10f, 25f);
                 upgradeValueString = "+ " + upgradeValueIndex.ToString("F1") + "%";
                 break;
         }

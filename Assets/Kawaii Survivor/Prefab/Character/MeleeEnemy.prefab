@@ -179,7 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1645c631a81a5841a5955f15418e94b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  maxHealth: 200
   bloodVFXPrefab: {fileID: 3548588485384254792, guid: 2f9e7dc163581394da1e00b561eed65d, type: 3}
   damageText: {fileID: 805705050, guid: 5d26bfa57d64f7347bc744cd31752be8, type: 3}
 --- !u!1 &5443222778562937983

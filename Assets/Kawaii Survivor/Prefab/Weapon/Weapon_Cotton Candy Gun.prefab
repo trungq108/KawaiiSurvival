@@ -49,13 +49,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parent: {fileID: 547182065031921697}
   animator: {fileID: 547182064535137581}
-  weaponDamage: 10
+  data: {fileID: 11400000, guid: 40bc0d376a39f85459d603709bd1eb39, type: 2}
   aimSpeed: 10
-  detectRadius: 8
   enemyLayerMask:
     serializedVersion: 2
     m_Bits: 64
-  attackDelay: 0.2
   detectDelay: 0.5
   shootingPoint: {fileID: 2092595442568599084}
   bulletPrefab: {fileID: 6333489501025327493, guid: 2034d26908f5047439ec95df963388e4, type: 3}

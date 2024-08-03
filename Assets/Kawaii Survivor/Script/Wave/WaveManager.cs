@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 
 public class WaveManager : MonoBehaviour, IGameStateListener
 {
-    private float waveDuration = 20f;
+    private float waveDuration = 100f;
     [SerializeField] private Wave[] waves;
 
     private float timer = 0f;
@@ -108,6 +108,7 @@ public class WaveManager : MonoBehaviour, IGameStateListener
                 break;
             case GameState.GAMEOVER:
                 ClearWave();
+                IsTimeOn = false;
                 break;
         }
     }

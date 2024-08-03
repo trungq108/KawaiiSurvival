@@ -16,14 +16,14 @@ MonoBehaviour:
   <PlayerSprite>k__BackingField: {fileID: -7888902146871769836, guid: 95cd4e99917ba734bafe9d543625fe72, type: 3}
   <PlayerPrice>k__BackingField: 100
   Armor: 10
-  AttackSpeed: 5
+  AttackSpeed: 10
   Attack: 10
-  CriticalChance: 13
-  CriticalPercent: 15
+  CriticalChance: 10
+  CriticalPercent: 10
   Dodce: 5
   HealthRegen: 2
   LifeSteal: 10
   Luck: 5
   MaxHealth: 100
   MoveSpeed: 3
-  Range: 20
+  Range: 10

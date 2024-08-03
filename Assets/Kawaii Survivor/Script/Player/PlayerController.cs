@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour, IStatDependency
+public class PlayerController : MonoBehaviour, IPlayerStatDependency
 {
 
     public float moveSpeed;
@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour, IStatDependency
     }
     public void UpdateStat(PlayerStatManager playerStatManager)
     {
-        moveSpeed = playerStatManager.GetStatData(Stat.MoveSpeed);
+        moveSpeed = playerStatManager.GetStat(Stat.MoveSpeed);
     }
 
 }
