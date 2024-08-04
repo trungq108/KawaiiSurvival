@@ -17,6 +17,4 @@ public class UpgradeButton : MonoBehaviour
         this.upgradeName.text = upgradeName;
         this.upgradeValue.text = upgradeValue;
     }
-
-
 }

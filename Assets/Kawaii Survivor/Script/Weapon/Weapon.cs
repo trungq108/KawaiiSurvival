@@ -124,7 +124,6 @@ public abstract class Weapon : MonoBehaviour, IPlayerStatDependency
         criticalPercent *= (1 + playerStatManager.GetStat(Stat.CriticalPercent) / 100);
         if (this.GetType() == typeof(RangeWeapon))
         {
-            Debug.Log(this.GetType());
             attackRange *= (1 + playerStatManager.GetStat(Stat.CriticalPercent) / 100);
         }
     

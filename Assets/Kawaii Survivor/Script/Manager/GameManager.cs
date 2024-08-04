@@ -66,8 +66,3 @@ public class GameManager : Singleton<GameManager>
         SceneManager.LoadScene(0);
     }
 }
-
-public interface IGameStateListener
-{
-    void GameStateChangeCallBack(GameState gameState);
-}
