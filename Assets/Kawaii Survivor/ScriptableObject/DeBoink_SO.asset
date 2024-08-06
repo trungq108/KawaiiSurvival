@@ -15,7 +15,7 @@ MonoBehaviour:
   <WeaponName>k__BackingField: DeBoink
   <WeaponSprite>k__BackingField: {fileID: 5485319108022510092, guid: 15c981701acaf3f4b840cf2f1f7d3446, type: 3}
   <WeaponPrice>k__BackingField: 200
-  <PreFab>k__BackingField: {fileID: 1917864146699214328, guid: c78ab28d45f3f6a49a229cc5ea95c981, type: 3}
+  <Prefab>k__BackingField: {fileID: 1917864146699214328, guid: c78ab28d45f3f6a49a229cc5ea95c981, type: 3}
   AttackSpeed: 1
   Attack: 200
   CriticalChance: 20

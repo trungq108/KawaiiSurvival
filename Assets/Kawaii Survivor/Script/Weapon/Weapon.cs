@@ -26,8 +26,6 @@ public abstract class Weapon : MonoBehaviour, IPlayerStatDependency
     protected float criticalPercent;
     protected float attackRange;
 
-
-
     protected void OnEnable()
     {
         InvokeRepeating(nameof(FindNearestTarget), 0f, detectDelay);
@@ -39,10 +37,12 @@ public abstract class Weapon : MonoBehaviour, IPlayerStatDependency
 
         timer += Time.deltaTime;
         if (timer > 1 / attackSpeed && nearestTarget != null) Attack();
+        Debug.Log(attackRange);
     }
 
     protected void FindNearestTarget()
     {
+
         float min = float.MaxValue;
         Enemy nearestEnemy = null;
 
@@ -100,17 +100,19 @@ public abstract class Weapon : MonoBehaviour, IPlayerStatDependency
 
     protected void ConfigueStat() //Weapon Pure Data Update per Level
     {
-        float multiple = 1 + ((weaponLevel -1) / 3);
+        float multiple = 1 + weaponLevel / 3;
         attackSpeed = data.GetStat(Stat.AttackSpeed) * multiple;
         damage = data.GetStat(Stat.Attack) * multiple;
         criticalChance = data.GetStat(Stat.CriticalChance) * multiple;
         criticalPercent = data.GetStat(Stat.CriticalPercent) * multiple;
-        if (this.GetType() == typeof(RangeWeapon))
+        if (this.TryGetComponent(out RangeWeapon range))
         {
+            Debug.Log("Range");
             attackRange = data.GetStat(Stat.Range) * multiple;
         }
-        else if (this.GetType() == typeof(MeleeWeapon)) 
+        else if (this.TryGetComponent(out MeleeWeapon melee))
         {
+            Debug.Log("Melee");
             attackRange = 5;
         }
     }
@@ -122,7 +124,7 @@ public abstract class Weapon : MonoBehaviour, IPlayerStatDependency
         damage *= (1 + playerStatManager.GetStat(Stat.Attack) / 100);
         criticalChance *= (1 + playerStatManager.GetStat(Stat.CriticalChance) / 100);
         criticalPercent *= (1 + playerStatManager.GetStat(Stat.CriticalPercent) / 100);
-        if (this.GetType() == typeof(RangeWeapon))
+        if (this.TryGetComponent(out RangeWeapon range))
         {
             attackRange *= (1 + playerStatManager.GetStat(Stat.CriticalPercent) / 100);
         }
@@ -137,6 +139,12 @@ public abstract class Weapon : MonoBehaviour, IPlayerStatDependency
             currentAnim = nextAnim;
             animator.SetTrigger(currentAnim);
         }
+    }
+
+    public void SetInitLevel(int initLevel) 
+    {
+        this.weaponLevel = initLevel;
+        ConfigueStat();
     }
 
     private void OnDrawGizmos()

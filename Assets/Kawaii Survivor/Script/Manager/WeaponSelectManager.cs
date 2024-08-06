@@ -9,6 +9,8 @@ public class WeaponSelectManager : MonoBehaviour, IGameStateListener
     [SerializeField] Transform Group_WeaponSelectButton; // parent transfrom for Buttons
 
     private List<WeaponSelectButton> buttonList = new List<WeaponSelectButton>();
+    private WeaponDataSO weaponData;
+    private int initLevel;
 
     public void GameStateChangeCallBack(GameState gameState)
     {
@@ -16,7 +18,14 @@ public class WeaponSelectManager : MonoBehaviour, IGameStateListener
         {
             case GameState.WEAPONSELECTION:
                 CreatSelectButtons();
-                break;           
+                break;
+            case GameState.GAME:
+                if(weaponData != null)
+                {
+                    GameManager.Instance.Player.AddWeapon(weaponData, initLevel);
+                    weaponData = null;
+                }
+                break;
         }
     }
 
@@ -26,19 +35,21 @@ public class WeaponSelectManager : MonoBehaviour, IGameStateListener
         for (int i = 0; i < 3; i++)
         {
             WeaponDataSO weaponData = weaponDatas[Random.Range(0, weaponDatas.Length)];
-            int weaponLevel = Random.Range(0, 4);
+            int level = Random.Range(0, 4);
 
             WeaponSelectButton newButton = Instantiate(weaponSelectButtonPrefab, Group_WeaponSelectButton);
-            newButton.Configue(weaponData.WeaponSprite, weaponData.WeaponName, weaponLevel);
+            newButton.Configue(weaponData.WeaponSprite, weaponData.WeaponName, level);
             newButton.Button.onClick.RemoveAllListeners();
-            newButton.Button.onClick.AddListener(() => WeaponSelectCallBack(newButton));
+            newButton.Button.onClick.AddListener(() => WeaponSelectCallBack(newButton, weaponData, level));
 
             buttonList.Add(newButton);
         }
     }
 
-    private void WeaponSelectCallBack(WeaponSelectButton button)
+    private void WeaponSelectCallBack(WeaponSelectButton button, WeaponDataSO weaponData, int level)
     {
+        this.weaponData = weaponData;
+        initLevel = level;
         for (int i = 0; i < buttonList.Count; i++) 
         {
             if(buttonList[i] == button)

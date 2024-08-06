@@ -5,7 +5,7 @@ using System.Data;
 using System.Linq;
 using UnityEngine;
 
-public class PlayerStatManager : Singleton<PlayerStatManager>
+public class PlayerStatManager : Singleton<PlayerStatManager>, IGameStateListener
 {
     [SerializeField] PlayerDataSO PlayerStatSO;
     private Dictionary<Stat, float> playerStats = new Dictionary<Stat, float>();
@@ -18,11 +18,6 @@ public class PlayerStatManager : Singleton<PlayerStatManager>
         {
             addStats.Add(kvp.Key, 0f);
         }
-    }
-
-    private void Start()
-    {
-        UpgradeStats();
     }
 
     public void AddStatData(Stat stat, float value)
@@ -49,6 +44,16 @@ public class PlayerStatManager : Singleton<PlayerStatManager>
         foreach (var listener in listeners)
         {
             listener.UpdateStat(this);
+        }
+    }
+
+    public void GameStateChangeCallBack(GameState gameState)
+    {
+        switch (gameState)
+        {
+            case GameState.GAME:
+                UpgradeStats();
+                break;
         }
     }
 }

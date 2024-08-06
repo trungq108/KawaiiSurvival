@@ -12,6 +12,7 @@ public class DamageText : MonoBehaviour
     {
         animator.Play("Trigger");
         damageText.text = damage.ToString();
+        damageText.color = Color.white;
         if (isCritical)
         {
             damageText.color = Color.red;

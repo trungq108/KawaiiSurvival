@@ -22,6 +22,7 @@ public class WeaponSelectButton : MonoBehaviour
 
     public void Select()
     {
+        Button.transform.DOScale(originalScale, 0f);
         Button.transform.DOScale(transform.localScale * 1.2f, 0.3f).SetEase(Ease.InOutBack);
     }
 
