@@ -86,7 +86,6 @@ public class PlayerHealth : MonoBehaviour, IPlayerStatDependency
         if (currentHealth >= maxHealth) return;
 
         float addHealth = damage * lifeSteal / 100;
-        Debug.Log(addHealth);
         currentHealth = Mathf.Min(currentHealth + addHealth, maxHealth);
         UpdateHealthBar();
     }

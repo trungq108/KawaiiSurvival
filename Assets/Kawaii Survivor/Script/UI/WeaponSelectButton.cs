@@ -7,17 +7,25 @@ using UnityEngine.UI;
 
 public class WeaponSelectButton : MonoBehaviour
 {
+    [field: SerializeField] public Button Button { get; private set; }
+
     [SerializeField] Image buttonImage;
     [SerializeField] Image weaponIcon;
     [SerializeField] TextMeshProUGUI weaponName;
-    [field: SerializeField] public Button Button { get; private set; }
+    [SerializeField] Outline outline;
+    [SerializeField] Transform statContainerParent;
+
     Vector3 originalScale = Vector3.one;
 
-    public void Configue(Sprite weaponIcon, string weaponName, int Level)
+    public void Configue(WeaponDataSO data, int Level)
     {   
-        this.weaponIcon.sprite = weaponIcon;
-        this.weaponName.text = weaponName;
+        this.weaponIcon.sprite = data.WeaponSprite;
+        this.weaponName.text = data.WeaponName + "(Lv " + (Level + 1).ToString() + ")";
+        this.weaponName.color = ColorHolder.GetColor(Level);
         this.buttonImage.color = ColorHolder.GetColor(Level);
+        this.outline.effectColor = ColorHolder.GetOutlineColor(Level);
+
+        StatContainerManager.Instance.CreatContainer(data, Level, statContainerParent);
     }
 
     public void Select()

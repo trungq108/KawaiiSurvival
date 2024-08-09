@@ -100,21 +100,14 @@ public abstract class Weapon : MonoBehaviour, IPlayerStatDependency
 
     protected void ConfigueStat() //Weapon Pure Data Update per Level
     {
-        float multiple = 1 + weaponLevel / 3;
-        attackSpeed = data.GetStat(Stat.AttackSpeed) * multiple;
-        damage = data.GetStat(Stat.Attack) * multiple;
-        criticalChance = data.GetStat(Stat.CriticalChance) * multiple;
-        criticalPercent = data.GetStat(Stat.CriticalPercent) * multiple;
-        if (this.TryGetComponent(out RangeWeapon range))
-        {
-            Debug.Log("Range");
-            attackRange = data.GetStat(Stat.Range) * multiple;
-        }
-        else if (this.TryGetComponent(out MeleeWeapon melee))
-        {
-            Debug.Log("Melee");
-            attackRange = 5;
-        }
+
+        Dictionary<Stat, float> calculateStats = WeaponStatCaculator.Caculator(data, weaponLevel);
+
+        attackSpeed = calculateStats[Stat.AttackSpeed];
+        damage = calculateStats[Stat.Attack];
+        criticalChance = calculateStats[Stat.CriticalChance];
+        criticalPercent = calculateStats[Stat.CriticalPercent];
+        attackRange = calculateStats[Stat.Range];
     }
 
     public void UpdateStat(PlayerStatManager playerStatManager) //Weapon Data Update with Player Data
@@ -124,7 +117,8 @@ public abstract class Weapon : MonoBehaviour, IPlayerStatDependency
         damage *= (1 + playerStatManager.GetStat(Stat.Attack) / 100);
         criticalChance *= (1 + playerStatManager.GetStat(Stat.CriticalChance) / 100);
         criticalPercent *= (1 + playerStatManager.GetStat(Stat.CriticalPercent) / 100);
-        if (this.TryGetComponent(out RangeWeapon range))
+        //if (this.TryGetComponent(out RangeWeapon range))
+        if(transform.GetChild(0).GetType() == typeof(RangeWeapon))
         {
             attackRange *= (1 + playerStatManager.GetStat(Stat.CriticalPercent) / 100);
         }
