@@ -23,9 +23,10 @@ public abstract class DropItem : MonoBehaviour
             transform.position = Vector2.Lerp(transform.position, player.transform.position, timer);
             yield return null;
         }
+        OnCollected();
         LeanPool.Despawn(this.gameObject);
-        OnCollectec(player);
     }
 
-    protected virtual void OnCollectec(Player player) { }
+    protected virtual void OnCollected() { }
+
 }

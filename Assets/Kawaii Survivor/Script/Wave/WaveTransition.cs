@@ -7,21 +7,92 @@ using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 
-public class WaveTransition : MonoBehaviour, IGameStateListener
+public class WaveTransition : Singleton<WaveTransition>, IGameStateListener
 {
     [SerializeField] UpgradeButton[] upgradeButtons;
+
+    private ObjectDataSO[] chestObjectDatas;
+    public int ChestCollected {  get; private set; }
+
+    [SerializeField] private ChestObjectContainer objectContainerPrefab;
+    [SerializeField] private Transform objectContainerParent;
+    [SerializeField] private GameObject upgradeButtonsParent;
+
+    private PlayerObjects playerObjects;
+    
+    private void OnEnable()
+    {
+        GameEvent.ChestCollected += ChestCollectedCallBack;
+    }
+
+    private void OnDisable()
+    {
+        GameEvent.ChestCollected -= ChestCollectedCallBack;
+
+    }
+
+    public void ChestCollectedCallBack()
+    {
+        ChestCollected++;
+        Debug.Log("We have " + ChestCollected + " chest");
+    }
+
 
     public void GameStateChangeCallBack(GameState gameState)
     {
         switch (gameState)
         {
             case GameState.WAVETRANSITION:
-                ConfigureUpgradeButtons();
+                TryOpenChests();
                 break;
         }
     }
+
+    private void TryOpenChests()
+    {
+        objectContainerParent.Clear();
+        if (ChestCollected > 0)
+        {
+            ShowChest();
+        }
+        else
+        {
+            ConfigureUpgradeButtons();
+        }
+    }
+
+    private void ShowChest()
+    {
+        ChestCollected--;
+        upgradeButtonsParent.SetActive(false);
+
+        chestObjectDatas = GameAssets.GetObjectDatas();
+        ObjectDataSO randomData = chestObjectDatas[Random.Range(0, chestObjectDatas.Length)];
+
+        ChestObjectContainer newContainer = Instantiate(objectContainerPrefab, objectContainerParent);
+        newContainer.Configue(randomData);
+        newContainer.TakeButton.onClick.AddListener(() => AddObjectCallBack(randomData));
+        newContainer.TakeButton.onClick.AddListener(() => TryOpenChests());
+
+        newContainer.SellButton.onClick.AddListener(() => SellObjectCallBack(randomData));
+        newContainer.SellButton.onClick.AddListener(() => TryOpenChests());
+    }
+
+    public void AddObjectCallBack(ObjectDataSO randomData)
+    {
+        if (playerObjects == null) playerObjects = GameManager.Instance.Player.GetComponent<PlayerObjects>();
+        playerObjects.AddObject(randomData);
+    }
+
+    private void SellObjectCallBack(ObjectDataSO randomData)
+    {
+        CurrencyManager.Instance.Add(randomData.SellPrice);
+    }
+
     public void ConfigureUpgradeButtons()
     {
+        upgradeButtonsParent.SetActive(true);
+
         for (int i = 0; i < upgradeButtons.Length; i++) 
         {
             int randomIndex = Random.Range(0, Enum.GetValues(typeof(Stat)).Length);

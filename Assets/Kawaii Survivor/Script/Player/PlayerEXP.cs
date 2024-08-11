@@ -19,13 +19,13 @@ public class PlayerEXP : MonoBehaviour
 
     private void OnEnable()
     {
-        Candy.onCollected += IncreaseEXP;
+        GameEvent.CandyCollected += IncreaseEXP;
         EXPBarUpdate();
     }
 
     private void OnDestroy()
     {
-        Candy.onCollected -= IncreaseEXP;
+        GameEvent.CandyCollected -= IncreaseEXP;
     }
     private void IncreaseEXP()
     {

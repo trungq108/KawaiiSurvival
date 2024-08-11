@@ -9,6 +9,7 @@ public enum GameState
     STAGECOMPLETE,
 }
 
+[System.Serializable]
 public enum Stat 
 {
     Armor,

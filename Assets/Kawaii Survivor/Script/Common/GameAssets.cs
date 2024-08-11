@@ -5,7 +5,6 @@ using UnityEngine;
 public static class GameAssets 
 {
     static StatIconDataSO statIcon;
-
     public static Sprite LoadStatIcon(Stat stat)
     {
         if(statIcon == null)
@@ -13,7 +12,6 @@ public static class GameAssets
             //Assets / Resources / Data / StatIconSO.asset
             statIcon = Resources.Load<StatIconDataSO>("Data/StatIconSO");            
         }
-
 
         for (int i = 0; i < statIcon.StatIcons.Length; i++)
         {
@@ -25,5 +23,17 @@ public static class GameAssets
 
         Debug.LogError("Can't Find Icon with stat you want");
         return null; ;
+    }
+
+    static private ObjectDataSO[] ObjectDatas;
+    static public ObjectDataSO[] GetObjectDatas()
+    {
+        if(ObjectDatas == null)
+        {
+            // Assets/Resources/Data/Objects/
+            ObjectDatas = Resources.LoadAll<ObjectDataSO>("Data/Objects/");
+        }
+        return ObjectDatas;
+
     }
 }

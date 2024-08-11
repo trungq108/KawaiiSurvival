@@ -51,7 +51,7 @@ public class GameManager : Singleton<GameManager>
 
     public void WaveCompleteCallback()
     {
-        if (player.HasLevelUp())
+        if (player.HasLevelUp() || WaveTransition.Instance.ChestCollected > 0)
         {
             SetGameState(GameState.WAVETRANSITION);
         }

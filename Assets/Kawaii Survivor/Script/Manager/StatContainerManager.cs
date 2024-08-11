@@ -7,10 +7,8 @@ public class StatContainerManager : Singleton<StatContainerManager>
 {
     [SerializeField] StatContainer containerPrefab;
 
-    public void CreatContainer(WeaponDataSO data, int level, Transform parent)  
+    public void CreatContainer(Dictionary<Stat, float> caculate, Transform parent)  
     {
-        Dictionary<Stat, float> caculate = WeaponStatCaculator.Caculator(data, level);
-
         foreach (KeyValuePair<Stat, float> kvp in caculate)
         {
             Sprite icon = GameAssets.LoadStatIcon(kvp.Key);

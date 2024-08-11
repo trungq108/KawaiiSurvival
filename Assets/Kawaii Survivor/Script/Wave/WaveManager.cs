@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class WaveManager : MonoBehaviour, IGameStateListener
+public class WaveManager : Singleton<WaveManager>, IGameStateListener
 {
-    private float waveDuration = 100f;
+    [SerializeField] private float waveDuration;
     [SerializeField] private Wave[] waves;
 
     private float timer = 0f;

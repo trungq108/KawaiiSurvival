@@ -5,11 +5,8 @@ using UnityEngine;
 
 public class Candy : DropItem
 {
-    public static Action onCollected;
-
-    protected override void OnCollectec(Player player)
+    protected override void OnCollected()
     {
-        base.OnCollectec(player);
-        onCollected?.Invoke();
+        GameEvent.CandyCollected?.Invoke();
     }
 }

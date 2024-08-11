@@ -25,7 +25,7 @@ public class DropItemManager : Singleton<DropItemManager>
     private void IsDropChest(Transform pos)
     {
         int rate = Random.Range(0, 10);
-        if (rate < 1) 
+        if (rate < 5) 
         {
             LeanPool.Spawn(chestPrefab, pos.position, Quaternion.identity, this.transform);
         }

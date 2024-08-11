@@ -10,6 +10,7 @@ public class PlayerStatManager : Singleton<PlayerStatManager>, IGameStateListene
     [SerializeField] PlayerDataSO PlayerStatSO;
     private Dictionary<Stat, float> playerStats = new Dictionary<Stat, float>();
     private Dictionary<Stat, float> addStats = new Dictionary<Stat, float>();
+    private Dictionary<Stat, float> addObjectStat = new Dictionary<Stat, float>();
 
     private void Awake()
     {
@@ -17,6 +18,7 @@ public class PlayerStatManager : Singleton<PlayerStatManager>, IGameStateListene
         foreach(KeyValuePair<Stat, float> kvp in playerStats)
         {
             addStats.Add(kvp.Key, 0f);
+            addObjectStat.Add(kvp.Key, 0f);
         }
     }
 
@@ -31,9 +33,18 @@ public class PlayerStatManager : Singleton<PlayerStatManager>, IGameStateListene
         UpgradeStats();
     }
 
+    internal void AddObject(Dictionary<Stat, float> objectStat)
+    {
+        foreach(KeyValuePair<Stat, float> kvp in objectStat)
+        {
+            addObjectStat[kvp.Key] += kvp.Value;
+        }
+        UpgradeStats();
+    }
+
     public float GetStat(Stat stat)
     {
-        return playerStats[stat] + addStats[stat];
+        return playerStats[stat] + addStats[stat] + addObjectStat[stat];
     }
 
     private void UpgradeStats()
@@ -56,6 +67,7 @@ public class PlayerStatManager : Singleton<PlayerStatManager>, IGameStateListene
                 break;
         }
     }
+
 }
 
 public interface IPlayerStatDependency
