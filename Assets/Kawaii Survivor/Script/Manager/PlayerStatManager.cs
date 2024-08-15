@@ -50,7 +50,7 @@ public class PlayerStatManager : Singleton<PlayerStatManager>, IGameStateListene
     private void UpgradeStats()
     {
         IEnumerable<IPlayerStatDependency> listeners =
-                    FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.None).OfType<IPlayerStatDependency>();
+                    FindObjectsByType<MonoBehaviour>(FindObjectsInactive.Include,FindObjectsSortMode.None).OfType<IPlayerStatDependency>();
 
         foreach (var listener in listeners)
         {

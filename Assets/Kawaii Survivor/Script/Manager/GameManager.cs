@@ -10,7 +10,6 @@ public class GameManager : Singleton<GameManager>
 {
     [SerializeField] Button menuToWeaponSelection;
     [SerializeField] Button shopToGame;
-    [SerializeField] Button enterShop;
     [SerializeField] Button weaponSelectionToGame;
     [SerializeField] Button reloadStage;
     [SerializeField] Button playAgain;
@@ -20,7 +19,6 @@ public class GameManager : Singleton<GameManager>
     private void OnEnable()
     {
         menuToWeaponSelection.onClick.AddListener(() => SetGameState(GameState.WEAPONSELECTION));
-        enterShop.onClick.AddListener(()             => SetGameState(GameState.SHOP));
         shopToGame.onClick.AddListener(()            => SetGameState(GameState.GAME));
         weaponSelectionToGame.onClick.AddListener(() => SetGameState(GameState.GAME));
         reloadStage.onClick.AddListener(()           => LoadScene());

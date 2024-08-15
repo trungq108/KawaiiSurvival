@@ -37,7 +37,6 @@ public abstract class Weapon : MonoBehaviour, IPlayerStatDependency
 
         timer += Time.deltaTime;
         if (timer > 1 / attackSpeed && nearestTarget != null) Attack();
-        Debug.Log(attackRange);
     }
 
     protected void FindNearestTarget()

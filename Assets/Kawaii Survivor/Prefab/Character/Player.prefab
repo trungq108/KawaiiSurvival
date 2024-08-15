@@ -297,7 +297,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0547a26d5b4a16647ae6b65ce4156bea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 3
+  moveSpeed: 0
 --- !u!114 &8860236986099937399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -372,8 +372,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 782ce7cae212bed458e54592a2ca85f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectDatas:
-  - {fileID: 11400000, guid: 6dd608b31656010409fccea5bf8b0ed3, type: 2}
 --- !u!1 &7835597876428739975
 GameObject:
   m_ObjectHideFlags: 0

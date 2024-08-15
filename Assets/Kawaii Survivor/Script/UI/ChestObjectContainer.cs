@@ -12,6 +12,7 @@ public class ChestObjectContainer : MonoBehaviour
     [SerializeField] Image ContainerImage;
     [SerializeField] Image Icon;
     [SerializeField] TextMeshProUGUI Name;
+    [SerializeField] TextMeshProUGUI sellPriceText;
     [SerializeField] Outline outline;
     [SerializeField] Transform containerParent;
 
@@ -22,6 +23,7 @@ public class ChestObjectContainer : MonoBehaviour
         this.Icon.sprite = data.Icon;
         this.Name.text = data.Name;
         this.Name.color = ColorHolder.GetColor(data.RareRate);
+        this.sellPriceText.text = data.SellPrice.ToString();
         this.ContainerImage.color = ColorHolder.GetColor(data.RareRate);
         this.outline.effectColor = ColorHolder.GetOutlineColor(data.RareRate);
 

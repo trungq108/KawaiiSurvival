@@ -71,6 +71,7 @@ public class WaveTransition : Singleton<WaveTransition>, IGameStateListener
 
         ChestObjectContainer newContainer = Instantiate(objectContainerPrefab, objectContainerParent);
         newContainer.Configue(randomData);
+
         newContainer.TakeButton.onClick.AddListener(() => AddObjectCallBack(randomData));
         newContainer.TakeButton.onClick.AddListener(() => TryOpenChests());
 
@@ -98,13 +99,14 @@ public class WaveTransition : Singleton<WaveTransition>, IGameStateListener
             int randomIndex = Random.Range(0, Enum.GetValues(typeof(Stat)).Length);
             Stat randomStart = (Stat)Enum.GetValues(typeof(Stat)).GetValue(randomIndex);
             string startName = Enums.FormatStatName(randomStart);
+            Sprite icon = GameAssets.LoadStatIcon(randomStart);
 
             Action action = UpdateStat(randomStart, out string upgradeValueString);
             upgradeButtons[i].Button.onClick.RemoveAllListeners();
             upgradeButtons[i].Button.onClick.AddListener(() => action?.Invoke());
             upgradeButtons[i].Button.onClick.AddListener(() => CheckPlayerUpgrade());
 
-            upgradeButtons[i].Configure(null, startName, upgradeValueString);
+            upgradeButtons[i].Configure(icon, startName, upgradeValueString);
         }
     }
 

@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour, IPlayerStatDependency
 {
 
-    public float moveSpeed;
+    private float moveSpeed;
     private Rigidbody2D playerRb;
 
     private void Awake()

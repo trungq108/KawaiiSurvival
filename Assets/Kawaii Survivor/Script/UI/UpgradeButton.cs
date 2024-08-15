@@ -11,9 +11,9 @@ public class UpgradeButton : MonoBehaviour
     [SerializeField] TextMeshProUGUI upgradeValue;
     [field: SerializeField] public Button Button { get; private set; }
 
-    public void Configure(Image upgradeIcon, string upgradeName, string upgradeValue)
+    public void Configure(Sprite upgradeIcon, string upgradeName, string upgradeValue)
     {
-        this.upgradeIcon = upgradeIcon;
+        this.upgradeIcon.sprite = upgradeIcon;
         this.upgradeName.text = upgradeName;
         this.upgradeValue.text = upgradeValue;
     }
