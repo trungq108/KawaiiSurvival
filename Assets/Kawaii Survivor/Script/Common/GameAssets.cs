@@ -26,7 +26,7 @@ public static class GameAssets
     }
 
     static private ObjectDataSO[] ObjectDatas;
-    static public ObjectDataSO[] GetObjectDatas()
+    static public ObjectDataSO[] LoadObjectDatas()
     {
         if(ObjectDatas == null)
         {
@@ -34,6 +34,29 @@ public static class GameAssets
             ObjectDatas = Resources.LoadAll<ObjectDataSO>("Data/Objects/");
         }
         return ObjectDatas;
+    }
 
+    static public ObjectDataSO GetRandomObjectData()
+    {
+        if (ObjectDatas == null) LoadObjectDatas();
+        return ObjectDatas[Random.Range(0, ObjectDatas.Length)];
+    }
+
+
+    static private WeaponDataSO[] WeaponDatas;
+    static public WeaponDataSO[] LoadWeaponDatas()
+    {
+        if (WeaponDatas == null)
+        {
+            // Assets/Resources/Data/Weapons/
+            WeaponDatas = Resources.LoadAll<WeaponDataSO>("Data/Weapons/");
+        }
+        return WeaponDatas;
+    }
+
+    static public WeaponDataSO GetRandomWeaponData()
+    {
+        if (WeaponDatas == null) LoadWeaponDatas();
+        return WeaponDatas[Random.Range(0, WeaponDatas.Length)];
     }
 }

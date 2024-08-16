@@ -14,7 +14,7 @@ public class WaveTransition : Singleton<WaveTransition>, IGameStateListener
     private ObjectDataSO[] chestObjectDatas;
     public int ChestCollected {  get; private set; }
 
-    [SerializeField] private ChestObjectContainer objectContainerPrefab;
+    [SerializeField] private ObjectContainer objectContainerPrefab;
     [SerializeField] private Transform objectContainerParent;
     [SerializeField] private GameObject upgradeButtonsParent;
 
@@ -66,10 +66,10 @@ public class WaveTransition : Singleton<WaveTransition>, IGameStateListener
         ChestCollected--;
         upgradeButtonsParent.SetActive(false);
 
-        chestObjectDatas = GameAssets.GetObjectDatas();
+        chestObjectDatas = GameAssets.LoadObjectDatas();
         ObjectDataSO randomData = chestObjectDatas[Random.Range(0, chestObjectDatas.Length)];
 
-        ChestObjectContainer newContainer = Instantiate(objectContainerPrefab, objectContainerParent);
+        ObjectContainer newContainer = Instantiate(objectContainerPrefab, objectContainerParent);
         newContainer.Configue(randomData);
 
         newContainer.TakeButton.onClick.AddListener(() => AddObjectCallBack(randomData));

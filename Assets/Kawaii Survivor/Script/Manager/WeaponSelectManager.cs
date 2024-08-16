@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WeaponSelectManager : MonoBehaviour, IGameStateListener
 {
-    [SerializeField] WeaponDataSO[] weaponDatas;
+    private WeaponDataSO[] weaponDatas;
     [SerializeField] WeaponSelectButton weaponSelectButtonPrefab;
     [SerializeField] Transform Group_WeaponSelectButton; // parent transfrom for Buttons
 
@@ -31,10 +31,13 @@ public class WeaponSelectManager : MonoBehaviour, IGameStateListener
 
     private void CreatSelectButtons()
     {
+
         Group_WeaponSelectButton.Clear();
+        weaponDatas = GameAssets.LoadWeaponDatas();
+
         for (int i = 0; i < 3; i++)
         {
-            WeaponDataSO weaponData = weaponDatas[Random.Range(0, weaponDatas.Length)];
+            WeaponDataSO weaponData = GameAssets.GetRandomWeaponData();
             int level = Random.Range(0, 4);
 
             WeaponSelectButton newButton = Instantiate(weaponSelectButtonPrefab, Group_WeaponSelectButton);

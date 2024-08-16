@@ -26,7 +26,7 @@ public class WeaponSelectButton : MonoBehaviour
         this.outline.effectColor = ColorHolder.GetOutlineColor(Level);
 
         Dictionary<Stat, float> caculate = WeaponStatCaculator.Caculator(data, Level);
-        StatContainerManager.Instance.CreatContainer(caculate, statContainerParent);
+        StatContainerManager.Instance.CreatContainers(caculate, statContainerParent);
     }
 
     public void Select()

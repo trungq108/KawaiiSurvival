@@ -7,7 +7,7 @@ public class StatContainerManager : Singleton<StatContainerManager>
 {
     [SerializeField] StatContainer containerPrefab;
 
-    public void CreatContainer(Dictionary<Stat, float> caculate, Transform parent)  
+    public void CreatContainers(Dictionary<Stat, float> caculate, Transform parent)  
     {
         foreach (KeyValuePair<Stat, float> kvp in caculate)
         {

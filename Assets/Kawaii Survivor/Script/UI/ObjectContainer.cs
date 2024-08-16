@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ChestObjectContainer : MonoBehaviour
+public class ObjectContainer : MonoBehaviour
 {
     [field: SerializeField] public Button TakeButton { get; private set; }
     [field: SerializeField] public Button SellButton { get; private set; }
@@ -28,7 +28,7 @@ public class ChestObjectContainer : MonoBehaviour
         this.outline.effectColor = ColorHolder.GetOutlineColor(data.RareRate);
 
         Dictionary<Stat, float> caculate = data.BaseData;
-        StatContainerManager.Instance.CreatContainer(caculate, containerParent);
+        StatContainerManager.Instance.CreatContainers(caculate, containerParent);
     }
 
 }

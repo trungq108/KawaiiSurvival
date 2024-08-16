@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e470ed92387e6642b73bc998f6d611f, type: 3}
-  m_Name: Speed
+  m_Name: Bike
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: Speed
-  <Icon>k__BackingField: {fileID: 21300000, guid: 09777c6673130274ca8d759ba7bfbf35, type: 3}
+  <Name>k__BackingField: Bike
+  <Icon>k__BackingField: {fileID: -460769226430981451, guid: e2b501b9b8126574ba147cee4db1cf55, type: 3}
   <BuyPrice>k__BackingField: 30
   <SellPrice>k__BackingField: 24
   <RareRate>k__BackingField: 3
   statDatas:
   - stat: 10
-    value: 1
+    value: 3
   - stat: 6
     value: -5
   - stat: 9
