@@ -100,7 +100,7 @@ public abstract class Weapon : MonoBehaviour, IPlayerStatDependency
     protected void ConfigueStat() //Weapon Pure Data Update per Level
     {
 
-        Dictionary<Stat, float> calculateStats = WeaponStatCaculator.Caculator(data, weaponLevel);
+        Dictionary<Stat, float> calculateStats = Calculator.WeaponStats(data, weaponLevel);
 
         attackSpeed = calculateStats[Stat.AttackSpeed];
         damage = calculateStats[Stat.Attack];

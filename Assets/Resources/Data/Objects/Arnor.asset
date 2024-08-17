@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Arnor
   <Icon>k__BackingField: {fileID: -2757887451555568444, guid: 8fffe40f3ebda0d469b31ca1513a3248, type: 3}
-  <BuyPrice>k__BackingField: 10
-  <SellPrice>k__BackingField: 8
+  <BuyPrice>k__BackingField: 50
+  <SellPrice>k__BackingField: 40
   <RareRate>k__BackingField: 3
   statDatas:
   - stat: 0

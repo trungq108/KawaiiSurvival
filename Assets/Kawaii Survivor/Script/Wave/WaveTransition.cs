@@ -17,8 +17,6 @@ public class WaveTransition : Singleton<WaveTransition>, IGameStateListener
     [SerializeField] private ObjectContainer objectContainerPrefab;
     [SerializeField] private Transform objectContainerParent;
     [SerializeField] private GameObject upgradeButtonsParent;
-
-    private PlayerObjects playerObjects;
     
     private void OnEnable()
     {
@@ -81,8 +79,8 @@ public class WaveTransition : Singleton<WaveTransition>, IGameStateListener
 
     public void AddObjectCallBack(ObjectDataSO randomData)
     {
-        if (playerObjects == null) playerObjects = GameManager.Instance.Player.GetComponent<PlayerObjects>();
-        playerObjects.AddObject(randomData);
+        Player player = GameManager.Instance.Player;
+        player.AddObject(randomData);
     }
 
     private void SellObjectCallBack(ObjectDataSO randomData)

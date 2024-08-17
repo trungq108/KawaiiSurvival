@@ -13,7 +13,8 @@ public class ShopItemContainer : MonoBehaviour
     [SerializeField] Image icon;
     [SerializeField] Outline outline;
     [SerializeField] TextMeshProUGUI name;
-    [SerializeField] TextMeshProUGUI price;
+    public int Price {  get; private set; }
+    [SerializeField] TextMeshProUGUI priceText;
     [SerializeField] Transform statContainerParent;
     [field: SerializeField] public Button Button {  get; private set; }
 
@@ -22,6 +23,9 @@ public class ShopItemContainer : MonoBehaviour
     [SerializeField] Sprite lockSprite, unlockSprite;
     public bool IsLock { get; private set; }
 
+    public WeaponDataSO WeaponData { get; private set; }
+    public ObjectDataSO ObjectData { get; private set; }
+
     public void Confingue(WeaponDataSO weaponData, int level)
     {
         this.icon.sprite = weaponData.WeaponSprite;
@@ -29,13 +33,17 @@ public class ShopItemContainer : MonoBehaviour
         this.name.color = ColorHolder.GetColor(level);
         this.containerBG.color = ColorHolder.GetColor(level);
         this.outline.effectColor = ColorHolder.GetOutlineColor(level);
-        this.price.text = weaponData.WeaponPrice.ToString();
+        this.Price = Calculator.WeaponPrice(weaponData, level);
+        this.priceText.text = Price.ToString(); 
+        this.WeaponData = weaponData;
 
-        Dictionary<Stat, float> caculate = WeaponStatCaculator.Caculator(weaponData, level);
+        Dictionary<Stat, float> caculate = Calculator.WeaponStats(weaponData, level);
         StatContainerManager.Instance.CreatContainers(caculate, statContainerParent);
 
         lockImage.sprite = unlockSprite; 
         lockButton.onClick.AddListener(() => LockItemReroll());
+
+        Button.interactable = CurrencyManager.IsEnoughMoney(Price);
     }
 
     public void Configue(ObjectDataSO objectData)
@@ -43,15 +51,19 @@ public class ShopItemContainer : MonoBehaviour
         this.icon.sprite = objectData.Icon;
         this.name.text = objectData.Name;
         this.name.color = ColorHolder.GetColor(objectData.RareRate);
-        this.price.text = objectData.BuyPrice.ToString();
+        this.Price = objectData.BuyPrice;
+        this.priceText.text = Price.ToString();
         this.containerBG.color = ColorHolder.GetColor(objectData.RareRate);
         this.outline.effectColor = ColorHolder.GetOutlineColor(objectData.RareRate);
+        this.ObjectData = objectData;
 
         Dictionary<Stat, float> caculate = objectData.BaseData;
         StatContainerManager.Instance.CreatContainers(caculate, statContainerParent);
 
         lockImage.sprite = unlockSprite;
         lockButton.onClick.AddListener(() => LockItemReroll());
+
+        Button.interactable = CurrencyManager.IsEnoughMoney(Price);
     }
 
     private void LockItemReroll()
@@ -59,5 +71,4 @@ public class ShopItemContainer : MonoBehaviour
         IsLock = !IsLock;
         lockImage.sprite = IsLock ? lockSprite : unlockSprite;
     }
-
 }

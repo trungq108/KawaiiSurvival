@@ -11,8 +11,16 @@ public class CurrencyManager : Singleton<CurrencyManager>
 
     private void Start()
     {
-        Currency = 0;
+        Currency = 500;
         Load();
+    }
+
+    public static bool IsEnoughMoney(int price) => Instance.Currency >= price;
+ 
+    public void Pay(int payPrice)
+    {
+        Currency = Mathf.Clamp(Currency, 0, Currency - payPrice);
+        UpdateCurrencyDisplay();
     }
 
     public void Add(int sellPrice)

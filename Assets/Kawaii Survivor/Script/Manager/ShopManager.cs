@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +12,8 @@ public class ShopManager : MonoBehaviour, IGameStateListener
     [SerializeField] Transform containersParent;
 
     [SerializeField] Button rerollButton;
+    [SerializeField] int rerollPrice;
+    [SerializeField] TextMeshProUGUI rerollPriceText;
 
     public void CreatShopIteamContainers()
     {
@@ -23,7 +27,6 @@ public class ShopManager : MonoBehaviour, IGameStateListener
                 removeList.Add(checkContainer);
             }
         }
-        Debug.Log(removeList.Count);
 
         for(int i = removeList.Count - 1; i >= 0; i--)
         {
@@ -31,19 +34,19 @@ public class ShopManager : MonoBehaviour, IGameStateListener
             Destroy(removeList[i].gameObject);
             removeList.RemoveAt(i);
         }
-        Debug.Log(removeList.Count);
         
-        int numberSpawn = 6 - containersParent.childCount; Debug.Log(numberSpawn);
-        int numberWeapon = Random.Range(0, numberSpawn); 
+        int numberSpawn = 6 - containersParent.childCount;
+        int numberWeapon = numberSpawn / 2;
         int numberObject = numberSpawn - numberWeapon; 
 
         for (int i = 0; i < numberWeapon; i++)
         {
             WeaponDataSO weaponData = GameAssets.GetRandomWeaponData();
-            int randomLevel = Random.Range(0, 3);
+            int randomLevel = Random.Range(0, 4);
 
             ShopItemContainer weaponItem = Instantiate(containerPrefab, containersParent);
             weaponItem.Confingue(weaponData, randomLevel);
+            weaponItem.Button.onClick.AddListener(() => PurchaseItemCallBack(weaponItem, randomLevel));
         }
 
         for(int i = 0;i < numberObject; i++)
@@ -51,21 +54,50 @@ public class ShopManager : MonoBehaviour, IGameStateListener
             ObjectDataSO objectData = GameAssets.GetRandomObjectData();
             ShopItemContainer newObject = Instantiate(containerPrefab, containersParent);
             newObject.Configue(objectData);
+            newObject.Button.onClick.AddListener(() => PurchaseItemCallBack(newObject, 0));
+        }
+    }
+
+    private void PurchaseItemCallBack(ShopItemContainer container, int level)
+    {
+        Player player = GameManager.Instance.Player;
+        if(container.WeaponData != null && CurrencyManager.IsEnoughMoney(container.Price))
+        {
+            if (player.TryAddWeapon(container.WeaponData, level))
+            {
+                CurrencyManager.Instance.Pay(container.Price);
+                UpdateRerollButton();
+                Destroy(container.gameObject);
+            }
+        }
+        if(container.ObjectData != null && CurrencyManager.IsEnoughMoney(container.Price))
+        {
+            player.AddObject(container.ObjectData);
+            CurrencyManager.Instance.Pay(container.Price);
+            UpdateRerollButton();
+            Destroy(container.gameObject);
         }
     }
 
     private void Reroll()
     {
+        CurrencyManager.Instance.Pay(rerollPrice);
         CreatShopIteamContainers();
+        UpdateRerollButton();
     }
 
+    private void UpdateRerollButton()
+    {
+        rerollPriceText.text = rerollPrice.ToString();
+        rerollButton.interactable = CurrencyManager.IsEnoughMoney(rerollPrice);
+    }
 
     public void GameStateChangeCallBack(GameState gameState)
     {
         switch(gameState)
         {
             case GameState.SHOP:
-                Reroll();
+                CreatShopIteamContainers();
                 rerollButton.onClick.AddListener(() => Reroll());
                 break;
         }

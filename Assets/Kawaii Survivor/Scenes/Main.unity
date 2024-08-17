@@ -1220,7 +1220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5686275, g: 0.81568635, b: 0.882353, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1302,7 +1302,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.10588236, g: 0.18823531, b: 0.20784315, a: 1}
+  m_Color: {r: 0.5686275, g: 0.81568635, b: 0.882353, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3794,7 +3794,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 500
+  m_text: 888
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4013b8eeec6a66d4f933577b7a4c80e4, type: 2}
   m_sharedMaterial: {fileID: 8135194248902295789, guid: 4013b8eeec6a66d4f933577b7a4c80e4, type: 2}
@@ -3884,7 +3884,7 @@ GameObject:
   - component: {fileID: 788017845}
   - component: {fileID: 788017844}
   m_Layer: 5
-  m_Name: Currency Text
+  m_Name: Reroll Price Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3950,7 +3950,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 500
+  m_text: 100
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4013b8eeec6a66d4f933577b7a4c80e4, type: 2}
   m_sharedMaterial: {fileID: 8135194248902295789, guid: 4013b8eeec6a66d4f933577b7a4c80e4, type: 2}
@@ -5718,6 +5718,8 @@ MonoBehaviour:
   containerPrefab: {fileID: -8214469733929356070, guid: 80c38ca1673ca814686d6c6b962505c3, type: 3}
   containersParent: {fileID: 132814209}
   rerollButton: {fileID: 1072292831}
+  rerollPrice: 100
+  rerollPriceText: {fileID: 788017845}
 --- !u!1 &1072292829
 GameObject:
   m_ObjectHideFlags: 0
@@ -5785,7 +5787,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0, g: 0, b: 0, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -16910,7 +16912,7 @@ MonoBehaviour:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -17824,7 +17826,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.10588236, g: 0.18823531, b: 0.20784315, a: 1}
+  m_Color: {r: 0.43529415, g: 0.38823533, b: 0.72156864, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

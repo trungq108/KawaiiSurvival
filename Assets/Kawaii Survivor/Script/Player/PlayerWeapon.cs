@@ -7,20 +7,26 @@ public class PlayerWeapon : MonoBehaviour
     [SerializeField] Transform[] weaponPos;
     private List<Weapon> weaponList = new List<Weapon>();
     
-    public void AddWeapon(WeaponDataSO data, int weaponLevel)
+    public bool TryAddWeapon(WeaponDataSO data, int weaponLevel)
     {
         if (GetAvailablePos() == null)
         {
-            Debug.Log("We Out Of Weapon Slot !!!");
-            return;
-        }            
+            Debug.Log("OUT OF SLOT WEAPON !!!");
+            return false;
+        }
         else
         {
-            Weapon newWeapon = Instantiate(data.Prefab, GetAvailablePos()).GetComponentInChildren<Weapon>();
-            newWeapon.transform.localPosition = Vector3.zero;
-            newWeapon.SetInitLevel(weaponLevel);
-            weaponList.Add(newWeapon);
-        }    
+            AddWeapon(data, weaponLevel);
+            return true;
+        }        
+    }
+
+    public void AddWeapon(WeaponDataSO data, int weaponLevel)
+    {
+        Weapon newWeapon = Instantiate(data.Prefab, GetAvailablePos()).GetComponentInChildren<Weapon>();
+        newWeapon.transform.localPosition = Vector3.zero;
+        newWeapon.SetInitLevel(weaponLevel);
+        weaponList.Add(newWeapon);
     }
 
     private Transform GetAvailablePos()

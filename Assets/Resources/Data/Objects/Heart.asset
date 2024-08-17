@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Heart
   <Icon>k__BackingField: {fileID: 21300000, guid: 94243d9d34caa244bab355e648c592f6, type: 3}
-  <BuyPrice>k__BackingField: 30
-  <SellPrice>k__BackingField: 25
+  <BuyPrice>k__BackingField: 70
+  <SellPrice>k__BackingField: 60
   <RareRate>k__BackingField: 3
   statDatas:
   - stat: 9

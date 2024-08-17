@@ -22,7 +22,7 @@ public class WeaponSelectManager : MonoBehaviour, IGameStateListener
             case GameState.GAME:
                 if(weaponData != null)
                 {
-                    GameManager.Instance.Player.AddWeapon(weaponData, initLevel);
+                    GameManager.Instance.Player.TryAddWeapon(weaponData, initLevel);
                     weaponData = null;
                 }
                 break;

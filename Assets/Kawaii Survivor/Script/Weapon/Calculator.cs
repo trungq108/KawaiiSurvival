@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class WeaponStatCaculator 
+public static class Calculator 
 {
-    public static Dictionary<Stat, float> Caculator(WeaponDataSO data, int level)
+    public static Dictionary<Stat, float> WeaponStats(WeaponDataSO data, int level)
     {
         float multiple = 1 + (float)level / 3;
 
@@ -20,5 +20,14 @@ public static class WeaponStatCaculator
         }
 
         return caculatorStats;
+    }
+
+    public static int WeaponPrice(WeaponDataSO data, int level)
+    {
+        //int price = (int)(data.WeaponPrice * (1 + (float)(level/3)));
+        int price = (int)(data.WeaponPrice * Mathf.Pow(1.3f, level));
+
+        Debug.Log(price);
+        return price;
     }
 }

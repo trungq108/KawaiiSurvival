@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     private PlayerDetect detect;
     private PlayerEXP level;
     private PlayerWeapon playerWeapon;
+    private PlayerObjects playerObjects;
 
     private void Awake()
     {
@@ -20,6 +21,7 @@ public class Player : MonoBehaviour
         detect = GetComponent<PlayerDetect>();
         level = GetComponent<PlayerEXP>();
         playerWeapon= GetComponent<PlayerWeapon>();
+        playerObjects= GetComponent<PlayerObjects>();
     }
 
     public void TakeDamage(int baseDamageTaken)
@@ -27,13 +29,11 @@ public class Player : MonoBehaviour
         health.TakeDame(baseDamageTaken);
     }
 
-    public bool HasLevelUp()
-    {
-        return level.HasLevelUp();
-    }
+    public bool HasLevelUp() => level.HasLevelUp();
+    public bool TryAddWeapon(WeaponDataSO data, int weaponLevel) => playerWeapon.TryAddWeapon(data, weaponLevel);
 
-    internal void AddWeapon(WeaponDataSO data, int weaponLevel)
+    public void AddObject(ObjectDataSO objectData)
     {
-        playerWeapon.AddWeapon(data, weaponLevel);
+        playerObjects.AddObject(objectData);
     }
 }
