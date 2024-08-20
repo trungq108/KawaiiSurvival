@@ -15,6 +15,8 @@ public class ShopManager : MonoBehaviour, IGameStateListener
     [SerializeField] int rerollPrice;
     [SerializeField] TextMeshProUGUI rerollPriceText;
 
+    
+
     public void CreatShopIteamContainers()
     {
         List<ShopItemContainer> removeList = new List<ShopItemContainer>();
@@ -52,9 +54,9 @@ public class ShopManager : MonoBehaviour, IGameStateListener
         for(int i = 0;i < numberObject; i++)
         {
             ObjectDataSO objectData = GameAssets.GetRandomObjectData();
-            ShopItemContainer newObject = Instantiate(containerPrefab, containersParent);
-            newObject.Configue(objectData);
-            newObject.Button.onClick.AddListener(() => PurchaseItemCallBack(newObject, 0));
+            ShopItemContainer objectItem = Instantiate(containerPrefab, containersParent);
+            objectItem.Configue(objectData);
+            objectItem.Button.onClick.AddListener(() => PurchaseItemCallBack(objectItem, 0));
         }
     }
 

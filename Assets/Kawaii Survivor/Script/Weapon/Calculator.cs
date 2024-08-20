@@ -25,7 +25,9 @@ public static class Calculator
     public static int WeaponPrice(WeaponDataSO data, int level)
     {
         //int price = (int)(data.WeaponPrice * (1 + (float)(level/3)));
-        int price = (int)(data.WeaponPrice * Mathf.Pow(1.3f, level));
+        //int price = (int)(data.WeaponPrice * Mathf.Pow(1.3f, level));
+        int price = (int)(data.WeaponPrice * Mathf.Pow(1.33f, level));
+
 
         Debug.Log(price);
         return price;
