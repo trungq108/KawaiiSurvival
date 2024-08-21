@@ -67,7 +67,6 @@ public class PlayerStatManager : Singleton<PlayerStatManager>, IGameStateListene
                 break;
         }
     }
-
 }
 
 public interface IPlayerStatDependency

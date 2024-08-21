@@ -1,13 +1,16 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class ShopManager : MonoBehaviour, IGameStateListener
 {
+    [Header("Main Shop Element")]
     [SerializeField] ShopItemContainer containerPrefab;
     [SerializeField] Transform containersParent;
 
@@ -15,7 +18,27 @@ public class ShopManager : MonoBehaviour, IGameStateListener
     [SerializeField] int rerollPrice;
     [SerializeField] TextMeshProUGUI rerollPriceText;
 
-    
+    [Header("PlayerStats Element")]
+
+    [SerializeField] Button playerStats_OpenButton;
+    [SerializeField] EventTrigger close_PlayerStatsTab;
+    [SerializeField] CanvasGroup playStats_TabParent;
+    [SerializeField] RectTransform playerStats_Tab;
+    private Vector2 playerStatsTab_OpenPos;
+    private Vector2 playerStatsTab_ClosePos;
+
+    [Header("Inventory Element")]
+
+    [SerializeField] Button inventory_OpenButton;
+    [SerializeField] EventTrigger close_InventoryTab;
+    [SerializeField] CanvasGroup inventory_TabParent;
+    [SerializeField] RectTransform inventory_Tab;
+    [SerializeField] RectTransform itemInfo_Slide;
+    private Vector2 inventory_OpenPos;
+    private Vector2 inventory_ClosePos;
+    private Vector2 itemInfo_OpenPos;
+    private Vector2 itemInfo_ClosePos;
+
 
     public void CreatShopIteamContainers()
     {
@@ -94,6 +117,108 @@ public class ShopManager : MonoBehaviour, IGameStateListener
         rerollButton.interactable = CurrencyManager.IsEnoughMoney(rerollPrice);
     }
 
+    private void ConfiguePlayerStatsTab()
+    {
+        playerStats_OpenButton.onClick.AddListener(() => OpenPlayerStatsTab(0.5f));
+
+        EventTrigger.Entry entry = new EventTrigger.Entry { eventID = EventTriggerType.PointerDown };
+        entry.callback.AddListener((eventData) => ClosePlayerStatsTab(0.5f));
+        close_PlayerStatsTab.triggers.Add(entry);
+        ClosePlayerStatsTab(0f);
+
+        playerStatsTab_OpenPos = playerStats_Tab.anchoredPosition;
+        playerStatsTab_ClosePos = playerStats_Tab.anchoredPosition - Vector2.right * playerStats_Tab.anchoredPosition.x;
+    }
+
+    public void OpenPlayerStatsTab(float openDuration)
+    {
+        playerStats_Tab.DOAnchorPos(playerStatsTab_OpenPos, openDuration).SetEase(Ease.InOutCubic)
+            .OnUpdate(() => playStats_TabParent.DOFade(1, openDuration))
+            .OnComplete(() =>
+            {
+                playStats_TabParent.interactable = true;
+                playStats_TabParent.blocksRaycasts = true;
+            });
+    }
+
+    public void ClosePlayerStatsTab(float closeDuration)
+    {
+        playerStats_Tab.DOAnchorPos(playerStatsTab_ClosePos, closeDuration).SetEase(Ease.InOutCubic)
+            .OnUpdate(() => playStats_TabParent.DOFade(0, closeDuration))
+            .OnComplete(() =>
+            {
+                playStats_TabParent.interactable = false;
+                playStats_TabParent.blocksRaycasts = false;
+            });
+    }
+
+    private void ConfigueInventory()
+    {
+        inventory_OpenButton.onClick.AddListener(() => OpenInventory(0.5f));
+
+        EventTrigger.Entry entry = new EventTrigger.Entry { eventID = EventTriggerType.PointerDown };
+        entry.callback.AddListener((eventData) => CloseInventory(0.5f));
+        close_InventoryTab.triggers.Add(entry);
+        CloseInventory(0f);
+
+        inventory_OpenPos = inventory_Tab.anchoredPosition;
+        inventory_ClosePos = inventory_Tab.anchoredPosition - Vector2.right * inventory_Tab.anchoredPosition.x;
+
+        itemInfo_OpenPos = itemInfo_Slide.anchoredPosition;
+        itemInfo_ClosePos = -itemInfo_OpenPos;
+        Debug.Log(itemInfo_ClosePos);
+        CloseItemInfo(0);
+    }
+
+    public void OpenInventory(float openDuration)
+    {
+        inventory_Tab.DOAnchorPos(inventory_OpenPos, openDuration).SetEase(Ease.InOutCubic)
+            .OnUpdate(() => inventory_TabParent.DOFade(1, openDuration))
+            .OnComplete(() =>
+            {
+                inventory_TabParent.interactable = true;
+                inventory_TabParent.blocksRaycasts = true;
+            });
+    }
+
+    public void CloseInventory(float closeDuration)
+    {
+        inventory_Tab.DOAnchorPos(inventory_ClosePos, closeDuration).SetEase(Ease.InOutCubic)
+            .OnUpdate(() =>
+            {
+                CloseItemInfo(closeDuration/4);
+                inventory_TabParent.DOFade(0, closeDuration);
+            })
+            .OnComplete(() =>
+            {
+                inventory_TabParent.interactable = false;
+                inventory_TabParent.blocksRaycasts = false;
+            });
+    }
+
+    private void OpenItemInfo(float openDuration)
+    {
+        itemInfo_Slide.DOAnchorPos(itemInfo_OpenPos, openDuration).SetEase(Ease.InOutCubic);
+    }
+    private void CloseItemInfo(float closeDuration)
+    {
+        itemInfo_Slide.DOAnchorPos(itemInfo_ClosePos, closeDuration).SetEase(Ease.InOutCubic);
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Q))
+        {
+            Debug.Log("work");
+            OpenItemInfo(0.5f);
+        }
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            Debug.Log("work");
+            CloseItemInfo(0.5f);
+        }
+    }
+
     public void GameStateChangeCallBack(GameState gameState)
     {
         switch(gameState)
@@ -101,6 +226,8 @@ public class ShopManager : MonoBehaviour, IGameStateListener
             case GameState.SHOP:
                 CreatShopIteamContainers();
                 rerollButton.onClick.AddListener(() => Reroll());
+                ConfiguePlayerStatsTab();
+                ConfigueInventory();
                 break;
         }
     }
