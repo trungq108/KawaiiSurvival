@@ -19,7 +19,7 @@ public class WeaponSelectButton : MonoBehaviour
 
     public void Configue(WeaponDataSO data, int Level)
     {   
-        this.weaponIcon.sprite = data.WeaponSprite;
+        this.weaponIcon.sprite = data.WeaponIcon;
         this.weaponName.text = data.WeaponName + "(Lv " + (Level + 1).ToString() + ")";
         this.weaponName.color = ColorHolder.GetColor(Level);
         this.buttonImage.color = ColorHolder.GetColor(Level);

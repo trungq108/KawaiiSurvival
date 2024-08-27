@@ -9,7 +9,7 @@ public abstract class Weapon : MonoBehaviour, IPlayerStatDependency
     [Header("Element")]
     [SerializeField] protected GameObject parent;
     [SerializeField] protected Animator animator;
-    [SerializeField] protected WeaponDataSO data;
+    [field:SerializeField] public WeaponDataSO Data {  get; private set; }
     protected string currentAnim = "idle";
     protected Enemy nearestTarget;
 
@@ -19,7 +19,7 @@ public abstract class Weapon : MonoBehaviour, IPlayerStatDependency
     [SerializeField] protected float detectDelay;
     protected float timer;
 
-    protected int weaponLevel;
+    public int weaponLevel {  get; private set; }
     protected float attackSpeed;
     protected float damage;
     protected float criticalChance;
@@ -100,7 +100,7 @@ public abstract class Weapon : MonoBehaviour, IPlayerStatDependency
     protected void ConfigueStat() //Weapon Pure Data Update per Level
     {
 
-        Dictionary<Stat, float> calculateStats = Calculator.WeaponStats(data, weaponLevel);
+        Dictionary<Stat, float> calculateStats = Calculator.WeaponStats(Data, weaponLevel);
 
         attackSpeed = calculateStats[Stat.AttackSpeed];
         damage = calculateStats[Stat.Attack];

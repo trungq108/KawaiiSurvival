@@ -28,7 +28,7 @@ public class ShopItemContainer : MonoBehaviour
 
     public void Confingue(WeaponDataSO weaponData, int level)
     {
-        this.icon.sprite = weaponData.WeaponSprite;
+        this.icon.sprite = weaponData.WeaponIcon;
         this.name.text = weaponData.WeaponName + "(Lv " + (level + 1).ToString() + ")";
         this.name.color = ColorHolder.GetColor(level);
         this.containerBG.color = ColorHolder.GetColor(level);

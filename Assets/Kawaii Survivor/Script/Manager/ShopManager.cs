@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ShopManager : MonoBehaviour, IGameStateListener
+public class ShopManager : Singleton<ShopManager>, IGameStateListener
 {
     [Header("Main Shop Element")]
     [SerializeField] ShopItemContainer containerPrefab;
@@ -166,7 +166,6 @@ public class ShopManager : MonoBehaviour, IGameStateListener
 
         itemInfo_OpenPos = itemInfo_Slide.anchoredPosition;
         itemInfo_ClosePos = -itemInfo_OpenPos;
-        Debug.Log(itemInfo_ClosePos);
         CloseItemInfo(0);
     }
 
@@ -196,28 +195,15 @@ public class ShopManager : MonoBehaviour, IGameStateListener
             });
     }
 
-    private void OpenItemInfo(float openDuration)
+    public void OpenItemInfo(float openDuration)
     {
         itemInfo_Slide.DOAnchorPos(itemInfo_OpenPos, openDuration).SetEase(Ease.InOutCubic);
     }
-    private void CloseItemInfo(float closeDuration)
+    public void CloseItemInfo(float closeDuration)
     {
         itemInfo_Slide.DOAnchorPos(itemInfo_ClosePos, closeDuration).SetEase(Ease.InOutCubic);
     }
 
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Q))
-        {
-            Debug.Log("work");
-            OpenItemInfo(0.5f);
-        }
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            Debug.Log("work");
-            CloseItemInfo(0.5f);
-        }
-    }
 
     public void GameStateChangeCallBack(GameState gameState)
     {

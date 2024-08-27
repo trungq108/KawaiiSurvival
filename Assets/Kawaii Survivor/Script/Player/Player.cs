@@ -24,16 +24,15 @@ public class Player : MonoBehaviour
         playerObjects= GetComponent<PlayerObjects>();
     }
 
-    public void TakeDamage(int baseDamageTaken)
-    {
-        health.TakeDame(baseDamageTaken);
-    }
+    public void TakeDamage(int baseDamageTaken) => health.TakeDame(baseDamageTaken);
 
     public bool HasLevelUp() => level.HasLevelUp();
+
     public bool TryAddWeapon(WeaponDataSO data, int weaponLevel) => playerWeapon.TryAddWeapon(data, weaponLevel);
 
-    public void AddObject(ObjectDataSO objectData)
-    {
-        playerObjects.AddObject(objectData);
-    }
+    public void AddObject(ObjectDataSO objectData) => playerObjects.AddObject(objectData);
+
+    public List<Weapon> GetWeapons() => playerWeapon.weaponList;
+    public List<ObjectDataSO> GetObjects() => playerObjects.Objects;
+
 }

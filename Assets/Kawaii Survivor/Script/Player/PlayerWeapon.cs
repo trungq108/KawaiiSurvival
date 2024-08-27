@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlayerWeapon : MonoBehaviour
 {
     [SerializeField] Transform[] weaponPos;
-    private List<Weapon> weaponList = new List<Weapon>();
-    
+    public List<Weapon> weaponList {  get; private set; } = new List<Weapon>();
+
     public bool TryAddWeapon(WeaponDataSO data, int weaponLevel)
     {
         if (GetAvailablePos() == null)

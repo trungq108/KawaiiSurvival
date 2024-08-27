@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerObjects : MonoBehaviour
 {
-    private List<ObjectDataSO> Objects = new List<ObjectDataSO>();
+    public List<ObjectDataSO> Objects = new List<ObjectDataSO>();
 
     public void AddObject(ObjectDataSO objectData)
     {

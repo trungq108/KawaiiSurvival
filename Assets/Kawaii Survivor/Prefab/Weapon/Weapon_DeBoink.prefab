@@ -96,7 +96,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parent: {fileID: 1917864146699214328}
   animator: {fileID: 1917864146218742004}
-  data: {fileID: 11400000, guid: a2866303b7231574eb983a189cfd1817, type: 2}
+  <Data>k__BackingField: {fileID: 11400000, guid: a2866303b7231574eb983a189cfd1817, type: 2}
   aimSpeed: 10
   enemyLayerMask:
     serializedVersion: 2

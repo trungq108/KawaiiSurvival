@@ -26,7 +26,6 @@ public class WaveTransition : Singleton<WaveTransition>, IGameStateListener
     private void OnDisable()
     {
         GameEvent.ChestCollected -= ChestCollectedCallBack;
-
     }
 
     public void ChestCollectedCallBack()
@@ -34,7 +33,6 @@ public class WaveTransition : Singleton<WaveTransition>, IGameStateListener
         ChestCollected++;
         Debug.Log("We have " + ChestCollected + " chest");
     }
-
 
     public void GameStateChangeCallBack(GameState gameState)
     {

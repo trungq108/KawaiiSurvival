@@ -7,9 +7,10 @@ public class StatContainerManager : Singleton<StatContainerManager>
 {
     [SerializeField] StatContainer containerPrefab;
 
-    public void CreatContainers(Dictionary<Stat, float> caculate, Transform parent)  
+    public void CreatContainers(Dictionary<Stat, float> statData, Transform parent)  
     {
-        foreach (KeyValuePair<Stat, float> kvp in caculate)
+        parent.Clear();
+        foreach (KeyValuePair<Stat, float> kvp in statData)
         {
             Sprite icon = GameAssets.LoadStatIcon(kvp.Key);
             string name = Enums.FormatStatName(kvp.Key);
