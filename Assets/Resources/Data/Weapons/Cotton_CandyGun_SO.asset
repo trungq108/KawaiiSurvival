@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Cotton_CandyGun_SO
   m_EditorClassIdentifier: 
   <WeaponName>k__BackingField: Cotton Candy Gun
-  <WeaponIcon>k__BackingField: {fileID: 5485319108022510092, guid: 15c981701acaf3f4b840cf2f1f7d3446, type: 3}
+  <WeaponIcon>k__BackingField: {fileID: 21300000, guid: 84f07b27a38eda042b5858622cbeaf52, type: 3}
   <WeaponPrice>k__BackingField: 100
+  <WeaponRecyclePrice>k__BackingField: 80
   <Prefab>k__BackingField: {fileID: 547182065031921697, guid: 08594fb6ba9f41d45be579fb431668da, type: 3}
   AttackSpeed: 5
   Attack: 100

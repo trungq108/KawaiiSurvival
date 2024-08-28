@@ -8,26 +8,23 @@ public class InventoryItemContainer : MonoBehaviour
 {
     [SerializeField] Image item_BG;
     [SerializeField] Image item_Icon;
-    [SerializeField] Button button;
+    [field: SerializeField] public Button Button {  get; private set; }
 
     public Weapon weaponInfo {  get; private set; }
     public ObjectDataSO objectInfo { get; private set; }
 
-    public void Configue(Weapon weapon, Action ClickCallBack)
+    public void Configue(Weapon weapon)
     {
         weaponInfo = weapon;
         item_Icon.sprite = weaponInfo.Data.WeaponIcon;
         item_BG.color = ColorHolder.GetColor(weapon.weaponLevel);
-        button.onClick.RemoveAllListeners();
-        button.onClick.AddListener(() => ClickCallBack?.Invoke());
     }
 
-    public void Configue(ObjectDataSO objectData, Action ClickCallBack)
+    public void Configue(ObjectDataSO objectData)
     {
         objectInfo = objectData;
         item_Icon.sprite = objectData.Icon;
         item_BG.color = ColorHolder.GetColor(objectData.RareRate);
-        button.onClick.RemoveAllListeners();
-        button.onClick.AddListener(() => ClickCallBack?.Invoke());
+
     }
 }

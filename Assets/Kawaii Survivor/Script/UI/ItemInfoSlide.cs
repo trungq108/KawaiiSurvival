@@ -12,6 +12,9 @@ public class ItemInfoSlide : MonoBehaviour
     [SerializeField] private TextMeshProUGUI recyclePriceText;
     [SerializeField] private TextMeshProUGUI itemNameText;
     [SerializeField] private Transform startContainerParent;
+    [field: SerializeField] public Button MergeButton { get; private set; }
+    [field: SerializeField] public Button RecycleButton { get; private set; }
+
 
     public void ConfigueWeapon(Weapon weapon)
     {
@@ -23,6 +26,12 @@ public class ItemInfoSlide : MonoBehaviour
 
         Dictionary<Stat, float> caculate = Calculator.WeaponStats(weapon.Data, weapon.weaponLevel);
         StatContainerManager.Instance.CreatContainers(caculate, startContainerParent);
+
+        MergeButton.gameObject.SetActive(true);
+        MergeButton.interactable = MergeSystem.CanMerge(weapon);
+
+        MergeButton.onClick.RemoveAllListeners();
+        MergeButton.onClick.AddListener(() => MergeSystem.Merge());
     }
 
     public void ConfigueObject(ObjectDataSO objectData)
@@ -35,5 +44,7 @@ public class ItemInfoSlide : MonoBehaviour
 
         Dictionary<Stat, float> caculate = objectData.BaseData;
         StatContainerManager.Instance.CreatContainers(caculate, startContainerParent);
+
+        MergeButton.gameObject.SetActive(false);
     }
 }

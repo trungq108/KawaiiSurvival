@@ -34,7 +34,6 @@ public abstract class Weapon : MonoBehaviour, IPlayerStatDependency
     protected virtual void Update()
     {
         AimTarget();
-
         timer += Time.deltaTime;
         if (timer > 1 / attackSpeed && nearestTarget != null) Attack();
     }
@@ -99,7 +98,6 @@ public abstract class Weapon : MonoBehaviour, IPlayerStatDependency
 
     protected void ConfigueStat() //Weapon Pure Data Update per Level
     {
-
         Dictionary<Stat, float> calculateStats = Calculator.WeaponStats(Data, weaponLevel);
 
         attackSpeed = calculateStats[Stat.AttackSpeed];
@@ -116,7 +114,6 @@ public abstract class Weapon : MonoBehaviour, IPlayerStatDependency
         damage *= (1 + playerStatManager.GetStat(Stat.Attack) / 100);
         criticalChance *= (1 + playerStatManager.GetStat(Stat.CriticalChance) / 100);
         criticalPercent *= (1 + playerStatManager.GetStat(Stat.CriticalPercent) / 100);
-        //if (this.TryGetComponent(out RangeWeapon range))
         if(transform.GetChild(0).GetType() == typeof(RangeWeapon))
         {
             attackRange *= (1 + playerStatManager.GetStat(Stat.CriticalPercent) / 100);
@@ -134,16 +131,14 @@ public abstract class Weapon : MonoBehaviour, IPlayerStatDependency
         }
     }
 
-    public void SetInitLevel(int initLevel) 
+    public void SetLevel(int initLevel) 
     {
         this.weaponLevel = initLevel;
         ConfigueStat();
     }
 
-    private void OnDrawGizmos()
+    public void Upgrade()
     {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(parent.transform.position, attackRange);
+        SetLevel(weaponLevel + 1);
     }
-
 }

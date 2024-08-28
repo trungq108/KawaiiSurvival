@@ -11,7 +11,7 @@ public class CurrencyManager : Singleton<CurrencyManager>
 
     private void Start()
     {
-        Currency = 500;
+        Currency = 5000;
         Load();
     }
 

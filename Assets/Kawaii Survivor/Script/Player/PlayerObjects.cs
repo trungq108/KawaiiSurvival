@@ -10,6 +10,12 @@ public class PlayerObjects : MonoBehaviour
     {
         Objects.Add(objectData);
         PlayerStatManager.Instance.AddObject(objectData.BaseData);
+        InventoryManager.Instance.Configue();
     }
 
+    public void RemoveObject(ObjectDataSO objectData)
+    {
+        Objects.Remove(objectData);
+        PlayerStatManager.Instance.RenmoveObject(objectData.BaseData);
+    }
 }

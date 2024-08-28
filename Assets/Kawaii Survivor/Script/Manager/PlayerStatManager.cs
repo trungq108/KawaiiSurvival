@@ -41,6 +41,14 @@ public class PlayerStatManager : Singleton<PlayerStatManager>, IGameStateListene
         }
         UpgradeStats();
     }
+    internal void RenmoveObject(Dictionary<Stat, float> objectStat)
+    {
+        foreach (KeyValuePair<Stat, float> kvp in objectStat)
+        {
+            addObjectStat[kvp.Key] -= kvp.Value;
+        }
+        UpgradeStats();
+    }
 
     public float GetStat(Stat stat)
     {

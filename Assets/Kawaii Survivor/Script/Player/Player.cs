@@ -29,10 +29,11 @@ public class Player : MonoBehaviour
     public bool HasLevelUp() => level.HasLevelUp();
 
     public bool TryAddWeapon(WeaponDataSO data, int weaponLevel) => playerWeapon.TryAddWeapon(data, weaponLevel);
-
     public void AddObject(ObjectDataSO objectData) => playerObjects.AddObject(objectData);
-
     public List<Weapon> GetWeapons() => playerWeapon.weaponList;
     public List<ObjectDataSO> GetObjects() => playerObjects.Objects;
+    public void RemoveWeapon(Weapon weapon) => playerWeapon.RemoveWeapon(weapon);
+    public void RemoveObject(ObjectDataSO objectData) => playerObjects.RemoveObject(objectData);
+
 
 }

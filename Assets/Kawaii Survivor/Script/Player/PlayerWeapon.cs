@@ -25,8 +25,18 @@ public class PlayerWeapon : MonoBehaviour
     {
         Weapon newWeapon = Instantiate(data.Prefab, GetAvailablePos()).GetComponentInChildren<Weapon>();
         newWeapon.transform.localPosition = Vector3.zero;
-        newWeapon.SetInitLevel(weaponLevel);
+        newWeapon.SetLevel(weaponLevel);
         weaponList.Add(newWeapon);
+        InventoryManager.Instance.Configue();
+    }
+
+    public void RemoveWeapon(Weapon weapon)
+    {
+        if (weaponList.Contains(weapon))
+        {
+            weaponList.Remove(weapon);
+            Destroy(weapon.transform.parent.gameObject);
+        }
     }
 
     private Transform GetAvailablePos()
@@ -40,6 +50,7 @@ public class PlayerWeapon : MonoBehaviour
                 availablePos.Add(weaponPos[i]);
             }
         }
-        return availablePos[Random.Range(0, availablePos.Count)];
+        if(availablePos.Count > 0) return availablePos[Random.Range(0, availablePos.Count)];
+        else return null;
     }
 }
