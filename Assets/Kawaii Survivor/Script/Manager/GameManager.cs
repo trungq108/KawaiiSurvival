@@ -11,23 +11,27 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] Button menuToWeaponSelection;
     [SerializeField] Button shopToGame;
     [SerializeField] Button weaponSelectionToGame;
-    [SerializeField] Button reloadStage;
-    [SerializeField] Button playAgain;
+    [SerializeField] Button gameover_Replay;
+    [SerializeField] Button stageComplete_Replay;
+    [SerializeField] Button pauseGame;
 
-    private Player player; public Player Player => player;
+    public Player Player { get; private set; }
+    public static bool IsPause {  get; private set; }
 
     private void OnEnable()
     {
         menuToWeaponSelection.onClick.AddListener(() => SetGameState(GameState.WEAPONSELECTION));
         shopToGame.onClick.AddListener(()            => SetGameState(GameState.GAME));
         weaponSelectionToGame.onClick.AddListener(() => SetGameState(GameState.GAME));
-        reloadStage.onClick.AddListener(()           => LoadScene());
-        playAgain.onClick.AddListener(()             => LoadScene());
+        gameover_Replay.onClick.AddListener(()       => LoadScene());
+        stageComplete_Replay.onClick.AddListener(()  => LoadScene());
+        pauseGame.onClick.AddListener(()             => PauseGame());
+
     }
 
     void Awake()
     {
-        player = FindObjectOfType<Player>();
+        Player = FindObjectOfType<Player>();
         Application.targetFrameRate = 60;
     }
 
@@ -49,7 +53,7 @@ public class GameManager : Singleton<GameManager>
 
     public void WaveCompleteCallback()
     {
-        if (player.HasLevelUp() || WaveTransition.Instance.ChestCollected > 0)
+        if (Player.HasLevelUp() || WaveTransition.Instance.ChestCollected > 0)
         {
             SetGameState(GameState.WAVETRANSITION);
         }
@@ -59,8 +63,26 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    public void LoadScene()
+    public void LoadScene() => SceneManager.LoadScene(0);
+    public void LoadFromPause()
     {
-        SceneManager.LoadScene(0);
+        Time.timeScale = 1.0f;
+        IsPause = false;
+        LoadScene();
     }
+
+    public void PauseGame()
+    {
+        Time.timeScale = 0f;
+        SetGameState(GameState.PAUSE);
+        IsPause = true;
+    }
+
+    public void ResumeGame()
+    {
+        Time.timeScale = 1.0f;
+        SetGameState(GameState.GAME);
+        IsPause = false;
+    }
+
 }

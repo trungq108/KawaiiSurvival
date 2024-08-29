@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class InventoryManager : Singleton<InventoryManager>, IGameStateListener
 {
-    [SerializeField] Transform parent;
+    [SerializeField] Transform shopPanelParent;
+    [SerializeField] Transform pausePanelParent;
     [SerializeField] InventoryItemContainer prefab;
     [SerializeField] ItemInfoSlide infoSlide;
     private Player player;
@@ -21,7 +22,9 @@ public class InventoryManager : Singleton<InventoryManager>, IGameStateListener
 
     public void Configue()
     {
-        parent.Clear();
+        shopPanelParent.Clear();
+        pausePanelParent.Clear();
+
         player = GameManager.Instance.Player;
         List<ObjectDataSO> playerObjects = player.GetObjects();
         List<Weapon> playerWeapons = player.GetWeapons();
@@ -29,25 +32,29 @@ public class InventoryManager : Singleton<InventoryManager>, IGameStateListener
         for (int i = 0;i < playerWeapons.Count; i++)
         {
             Weapon weapon = playerWeapons[i];
-            InventoryItemContainer container = Instantiate(prefab, parent);
-            Sprite icon = weapon.Data.WeaponIcon;
-            Color color = ColorHolder.GetColor(weapon.weaponLevel);
-            container.Configue(weapon);
 
-            container.Button.onClick.RemoveAllListeners();
-            container.Button.onClick.AddListener(() => OpenItemInfo(container));
+            InventoryItemContainer shopContainer = Instantiate(prefab, shopPanelParent);
+            shopContainer.Configue(weapon);
+            shopContainer.Button.onClick.RemoveAllListeners();
+            shopContainer.Button.onClick.AddListener(() => OpenItemInfo(shopContainer));
+
+            InventoryItemContainer pauseContainer = Instantiate(prefab, pausePanelParent);
+            pauseContainer.Configue(weapon);
+            pauseContainer.Button.interactable = false;
         }
 
         for(int i = 0; i < playerObjects.Count; i++)
         {
             ObjectDataSO data = playerObjects[i];
-            InventoryItemContainer container = Instantiate(prefab, parent);
-            Sprite icon = data.Icon;
-            Color color = ColorHolder.GetColor(data.RareRate);
-            container.Configue(data);
 
-            container.Button.onClick.RemoveAllListeners();
-            container.Button.onClick.AddListener(() => OpenItemInfo(container));
+            InventoryItemContainer shopContainer = Instantiate(prefab, shopPanelParent);
+            shopContainer.Configue(data);
+            shopContainer.Button.onClick.RemoveAllListeners();
+            shopContainer.Button.onClick.AddListener(() => OpenItemInfo(shopContainer));
+
+            InventoryItemContainer pauseContainer = Instantiate(prefab, pausePanelParent);
+            pauseContainer.Configue(data);
+            pauseContainer.Button.interactable = false;
         }
     }
 
@@ -97,7 +104,7 @@ public class InventoryManager : Singleton<InventoryManager>, IGameStateListener
     {
         switch (gameState)
         {
-            case GameState.SHOP:
+            case GameState.GAME:
                 Configue();
                 break;
         }

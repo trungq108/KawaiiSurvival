@@ -104,7 +104,7 @@ public class WaveManager : Singleton<WaveManager>, IGameStateListener
         switch (gameState)
         {
             case GameState.GAME:
-                StartWave(currentWaveIndex);
+                if(!GameManager.IsPause) StartWave(currentWaveIndex);
                 break;
             case GameState.GAMEOVER:
                 ClearWave();

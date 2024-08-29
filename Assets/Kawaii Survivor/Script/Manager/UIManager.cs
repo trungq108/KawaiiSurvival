@@ -11,6 +11,7 @@ public class UIManager : Singleton<UIManager>, IGameStateListener
     [SerializeField] GameObject weaponSelectionPanel;
     [SerializeField] GameObject gameOverPanel;
     [SerializeField] GameObject stageCompletePanel;
+    [SerializeField] GameObject pausePanel;
     private List<GameObject> panelList = new List<GameObject>();
 
     private void Awake()
@@ -18,7 +19,7 @@ public class UIManager : Singleton<UIManager>, IGameStateListener
         panelList.AddRange(new GameObject[]
         {
             gamePanel, menuPanel, waveTransitionPanel, shopPanel , weaponSelectionPanel, gameOverPanel, stageCompletePanel
-            , 
+            , pausePanel, 
         });
     }
 
@@ -48,14 +49,29 @@ public class UIManager : Singleton<UIManager>, IGameStateListener
             case GameState.STAGECOMPLETE:
                 ShowPanel(stageCompletePanel);
                 break;
+            case GameState.PAUSE:
+                ShowPanel(pausePanel, gamePanel);
+                break;
         }
     }
 
-    public void ShowPanel(GameObject panel)
+    public void ShowPanel(GameObject panel) //Open 1 panel
     {
         for(int i = 0; i < panelList.Count; i++)
         {
             panelList[i].SetActive(panelList[i] == panel);
+        }
+    }
+
+    public void ShowPanel(GameObject panel1, GameObject panel2) //Open 2 panel
+    {
+        for (int i = 0; i < panelList.Count; i++)
+        {
+            if(panelList[i] == panel1 || panelList[i] == panel2)
+            {
+                panelList[i].SetActive(true);
+            }
+            else panelList[i].SetActive(false);
         }
 
     }

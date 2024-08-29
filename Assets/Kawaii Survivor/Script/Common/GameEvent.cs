@@ -9,4 +9,7 @@ public static class GameEvent
     public static Action CandyCollected;
     public static Action ChestCollected;
     public static Action<Weapon> OnWeaponMerge;
+
+    public static Action OnPause;
+    public static Action OnResume;
 }
