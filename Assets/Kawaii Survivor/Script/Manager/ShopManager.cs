@@ -86,7 +86,7 @@ public class ShopManager : Singleton<ShopManager>, IGameStateListener
     private void PurchaseItemCallBack(ShopItemContainer container, int level)
     {
         Player player = GameManager.Instance.Player;
-        if(container.WeaponData != null && CurrencyManager.IsEnoughMoney(container.Price))
+        if(container.WeaponData != null && CurrencyManager.IsEnoughCandy(container.Price))
         {
             if (player.TryAddWeapon(container.WeaponData, level))
             {
@@ -95,7 +95,7 @@ public class ShopManager : Singleton<ShopManager>, IGameStateListener
                 Destroy(container.gameObject);
             }
         }
-        if(container.ObjectData != null && CurrencyManager.IsEnoughMoney(container.Price))
+        if(container.ObjectData != null && CurrencyManager.IsEnoughCandy(container.Price))
         {
             player.AddObject(container.ObjectData);
             CurrencyManager.Instance.Pay(container.Price);
@@ -114,7 +114,7 @@ public class ShopManager : Singleton<ShopManager>, IGameStateListener
     private void UpdateRerollButton()
     {
         rerollPriceText.text = rerollPrice.ToString();
-        rerollButton.interactable = CurrencyManager.IsEnoughMoney(rerollPrice);
+        rerollButton.interactable = CurrencyManager.IsEnoughCandy(rerollPrice);
     }
 
     private void ConfiguePlayerStatsTab()
@@ -211,9 +211,10 @@ public class ShopManager : Singleton<ShopManager>, IGameStateListener
         {
             case GameState.SHOP:
                 CreatShopIteamContainers();
-                rerollButton.onClick.AddListener(() => Reroll());
                 ConfiguePlayerStatsTab();
                 ConfigueInventory();
+                UpdateRerollButton();
+                rerollButton.onClick.AddListener(() => Reroll());
                 break;
         }
     }

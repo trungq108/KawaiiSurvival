@@ -9,11 +9,14 @@ public class DropItemManager : Singleton<DropItemManager>
     [SerializeField] Money moneyPrefab;
     [SerializeField] Chest chestPrefab;
 
+    [SerializeField] int candyDropRate;
+    [SerializeField] int chestDropRate;
+
 
     public void Drop(Transform pos)
     {
         int rate = Random.Range(0, 10);
-        if(rate < 8)
+        if(rate < candyDropRate)
         {
             LeanPool.Spawn(candyPrefab, pos.position, Quaternion.identity, this.transform);
         }
@@ -25,7 +28,7 @@ public class DropItemManager : Singleton<DropItemManager>
     private void IsDropChest(Transform pos)
     {
         int rate = Random.Range(0, 10);
-        if (rate < 1) 
+        if (rate < chestDropRate) 
         {
             LeanPool.Spawn(chestPrefab, pos.position, Quaternion.identity, this.transform);
         }

@@ -6,26 +6,49 @@ using UnityEngine;
 
 public class CurrencyManager : Singleton<CurrencyManager>
 {
-    [SerializeField] private TextMeshProUGUI[] currencyTexts;
-    public int Currency {  get; private set; }
+    [SerializeField] private TextMeshProUGUI[] candyCurrencyTexts;
+    [SerializeField] private TextMeshProUGUI[] moneyCurrencyTexts;
+
+    public int CandyCurrency { get; private set; }
+    public int MoneyCurrency { get; private set; }
 
     private void Start()
     {
-        Currency = 5000;
         Load();
     }
 
-    public static bool IsEnoughMoney(int price) => Instance.Currency >= price;
+    private void OnEnable()
+    {
+        GameEvent.CandyCollected += CandyCollectedCallBack;
+        GameEvent.MoneyCollected += MoneyCollectedCallBack;
+    }
+
+    private void OnDisable()
+    {
+        GameEvent.CandyCollected -= CandyCollectedCallBack;
+        GameEvent.MoneyCollected -= MoneyCollectedCallBack;
+    }
+
+    private void CandyCollectedCallBack() => AddCandy(1);
+    private void MoneyCollectedCallBack() => AddMoney(1);
+
+
+    public static bool IsEnoughCandy(int price) => Instance.CandyCurrency >= price;
  
     public void Pay(int payPrice)
     {
-        Currency = Mathf.Clamp(Currency, 0, Currency - payPrice);
+        CandyCurrency = Mathf.Clamp(CandyCurrency, 0, CandyCurrency - payPrice);
         UpdateCurrencyDisplay();
     }
 
-    public void Add(int sellPrice)
+    public void AddCandy(int sellPrice)
     {
-        Currency += sellPrice;
+        CandyCurrency += sellPrice;
+        UpdateCurrencyDisplay();
+    }
+    public void AddMoney(int cashNumer)
+    {
+        MoneyCurrency += cashNumer;
         UpdateCurrencyDisplay();
     }
 
@@ -36,9 +59,13 @@ public class CurrencyManager : Singleton<CurrencyManager>
 
     public void UpdateCurrencyDisplay()
     {
-        for(int i = 0; i < currencyTexts.Length; i++)
+        for(int i = 0; i < candyCurrencyTexts.Length; i++)
         {
-            currencyTexts[i].text = Currency.ToString();
+            candyCurrencyTexts[i].text = CandyCurrency.ToString();
+        }
+        for(int i = 0;i < moneyCurrencyTexts.Length;i++)
+        {
+            moneyCurrencyTexts[i].text = MoneyCurrency.ToString();
         }
     }
 }

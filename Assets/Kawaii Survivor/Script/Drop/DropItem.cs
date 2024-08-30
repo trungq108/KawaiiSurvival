@@ -7,24 +7,13 @@ using UnityEngine;
 
 public abstract class DropItem : MonoBehaviour
 {
-    [SerializeField] protected int dropExp;
-
-    public void OnPick(Player player)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        StartCoroutine(Picked(player));
-    }
-
-    protected IEnumerator Picked(Player player)
-    {
-        float timer = 0f;
-        while (timer < 0.5)
+        if(collision.gameObject.layer == 7)
         {
-            timer += Time.deltaTime;
-            transform.position = Vector2.Lerp(transform.position, player.transform.position, timer);
-            yield return null;
+            OnCollected();
+            LeanPool.Despawn(this.gameObject);
         }
-        OnCollected();
-        LeanPool.Despawn(this.gameObject);
     }
 
     protected virtual void OnCollected() { }

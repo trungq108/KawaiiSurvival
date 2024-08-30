@@ -80,7 +80,7 @@ public class InventoryManager : Singleton<InventoryManager>, IGameStateListener
     public void RecycleWeapon(Weapon weapon)
     {
         int weaponRecyclePrice = Calculator.WeaponRecyclePrice(weapon.Data, weapon.weaponLevel);
-        CurrencyManager.Instance.Add(weaponRecyclePrice);
+        CurrencyManager.Instance.AddCandy(weaponRecyclePrice);
         ShopManager.Instance.CloseItemInfo(0.5f);
         player.RemoveWeapon(weapon);
         Configue();
@@ -88,7 +88,7 @@ public class InventoryManager : Singleton<InventoryManager>, IGameStateListener
 
     public void RecycleObject(ObjectDataSO objectData)
     {
-        CurrencyManager.Instance.Add(objectData.SellPrice);
+        CurrencyManager.Instance.AddCandy(objectData.SellPrice);
         ShopManager.Instance.CloseItemInfo(0.5f);
         player.RemoveObject(objectData);
         Configue();

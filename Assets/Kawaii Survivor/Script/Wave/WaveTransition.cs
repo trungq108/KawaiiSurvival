@@ -83,7 +83,7 @@ public class WaveTransition : Singleton<WaveTransition>, IGameStateListener
 
     private void SellObjectCallBack(ObjectDataSO randomData)
     {
-        CurrencyManager.Instance.Add(randomData.SellPrice);
+        CurrencyManager.Instance.AddCandy(randomData.SellPrice);
     }
 
     public void ConfigureUpgradeButtons()

@@ -43,7 +43,7 @@ public class ShopItemContainer : MonoBehaviour
         lockImage.sprite = unlockSprite; 
         lockButton.onClick.AddListener(() => LockItemReroll());
 
-        Button.interactable = CurrencyManager.IsEnoughMoney(Price);
+        Button.interactable = CurrencyManager.IsEnoughCandy(Price);
     }
 
     public void Configue(ObjectDataSO objectData)
@@ -63,7 +63,7 @@ public class ShopItemContainer : MonoBehaviour
         lockImage.sprite = unlockSprite;
         lockButton.onClick.AddListener(() => LockItemReroll());
 
-        Button.interactable = CurrencyManager.IsEnoughMoney(Price);
+        Button.interactable = CurrencyManager.IsEnoughCandy(Price);
     }
 
     private void LockItemReroll()
