@@ -17,6 +17,18 @@ public class CurrencyManager : Singleton<CurrencyManager>
         Load();
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            ES3.DeleteFile();
+        }
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            AddMoney(300);
+        }
+    }
+
     private void OnEnable()
     {
         GameEvent.CandyCollected += CandyCollectedCallBack;
@@ -34,10 +46,17 @@ public class CurrencyManager : Singleton<CurrencyManager>
 
 
     public static bool IsEnoughCandy(int price) => Instance.CandyCurrency >= price;
+    public static bool IsEnoughMoney(int price) => Instance.MoneyCurrency >= price;
  
     public void Pay(int payPrice)
     {
         CandyCurrency = Mathf.Clamp(CandyCurrency, 0, CandyCurrency - payPrice);
+        UpdateCurrencyDisplay();
+    }
+    public void PayMoney(int payPrice)
+    {
+        MoneyCurrency = Mathf.Clamp(MoneyCurrency, 0, MoneyCurrency - payPrice);
+        ES3.Save<int>("MoneyCurrency", MoneyCurrency);
         UpdateCurrencyDisplay();
     }
 
@@ -49,11 +68,13 @@ public class CurrencyManager : Singleton<CurrencyManager>
     public void AddMoney(int cashNumer)
     {
         MoneyCurrency += cashNumer;
+        ES3.Save<int>("MoneyCurrency", MoneyCurrency);
         UpdateCurrencyDisplay();
     }
 
     public void Load()
     {
+        MoneyCurrency = ES3.Load<int>("MoneyCurrency", 500);
         UpdateCurrencyDisplay();
     }
 

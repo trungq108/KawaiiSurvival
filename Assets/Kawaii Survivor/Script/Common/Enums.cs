@@ -7,7 +7,8 @@ public enum GameState
     GAMEOVER,
     WEAPONSELECTION,
     STAGECOMPLETE,
-    PAUSE
+    PAUSE,
+    CHARACTERSELECTION,
 }
 
 [System.Serializable]

@@ -12,6 +12,7 @@ public class UIManager : Singleton<UIManager>, IGameStateListener
     [SerializeField] GameObject gameOverPanel;
     [SerializeField] GameObject stageCompletePanel;
     [SerializeField] GameObject pausePanel;
+    [SerializeField] GameObject characterSelectPanel;
     private List<GameObject> panelList = new List<GameObject>();
 
     private void Awake()
@@ -19,10 +20,9 @@ public class UIManager : Singleton<UIManager>, IGameStateListener
         panelList.AddRange(new GameObject[]
         {
             gamePanel, menuPanel, waveTransitionPanel, shopPanel , weaponSelectionPanel, gameOverPanel, stageCompletePanel
-            , pausePanel, 
+            , pausePanel, characterSelectPanel, 
         });
     }
-
 
     public void GameStateChangeCallBack(GameState gameState)
     {
@@ -51,6 +51,9 @@ public class UIManager : Singleton<UIManager>, IGameStateListener
                 break;
             case GameState.PAUSE:
                 ShowPanel(pausePanel, gamePanel);
+                break;
+            case GameState.CHARACTERSELECTION:
+                ShowPanel(characterSelectPanel);
                 break;
         }
     }

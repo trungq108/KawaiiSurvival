@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class PlayerStatManager : Singleton<PlayerStatManager>, IGameStateListener
 {
-    [SerializeField] PlayerDataSO PlayerStatSO;
+    [SerializeField] CharacterDataSO PlayerStatSO;
     private Dictionary<Stat, float> playerStats = new Dictionary<Stat, float>();
     private Dictionary<Stat, float> addStats = new Dictionary<Stat, float>();
     private Dictionary<Stat, float> addObjectStat = new Dictionary<Stat, float>();

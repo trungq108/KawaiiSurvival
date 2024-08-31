@@ -20,5 +20,4 @@ public class StatContainerManager : Singleton<StatContainerManager>
             newStatContainer.Confingue(icon, name, value);
         }
     }
-
 }

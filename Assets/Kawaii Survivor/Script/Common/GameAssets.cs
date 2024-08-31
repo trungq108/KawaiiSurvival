@@ -59,4 +59,15 @@ public static class GameAssets
         if (WeaponDatas == null) LoadWeaponDatas();
         return WeaponDatas[Random.Range(0, WeaponDatas.Length)];
     }
+
+    static private CharacterDataSO[] CharacterDatas;
+    static public CharacterDataSO[] LoadCharacters()
+    {
+        if (CharacterDatas == null)
+        {
+            // Assets/Resources/Data/Characters/
+            CharacterDatas = Resources.LoadAll<CharacterDataSO>("Data/Characters/");
+        }
+        return CharacterDatas;
+    }
 }
