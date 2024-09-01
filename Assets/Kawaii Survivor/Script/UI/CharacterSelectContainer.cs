@@ -38,6 +38,7 @@ public class CharacterSelectContainer : MonoBehaviour
     public void SetPurchase()
     {
         isPurchase = true;
+        ES3.Save<bool>("IsPurchase_" + Data.PlayerName, isPurchase);
         charIcon.color = Color.white;
         lockIcon.SetActive(false);
     }

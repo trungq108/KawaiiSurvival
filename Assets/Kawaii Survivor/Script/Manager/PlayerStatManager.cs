@@ -7,15 +7,16 @@ using UnityEngine;
 
 public class PlayerStatManager : Singleton<PlayerStatManager>, IGameStateListener
 {
-    [SerializeField] CharacterDataSO PlayerStatSO;
+    private CharacterDataSO PlayerStatSO;
     private Dictionary<Stat, float> playerStats = new Dictionary<Stat, float>();
     private Dictionary<Stat, float> addStats = new Dictionary<Stat, float>();
     private Dictionary<Stat, float> addObjectStat = new Dictionary<Stat, float>();
 
-    private void Awake()
+    private void Start()
     {
+        PlayerStatSO = CharacterSeclectManager.Instance.SelectedContainer.Data;
         playerStats = PlayerStatSO.BaseStats;
-        foreach(KeyValuePair<Stat, float> kvp in playerStats)
+        foreach (KeyValuePair<Stat, float> kvp in playerStats)
         {
             addStats.Add(kvp.Key, 0f);
             addObjectStat.Add(kvp.Key, 0f);
@@ -71,9 +72,16 @@ public class PlayerStatManager : Singleton<PlayerStatManager>, IGameStateListene
         switch (gameState)
         {
             case GameState.GAME:
-                UpgradeStats();
+                SetPlayerData();
                 break;
         }
+    }
+
+    private void SetPlayerData()
+    {
+        PlayerStatSO = CharacterSeclectManager.Instance.SelectedContainer.Data;
+        playerStats = PlayerStatSO.BaseStats;
+        UpgradeStats();
     }
 }
 

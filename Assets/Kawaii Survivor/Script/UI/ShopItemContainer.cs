@@ -8,7 +8,6 @@ using UnityEngine.UI;
 
 public class ShopItemContainer : MonoBehaviour
 {
-
     [SerializeField] Image containerBG;
     [SerializeField] Image icon;
     [SerializeField] Outline outline;

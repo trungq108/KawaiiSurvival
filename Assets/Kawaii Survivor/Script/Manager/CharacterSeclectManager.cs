@@ -5,7 +5,7 @@ using UnityEditor.U2D.Animation;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CharacterSeclectManager : MonoBehaviour, IGameStateListener
+public class CharacterSeclectManager : Singleton<CharacterSeclectManager>, IGameStateListener
 {
     [SerializeField] private Transform containerParent;
     [SerializeField] private CharacterSeclectInfo infoTab;
@@ -14,7 +14,7 @@ public class CharacterSeclectManager : MonoBehaviour, IGameStateListener
 
     private int saveIndex;
     private List<CharacterSelectContainer> containerList = new List<CharacterSelectContainer>();
-    private CharacterSelectContainer equipContainer;
+    public CharacterSelectContainer SelectedContainer {  get; private set; }
     private CharacterDataSO[] characterDatas;
 
     void Awake()
@@ -57,7 +57,7 @@ public class CharacterSeclectManager : MonoBehaviour, IGameStateListener
     {
         CurrencyManager.Instance.PayMoney(container.Data.PlayerPrice);
         container.SetPurchase();
-        equipContainer = container;
+        SelectedContainer = container;
         EquipCallBack(container);
     }
 
@@ -66,13 +66,13 @@ public class CharacterSeclectManager : MonoBehaviour, IGameStateListener
         saveIndex = containerList.IndexOf(container);
         ES3.Save<int>("saveIndex", saveIndex);
 
-        equipContainer = containerList[saveIndex];
-        CenterImageIcon.sprite = equipContainer.Data.PlayerSprite;
+        SelectedContainer = containerList[saveIndex];
+        CenterImageIcon.sprite = SelectedContainer.Data.PlayerSprite;
         infoTab.Configue(container, null);
 
         for (int i = 0; i < containerList.Count; i++)
         {
-            if (containerList[i] != equipContainer)
+            if (containerList[i] != SelectedContainer)
             {
                 containerList[i].UnEquip();
             }
@@ -86,6 +86,9 @@ public class CharacterSeclectManager : MonoBehaviour, IGameStateListener
         {
             case GameState.MENU:
                 EquipCallBack(containerList[saveIndex]);
+                break;
+            case GameState.GAME:
+                GameManager.Instance.Player.SetCharacterSprite(SelectedContainer.Data.PlayerSprite);
                 break;
         }
     }

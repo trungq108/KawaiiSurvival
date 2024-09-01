@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     private PlayerEXP level;
     private PlayerWeapon playerWeapon;
     private PlayerObjects playerObjects;
+    [SerializeField] private SpriteRenderer characterDisplay;
 
     private void Awake()
     {
@@ -34,6 +35,11 @@ public class Player : MonoBehaviour
     public List<ObjectDataSO> GetObjects() => playerObjects.Objects;
     public void RemoveWeapon(Weapon weapon) => playerWeapon.RemoveWeapon(weapon);
     public void RemoveObject(ObjectDataSO objectData) => playerObjects.RemoveObject(objectData);
+
+    public void SetCharacterSprite(Sprite sprite)
+    {
+        characterDisplay.sprite = sprite;
+    }
 
 
 }

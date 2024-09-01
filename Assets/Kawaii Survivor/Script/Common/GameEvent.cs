@@ -11,6 +11,6 @@ public static class GameEvent
     public static Action ChestCollected;
     public static Action<Weapon> OnWeaponMerge;
 
-    //public static Action OnPause;
-    //public static Action OnResume;
+    public static Action<bool> OnSFXChange;
+    public static Action<bool> OnMusicChange;
 }

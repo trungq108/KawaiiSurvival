@@ -152,7 +152,7 @@ public class ShopManager : Singleton<ShopManager>, IGameStateListener
             });
     }
 
-    private void ConfigueInventory()
+    private void ConfigueInventoryTab()
     {
         inventory_OpenButton.onClick.AddListener(() => OpenInventory(0.5f));
 
@@ -212,7 +212,7 @@ public class ShopManager : Singleton<ShopManager>, IGameStateListener
             case GameState.SHOP:
                 CreatShopIteamContainers();
                 ConfiguePlayerStatsTab();
-                ConfigueInventory();
+                ConfigueInventoryTab();
                 UpdateRerollButton();
                 rerollButton.onClick.AddListener(() => Reroll());
                 break;

@@ -14,8 +14,10 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] Button gameover_Replay;
     [SerializeField] Button stageComplete_Replay;
     [SerializeField] Button pauseGame;
-    [SerializeField] Button charaterSeclection;
-    [SerializeField] Button backToMenu;
+    [SerializeField] Button charaterSelection;
+    [SerializeField] Button backFromCharSelection;
+    [SerializeField] Button openSetting;
+    [SerializeField] Button backFromSetting;
 
     public Player Player { get; private set; }
     public static bool IsPause {  get; private set; }
@@ -28,9 +30,10 @@ public class GameManager : Singleton<GameManager>
         gameover_Replay.onClick.AddListener(()       => LoadScene());
         stageComplete_Replay.onClick.AddListener(()  => LoadScene());
         pauseGame.onClick.AddListener(()             => PauseGame());
-        charaterSeclection.onClick.AddListener(()    => SetGameState(GameState.CHARACTERSELECTION));
-        backToMenu.onClick.AddListener(()            => SetGameState(GameState.MENU));
-
+        charaterSelection.onClick.AddListener(()     => SetGameState(GameState.CHARACTERSELECTION));
+        backFromCharSelection.onClick.AddListener(() => SetGameState(GameState.MENU));
+        openSetting.onClick.AddListener(()           => SetGameState(GameState.SETTING));
+        backFromSetting.onClick.AddListener(()       => SetGameState(GameState.MENU));
     }
 
     void Awake()

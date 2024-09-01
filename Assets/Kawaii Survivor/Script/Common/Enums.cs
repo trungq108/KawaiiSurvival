@@ -9,6 +9,8 @@ public enum GameState
     STAGECOMPLETE,
     PAUSE,
     CHARACTERSELECTION,
+    SETTING,
+
 }
 
 [System.Serializable]
