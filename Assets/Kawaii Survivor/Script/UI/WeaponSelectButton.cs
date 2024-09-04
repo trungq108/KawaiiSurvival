@@ -31,12 +31,14 @@ public class WeaponSelectButton : MonoBehaviour
 
     public void Select()
     {
-        Button.transform.DOScale(originalScale, 0f);
-        Button.transform.DOScale(transform.localScale * 1.2f, 0.3f).SetEase(Ease.InOutBack);
+        DOTween.Kill(this.gameObject);
+        Button.transform.localScale = originalScale;
+        Button.transform.DOScale(originalScale * 1.25f, 0.25f).SetEase(Ease.InCirc);
     }
 
     public void DeSelect()
     {
-        Button.transform.DOScale(originalScale, 0.3f).SetEase(Ease.InOutBack);
+        DOTween.Kill(this.gameObject);
+        Button.transform.DOScale(originalScale, 0.25f).SetEase(Ease.InCirc);
     }
 }

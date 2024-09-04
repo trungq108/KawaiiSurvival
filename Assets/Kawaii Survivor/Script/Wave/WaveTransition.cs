@@ -31,7 +31,6 @@ public class WaveTransition : Singleton<WaveTransition>, IGameStateListener
     public void ChestCollectedCallBack()
     {
         ChestCollected++;
-        Debug.Log("We have " + ChestCollected + " chest");
     }
 
     public void GameStateChangeCallBack(GameState gameState)

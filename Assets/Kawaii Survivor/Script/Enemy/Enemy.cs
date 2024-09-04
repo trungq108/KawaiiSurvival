@@ -40,10 +40,10 @@ public abstract class Enemy : MonoBehaviour
         collider = GetComponent<Collider2D>();
         collider.enabled = false;
 
-
         isSpawned = false;
         enemyRenderer.enabled = false;
         spawnCircle.enabled = true;
+        enemyHealth.OnInit();
 
         spawnCircle.transform.DOScale(spawnCircle.transform.localScale * 1.4f, 1f)
             .SetEase(Ease.InOutSine)
@@ -57,6 +57,7 @@ public abstract class Enemy : MonoBehaviour
         enemyRenderer.enabled = true;
         spawnCircle.enabled = false;
         collider.enabled = true;
+        enemyHealth.OnInitCompleted();
         enemyMovement.OnInit(player, detectRange);
     }
 

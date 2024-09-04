@@ -41,7 +41,7 @@ public class WaveManager : Singleton<WaveManager>, IGameStateListener
         localCount.Clear();
         foreach (WaveSegment segment in waves[currentWaveIndex].segments)
         {
-            localCount.Add(1);
+            localCount.Add(0);
         }
         timer = 0f;
         IsTimeOn = true;
@@ -63,6 +63,11 @@ public class WaveManager : Singleton<WaveManager>, IGameStateListener
             {
                 LeanPool.Spawn(segment.enemyPrefab, GetSpawnPos(), Quaternion.identity, this.transform);
                 localCount[i]++;
+
+                if (segment.spawnOnce)
+                {
+                    localCount[i] += Mathf.Infinity;
+                }
             }
         }
         timer += Time.deltaTime;
@@ -127,4 +132,5 @@ public struct WaveSegment
     public Vector2 tStartEnd; // sliderVector x: timeStart , y : timeEnd
     public float spawnFrequency;
     public GameObject enemyPrefab;
+    public bool spawnOnce;
 }

@@ -63,14 +63,14 @@ public class SettingManager : Singleton<SettingManager>
             sfxImage.color = onColor;
             sfxText.text = ON;
             ES3.Save<bool>("sfxState", sfxState);
-            GameEvent.OnSFXChange(sfxState);
+            GameEvent.OnSFXChange?.Invoke(sfxState);
         }
         else
         {
             sfxImage.color = offColor;
             sfxText.text = OFF;
             ES3.Save<bool>("sfxState", sfxState);
-            GameEvent.OnSFXChange(sfxState);
+            GameEvent.OnSFXChange?.Invoke(sfxState);
         }
     }
 
@@ -86,14 +86,14 @@ public class SettingManager : Singleton<SettingManager>
             audioImage.color = onColor;
             audioText.text = ON;
             ES3.Save<bool>("audioState", audioState);
-            GameEvent.OnMusicChange(audioState);
+            GameEvent.OnMusicChange?.Invoke(audioState);
         }
         else
         {
             audioImage.color = offColor;
             audioText.text = OFF;
             ES3.Save<bool>("audioState", audioState);
-            GameEvent.OnMusicChange(audioState);
+            GameEvent.OnMusicChange?.Invoke(audioState);
         }
     }
 
