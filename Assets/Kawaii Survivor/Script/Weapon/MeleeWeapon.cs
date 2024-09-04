@@ -10,6 +10,7 @@ public class MeleeWeapon : Weapon
     {
         base.Attack();
         collider.enabled = true;
+        GameEvent.onMeleeWeaponAttack?.Invoke(Data.WeaponSound);
     }
 
     protected override void StopAttack()

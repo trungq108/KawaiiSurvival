@@ -18,7 +18,7 @@ public class Bullet : MonoBehaviour
         this.bulletDamage = bulletDamage;
         this.transform.up = direction;
         this.direction = direction;
-        this.isCritical = isCritical;s
+        this.isCritical = isCritical;
         this.isPlayerBullet = isPlayerBullet;
         this.rigidbody.velocity = this.direction * bulletSpeed;
         this.rigidbody.angularVelocity = rotateAngular;

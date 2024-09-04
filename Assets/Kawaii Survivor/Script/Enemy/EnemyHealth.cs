@@ -23,13 +23,16 @@ public class EnemyHealth : MonoBehaviour
     public void OnInit()
     {
         currentHealth = maxHealth;
-        if (isBoss) UpdateHealthBar();
-        healthBar.gameObject.SetActive(false);
+        if (isBoss)
+        {
+            UpdateHealthBar();
+            healthBar.gameObject.SetActive(false);
+        }
     }
 
     public void OnInitCompleted()
     {
-        healthBar.gameObject.SetActive(true);
+        if (isBoss) healthBar.gameObject.SetActive(true);
     }
 
     public void TakeDame(int damage, bool isCritical)

@@ -13,6 +13,7 @@ public class RangeWeapon : Weapon
     {
         base.Attack();
         Shooting(nearestTarget.transform.position);
+        GameEvent.onRangeWeaponAttack?.Invoke(Data.WeaponSound);
     }
 
     protected override void StopAttack()

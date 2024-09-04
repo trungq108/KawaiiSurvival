@@ -17,6 +17,7 @@ MonoBehaviour:
   <WeaponPrice>k__BackingField: 100
   <WeaponRecyclePrice>k__BackingField: 80
   <Prefab>k__BackingField: {fileID: 547182065031921697, guid: 08594fb6ba9f41d45be579fb431668da, type: 3}
+  <WeaponSound>k__BackingField: {fileID: 8300000, guid: f7bdbeca28170df478ac865f6729a5e2, type: 3}
   AttackSpeed: 5
   Attack: 100
   CriticalChance: 5

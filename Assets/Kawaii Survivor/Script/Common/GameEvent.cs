@@ -13,4 +13,8 @@ public static class GameEvent
 
     public static Action<bool> OnSFXChange;
     public static Action<bool> OnMusicChange;
+
+    public static Action<AudioClip> onRangeWeaponAttack;
+    public static Action<AudioClip> onMeleeWeaponAttack;
+
 }

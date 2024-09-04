@@ -10,6 +10,7 @@ public class WeaponDataSO : ScriptableObject
     [field: SerializeField] public int WeaponPrice { get; private set; }
     [field: SerializeField] public int WeaponRecyclePrice { get; private set; }
     [field: SerializeField] public GameObject Prefab { get; private set; }
+    [field: SerializeField] public AudioClip WeaponSound { get; private set; }
 
     [SerializeField] private float AttackSpeed;
     [SerializeField] private float Attack;
