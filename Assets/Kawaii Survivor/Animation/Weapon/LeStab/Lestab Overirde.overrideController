@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Lestab Overirde
+  m_Controller: {fileID: 9100000, guid: 395539d718e92344183400567984dc9a, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 24af344180a60504f99f2045cb14e85c, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: ebce5a67a6376f54cb152da5b9887eec, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: a701576d87840bd43ba7a8a9a74914f6, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 6fa48b83a446eae4aac9c7b17b680280, type: 2}

@@ -71,7 +71,7 @@ Animator:
   m_GameObject: {fileID: 1917864146218742010}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 395539d718e92344183400567984dc9a, type: 2}
+  m_Controller: {fileID: 22100000, guid: 320ba672991efb840a55ed42e8e5ebe9, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -96,7 +96,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parent: {fileID: 1917864146699214328}
   animator: {fileID: 1917864146218742004}
-  <Data>k__BackingField: {fileID: 11400000, guid: 71ad8f83a321c4543b22db2f2dd3a4be, type: 2}
+  <Data>k__BackingField: {fileID: 11400000, guid: ba144b99177d58d46bcb61dea0007ab4, type: 2}
   aimSpeed: 10
   enemyLayerMask:
     serializedVersion: 2
@@ -113,7 +113,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1917864146699214331}
   m_Layer: 0
-  m_Name: Weapon_DeBoink
+  m_Name: Weapon_LeStab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -208,7 +208,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 15c981701acaf3f4b840cf2f1f7d3446, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e260fcef0dd7ae847bb70df83762c267, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

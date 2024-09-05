@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a1a3e48a29ebf14ea90006532ae4d00, type: 3}
-  m_Name: DeBoink_SO
+  m_Name: MrSwingy_SO
   m_EditorClassIdentifier: 
-  <WeaponName>k__BackingField: DeBoink
-  <WeaponIcon>k__BackingField: {fileID: 21300000, guid: 15c981701acaf3f4b840cf2f1f7d3446, type: 3}
+  <WeaponName>k__BackingField: MrSwingy
+  <WeaponIcon>k__BackingField: {fileID: 21300000, guid: dac71ecc77ba99d4f8fcad927f8b473c, type: 3}
   <WeaponPrice>k__BackingField: 80
   <WeaponRecyclePrice>k__BackingField: 70
-  <Prefab>k__BackingField: {fileID: 1917864146699214328, guid: c78ab28d45f3f6a49a229cc5ea95c981, type: 3}
-  <WeaponSound>k__BackingField: {fileID: 8300000, guid: eccbb0eb94e0cab4aaab5c4930cf469c, type: 3}
+  <Prefab>k__BackingField: {fileID: 1917864146699214328, guid: efaf9eee3b4e91f4099154fa37cf7070, type: 3}
+  <WeaponSound>k__BackingField: {fileID: 8300000, guid: 2afdf042acaa39c49b939d00655ebe62, type: 3}
   AttackSpeed: 1
   Attack: 200
   CriticalChance: 20

@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a1a3e48a29ebf14ea90006532ae4d00, type: 3}
-  m_Name: DeBoink_SO
+  m_Name: LeStab_SO 1
   m_EditorClassIdentifier: 
-  <WeaponName>k__BackingField: DeBoink
-  <WeaponIcon>k__BackingField: {fileID: 21300000, guid: 15c981701acaf3f4b840cf2f1f7d3446, type: 3}
+  <WeaponName>k__BackingField: LeStab
+  <WeaponIcon>k__BackingField: {fileID: 21300000, guid: e260fcef0dd7ae847bb70df83762c267, type: 3}
   <WeaponPrice>k__BackingField: 80
   <WeaponRecyclePrice>k__BackingField: 70
-  <Prefab>k__BackingField: {fileID: 1917864146699214328, guid: c78ab28d45f3f6a49a229cc5ea95c981, type: 3}
-  <WeaponSound>k__BackingField: {fileID: 8300000, guid: eccbb0eb94e0cab4aaab5c4930cf469c, type: 3}
-  AttackSpeed: 1
+  <Prefab>k__BackingField: {fileID: 1917864146699214328, guid: ef8e1c243d258c44aa4822406ea8e105, type: 3}
+  <WeaponSound>k__BackingField: {fileID: 8300000, guid: c673fb9cf3e24d443b75f2de39c6fb01, type: 3}
+  AttackSpeed: 2
   Attack: 200
   CriticalChance: 20
   CriticalPercent: 80
